@@ -1,0 +1,27 @@
+{
+  "schema": "psychology-paper-skill-manifest",
+  "version": 1,
+  "skill": "journal-fit-style",
+  "always_load": ["./static/core/journal-analysis.md"],
+  "axes": {
+    "journal_status": {
+      "unspecified": ["./static/fragments/journal-unspecified.md"],
+      "candidates": ["./static/fragments/candidate-scan.md"],
+      "confirmed": ["./static/fragments/confirmed-journal.md"]
+    },
+    "depth": {
+      "light": ["./static/fragments/light-style-scan.md"],
+      "deep": ["./static/fragments/deep-style-study.md"],
+      "refresh": ["./static/fragments/profile-refresh.md"]
+    },
+    "output": {
+      "manuscript_profile": ["./references/manuscript-profile-schema.md"],
+      "candidate_set": ["./references/manuscript-profile-schema.md"],
+      "journal_profile": ["./references/journal-profile-schema.md"]
+    }
+  },
+  "shared_loads": {
+    "design_tags": ["../.shared/core/research-design-taxonomy.md"],
+    "risk": ["../.shared/output/risk-reporting.md"]
+  }
+}

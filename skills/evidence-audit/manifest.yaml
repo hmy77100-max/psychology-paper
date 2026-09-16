@@ -1,0 +1,40 @@
+{
+  "schema": "psychology-paper-skill-manifest",
+  "version": 1,
+  "skill": "evidence-audit",
+  "always_load": ["./static/core/audit-principles.md"],
+  "axes": {
+    "paper_type": {
+      "empirical": ["./static/fragments/paper-types/empirical.md"],
+      "qualitative": ["./static/fragments/paper-types/qualitative.md"],
+      "review": ["./static/fragments/paper-types/review.md"],
+      "meta-analysis": ["./static/fragments/paper-types/meta-analysis.md"],
+      "scale-development": ["./static/fragments/paper-types/scale-development.md"]
+    },
+    "design_tags": {
+      "survey": ["./static/fragments/designs/survey.md"],
+      "experiment": ["./static/fragments/designs/experiment.md"],
+      "longitudinal": ["./static/fragments/designs/longitudinal.md"],
+      "behavioral-task": ["./static/fragments/designs/behavioral-task.md"],
+      "instrument-based": ["./static/fragments/designs/instrument-based.md"]
+    },
+    "scope": {
+      "local": ["./references/audit-report-schema.md"],
+      "section": ["./references/audit-report-schema.md"],
+      "full": ["./references/audit-report-schema.md"],
+      "change-impact": ["./references/change-impact-audit.md"]
+    },
+    "risk_threshold": {
+      "R0-R1": ["../.shared/output/risk-reporting.md"],
+      "R0-R2": ["../.shared/output/risk-reporting.md"],
+      "all": ["../.shared/output/risk-reporting.md"]
+    }
+  },
+  "shared_loads": {
+    "evidence": ["../.shared/core/evidence-boundaries.md"],
+    "design_taxonomy": ["../.shared/core/research-design-taxonomy.md"],
+    "terminology": ["../.shared/core/terminology-ledger.md"],
+    "source_authority": ["../.shared/core/source-authority.md"],
+    "impact": ["../.shared/core/change-propagation.md"]
+  }
+}

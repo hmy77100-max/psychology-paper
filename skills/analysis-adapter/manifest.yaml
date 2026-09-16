@@ -1,0 +1,25 @@
+{
+  "schema": "psychology-paper-skill-manifest",
+  "version": 1,
+  "skill": "analysis-adapter",
+  "always_load": ["./static/core/analysis-principles.md"],
+  "axes": {
+    "design_tags": {
+      "survey": ["./static/fragments/designs/survey.md"],
+      "factorial-experiment": ["./static/fragments/designs/factorial-experiment.md"],
+      "repeated-or-mixed": ["./static/fragments/designs/repeated-or-mixed.md"],
+      "longitudinal": ["./static/fragments/designs/longitudinal.md"],
+      "instrument-based": ["./static/fragments/designs/instrument-based.md"]
+    }
+  },
+  "conditional_loads": {
+    "source_comparison": ["./references/source-comparison.md"],
+    "registry": ["./references/analysis-registry-schema.md"]
+  },
+  "shared_loads": {
+    "design_taxonomy": ["../.shared/core/research-design-taxonomy.md"],
+    "source_authority": ["../.shared/core/source-authority.md"],
+    "terminology": ["../.shared/core/terminology-ledger.md"],
+    "impact": ["../.shared/core/change-propagation.md"]
+  }
+}

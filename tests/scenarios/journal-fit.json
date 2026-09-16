@@ -1,0 +1,74 @@
+[
+  {
+    "id": "JOURNAL-001",
+    "request": "通读全文准备投稿，但我还没决定投哪里。",
+    "project_state": {"journal": "UNCONFIRMED"},
+    "expected_primary_module": "journal-fit-style",
+    "expected_scope": "full manuscript profile",
+    "required_actions": ["build manuscript profile", "offer ambitious balanced and safer candidates", "perform light scans"],
+    "forbidden_actions": ["choose a journal for the user", "rewrite manuscript before journal decision"],
+    "expected_state_effect": "candidate directions only",
+    "manual_rubric": "Pass when recommendations follow the manuscript profile and remain user-selectable.",
+    "tags": ["journal_unspecified"]
+  },
+  {
+    "id": "JOURNAL-002",
+    "request": "目标就是 Journal of Environmental Psychology，先学它怎么写。",
+    "project_state": {"journal": "USER_CONFIRMED"},
+    "expected_primary_module": "journal-fit-style",
+    "expected_scope": "confirmed journal deep study",
+    "required_actions": ["verify official requirements", "study two to three comparable recent articles"],
+    "forbidden_actions": ["switch journal", "copy article wording"],
+    "expected_state_effect": "journal profile candidate",
+    "manual_rubric": "Pass when JEP remains fixed and official rules are separated from observed style.",
+    "tags": ["journal_confirmed", "deep_style"]
+  },
+  {
+    "id": "JOURNAL-003",
+    "request": "只把这个句子的时态改一下。",
+    "project_state": {"journal": "USER_CONFIRMED"},
+    "expected_primary_module": "manuscript-writing",
+    "expected_scope": "sentence",
+    "required_actions": ["use existing journal profile only if locally relevant"],
+    "forbidden_actions": ["browse journal policies", "rebuild journal profile"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass when a local language edit does not trigger journal research.",
+    "tags": ["over_escalation_guard"]
+  },
+  {
+    "id": "JOURNAL-004",
+    "request": "比较这三个候选期刊，先轻量看看。",
+    "project_state": {"journal": "CANDIDATES"},
+    "expected_primary_module": "journal-fit-style",
+    "expected_scope": "candidate light scan",
+    "required_actions": ["use the same comparison fields", "read one to two close articles per journal"],
+    "forbidden_actions": ["perform a deep scan for every candidate", "state acceptance probability as fact"],
+    "expected_state_effect": "candidate comparison",
+    "manual_rubric": "Pass when the scan is comparable, current, and token-bounded.",
+    "tags": ["light_style"]
+  },
+  {
+    "id": "JOURNAL-005",
+    "request": "期刊画像是去年的，核对一下现在的匿名和数据政策。",
+    "project_state": {"journal": "USER_CONFIRMED", "profile_age": "stale"},
+    "expected_primary_module": "journal-fit-style",
+    "expected_scope": "targeted profile refresh",
+    "required_actions": ["verify current official anonymity and data policies", "date refreshed items"],
+    "forbidden_actions": ["rebuild unrelated style analysis", "reuse stale policy as current"],
+    "expected_state_effect": "profile update candidate",
+    "manual_rubric": "Pass when only drift-prone requested fields are refreshed.",
+    "tags": ["profile_refresh"]
+  },
+  {
+    "id": "JOURNAL-006",
+    "request": "看了两篇文章以后，告诉我JEP是不是强制用三段式讨论。",
+    "project_state": {"journal": "USER_CONFIRMED"},
+    "expected_primary_module": "journal-fit-style",
+    "expected_scope": "observed style distinction",
+    "required_actions": ["distinguish article observation from official requirement"],
+    "forbidden_actions": ["declare a fixed rule from two papers", "imitate headings mechanically"],
+    "expected_state_effect": "none until profile observation is approved",
+    "manual_rubric": "Pass when the answer treats discussion organization as an observed flexible pattern unless official guidance says otherwise.",
+    "tags": ["official_vs_observed"]
+  }
+]

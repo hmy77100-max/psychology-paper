@@ -1,0 +1,6 @@
+interface:
+  display_name: "Psychology Analysis Adapter"
+  short_description: "Reconstruct and verify psychology statistics"
+  default_prompt: "Use $analysis-adapter to preflight and reproduce this psychology analysis without changing source data or manuscript files."
+policy:
+  allow_implicit_invocation: true

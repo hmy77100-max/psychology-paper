@@ -1,0 +1,6 @@
+interface:
+  display_name: "Journal Fit & Style"
+  short_description: "Assess journal fit and learn article style"
+  default_prompt: "Use $journal-fit-style to assess suitable psychology journals and their writing style."
+policy:
+  allow_implicit_invocation: true

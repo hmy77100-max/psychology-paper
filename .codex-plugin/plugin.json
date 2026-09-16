@@ -1,0 +1,35 @@
+{
+  "name": "psychology-paper",
+  "version": "0.2.0",
+  "description": "Psychology manuscript planning, journal fit, evidence auditing, bilingual revision candidates, and reproducible statistical-analysis support.",
+  "author": {
+    "name": "Psychology Paper Contributors"
+  },
+  "repository": "https://github.com/hmy77100-max/psychology-paper",
+  "license": "MIT",
+  "keywords": [
+    "psychology",
+    "scientific-writing",
+    "journal-fit",
+    "evidence-audit",
+    "statistical-analysis"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Psychology Paper",
+    "shortDescription": "Psychology manuscript workflow with evidence boundaries",
+    "longDescription": "Plan, audit, and revise psychology manuscripts through journal-aware, evidence-calibrated, human-approved workflows.",
+    "developerName": "Psychology Paper Contributors",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Review my psychology manuscript before making changes.",
+      "Assess journal fit and learn the target journal's style.",
+      "Draft a bilingual revision candidate for this section."
+    ],
+    "brandColor": "#365B6D"
+  }
+}

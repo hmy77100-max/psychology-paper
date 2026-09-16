@@ -1,0 +1,6 @@
+interface:
+  display_name: "Psychology Manuscript Writing"
+  short_description: "Draft evidence-bounded bilingual revisions"
+  default_prompt: "Use $manuscript-writing to draft a bilingual psychology manuscript revision candidate."
+policy:
+  allow_implicit_invocation: true

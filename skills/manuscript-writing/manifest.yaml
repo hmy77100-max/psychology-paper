@@ -1,0 +1,46 @@
+{
+  "schema": "psychology-paper-skill-manifest",
+  "version": 1,
+  "skill": "manuscript-writing",
+  "always_load": [
+    "./static/core/writing-stance.md",
+    "./static/core/workflow.md",
+    "./static/core/evidence-boundary.md",
+    "./static/core/output-contract.md",
+    "./static/core/paragraph-logic.md"
+  ],
+  "axes": {
+    "section": {
+      "title": ["./static/fragments/sections/title.md"],
+      "abstract": ["./static/fragments/sections/abstract.md"],
+      "introduction": ["./static/fragments/sections/introduction.md"],
+      "hypotheses": ["./static/fragments/sections/hypotheses.md"],
+      "methods": ["./static/fragments/sections/methods.md"],
+      "results": ["./static/fragments/sections/results.md"],
+      "study-transitions": ["./static/fragments/sections/study-transitions.md"],
+      "discussion": ["./static/fragments/sections/discussion.md"],
+      "limitations": ["./static/fragments/sections/limitations.md"],
+      "conclusion": ["./static/fragments/sections/conclusion.md"]
+    },
+    "language": {
+      "chinese": ["./static/fragments/languages/chinese.md"],
+      "english": ["./static/fragments/languages/english.md"],
+      "chinese-to-english": ["./static/fragments/languages/chinese-to-english.md"]
+    },
+    "task": {
+      "local-edit": ["./static/fragments/tasks/local-edit.md"],
+      "section-rewrite": ["./static/fragments/tasks/section-rewrite.md"],
+      "full-manuscript": ["./static/fragments/tasks/full-manuscript.md"],
+      "translation": ["./static/fragments/tasks/translation.md"]
+    }
+  },
+  "conditional_loads": {
+    "confirmed_style_delta": ["./references/style-delta-schema.md"]
+  },
+  "shared_loads": {
+    "candidate_format": ["../.shared/output/candidate-format.md"],
+    "evidence": ["../.shared/core/evidence-boundaries.md"],
+    "terminology": ["../.shared/core/terminology-ledger.md"],
+    "impact": ["../.shared/core/change-propagation.md"]
+  }
+}

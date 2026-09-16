@@ -1,0 +1,21 @@
+{
+  "schema": "psychology-paper-skill-manifest",
+  "version": 1,
+  "skill": "psychology-paper",
+  "always_load": [
+    "./static/core/routing-principles.md",
+    "./static/core/authorization.md"
+  ],
+  "conditional_loads": {
+    "project_mode": ["./static/core/project-mode.md"],
+    "ambiguous_route": ["./references/task-routing.md"],
+    "module_handoff": ["./references/module-handoffs.md"],
+    "recovery": ["./references/error-recovery.md"]
+  },
+  "shared_loads": {
+    "authorization": ["../.shared/core/authorization-and-state.md"],
+    "state_rules": ["../.shared/core/state-consistency.md"],
+    "impact_scan": ["../.shared/core/change-propagation.md"],
+    "handoff": ["../.shared/schemas/minimal-handoff.md"]
+  }
+}

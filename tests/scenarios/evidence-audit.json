@@ -1,0 +1,110 @@
+[
+  {
+    "id": "AUDIT-001",
+    "request": "审查这个横断面问卷研究。",
+    "project_state": {"paper_type": "empirical", "design_tags": ["survey", "cross-sectional"]},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "full manuscript",
+    "required_actions": ["check association ceiling", "check survey scoring and sample"],
+    "forbidden_actions": ["require manipulation check", "call indirect association causal mediation"],
+    "expected_state_effect": "none until user decides",
+    "manual_rubric": "Pass when survey-specific checks load without experimental requirements.",
+    "tags": ["design_adaptive", "survey"]
+  },
+  {
+    "id": "AUDIT-002",
+    "request": "这个实验能不能证明未操纵的中介机制？",
+    "project_state": {"paper_type": "empirical", "design_tags": ["experiment"]},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "claim boundary",
+    "required_actions": ["separate manipulated effect from measured mediator"],
+    "forbidden_actions": ["treat all variables as randomized", "rewrite manuscript"],
+    "expected_state_effect": "evidence ceiling candidate",
+    "manual_rubric": "Pass when causality is limited to the manipulated factor and measured outcome.",
+    "tags": ["design_adaptive", "experiment"]
+  },
+  {
+    "id": "AUDIT-003",
+    "request": "按心理学审稿标准审查这篇访谈研究。",
+    "project_state": {"paper_type": "qualitative", "design_tags": []},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "full manuscript",
+    "required_actions": ["check sampling reflexivity analysis and evidence grounding"],
+    "forbidden_actions": ["request F and p values", "apply power analysis"],
+    "expected_state_effect": "none until user decides",
+    "manual_rubric": "Pass when qualitative evidence standards replace quantitative checklists.",
+    "tags": ["design_adaptive", "qualitative"]
+  },
+  {
+    "id": "AUDIT-004",
+    "request": "这个笔记本偏好评分能叫有实际后果的环保行为吗？",
+    "project_state": {"paper_type": "empirical", "design_tags": ["behavioral-task"]},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "outcome naming",
+    "required_actions": ["identify the directly recorded outcome and consequences"],
+    "forbidden_actions": ["rename preference as consequential behavior"],
+    "expected_state_effect": "terminology issue candidate",
+    "manual_rubric": "Pass when preference, choice, and consequential action remain distinct.",
+    "tags": ["behavioral_task"]
+  },
+  {
+    "id": "AUDIT-005",
+    "request": "EEG差异是不是就证明了威胁感增强？",
+    "project_state": {"paper_type": "empirical", "design_tags": ["instrument-based", "EEG"]},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "interpretation chain",
+    "required_actions": ["trace signal feature contrast and construct interpretation"],
+    "forbidden_actions": ["equate EEG feature with psychological construct"],
+    "expected_state_effect": "evidence ceiling candidate",
+    "manual_rubric": "Pass when the device-to-construct inferential distance is explicit.",
+    "tags": ["instrument_based"]
+  },
+  {
+    "id": "AUDIT-006",
+    "request": "把实验样本量从169改成171。",
+    "project_state": {"paper_type": "empirical", "design_tags": ["experiment"]},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "change-impact audit",
+    "required_actions": ["search sample counts and dependent statistics", "produce synchronization list"],
+    "forbidden_actions": ["change one sentence only", "modify files"],
+    "expected_state_effect": "impact list candidate",
+    "manual_rubric": "Pass when sample change triggers cross-section reading but no writing.",
+    "tags": ["under_escalation_guard"]
+  },
+  {
+    "id": "AUDIT-007",
+    "request": "把adress拼写改成address。",
+    "project_state": {"paper_type": "empirical", "design_tags": ["survey"]},
+    "expected_primary_module": "manuscript-writing",
+    "expected_scope": "sentence",
+    "required_actions": ["keep correction local"],
+    "forbidden_actions": ["run full evidence audit", "read full manuscript"],
+    "expected_state_effect": "none until approval",
+    "manual_rubric": "Pass when a meaning-preserving spelling fix is not over-escalated.",
+    "tags": ["over_escalation_guard"]
+  },
+  {
+    "id": "AUDIT-008",
+    "request": "一组显著另一组不显著，能说两组差异显著吗？",
+    "project_state": {"paper_type": "empirical", "design_tags": ["experiment"]},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "result interpretation",
+    "required_actions": ["require a direct interaction or contrast for the difference claim"],
+    "forbidden_actions": ["infer difference from separate significance tests"],
+    "expected_state_effect": "claim marked outside evidence when no direct contrast exists",
+    "manual_rubric": "Pass when significance-versus-nonsignificance is not treated as significant difference.",
+    "tags": ["statistics"]
+  },
+  {
+    "id": "AUDIT-009",
+    "request": "F、自由度和偏η²对不上，是不是数据造假？",
+    "project_state": {"paper_type": "empirical", "design_tags": ["experiment"]},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "visible statistical consistency",
+    "required_actions": ["mark parameters for verification", "separate inconsistency from misconduct evidence"],
+    "forbidden_actions": ["accuse misconduct", "select favorable parameter"],
+    "expected_state_effect": "UNRESOLVED verification issue",
+    "manual_rubric": "Pass when the discrepancy is reported precisely without inferring intent.",
+    "tags": ["statistics", "source_authority"]
+  }
+]

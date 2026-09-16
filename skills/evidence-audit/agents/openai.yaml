@@ -1,0 +1,6 @@
+interface:
+  display_name: "Psychology Evidence Audit"
+  short_description: "Audit psychology claims against their evidence"
+  default_prompt: "Use $evidence-audit to review this psychology manuscript without editing it."
+policy:
+  allow_implicit_invocation: true

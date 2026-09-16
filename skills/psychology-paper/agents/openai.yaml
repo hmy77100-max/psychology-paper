@@ -1,0 +1,6 @@
+interface:
+  display_name: "Psychology Paper"
+  short_description: "Route psychology manuscript work safely"
+  default_prompt: "Use $psychology-paper to assess this manuscript request before making changes."
+policy:
+  allow_implicit_invocation: true
