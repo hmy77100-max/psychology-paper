@@ -6,7 +6,9 @@
   "conditional_loads": {
     "external_evidence": ["./references/external-evidence.md", "./references/evidence-note.md"],
     "methods_review": ["./references/methods-review.md"],
-    "quality_review": ["./references/quality-review.md"]
+    "quality_review": ["./references/quality-review.md"],
+    "contribution_review": ["./references/contribution-review.md"],
+    "revision_options": ["./references/revision-options.md"]
   },
   "axes": {
     "paper_type": {

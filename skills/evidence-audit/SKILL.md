@@ -17,6 +17,8 @@ Paper/design selectors apply when reviewing manuscript evidence. A scope clarifi
 
 For scientific review select `conditional_loads.methods_review` with the applicable design resources. Before delivering findings or reconciling a repeat review, load `conditional_loads.quality_review` once. Use focused loads for each stage and retain already loaded resources; do not combine every optional group or repeat all design/profile content for a quality check. Stay within the unchanged per-load budget.
 
+When evaluating contribution or obstacles for an existing target, select `conditional_loads.contribution_review`. When organizing substantive revision choices, select `conditional_loads.revision_options`. These are review responsibilities, not a new journal-positioning or editing route. Skip expansions outside the requested scope, including advice for issues-only requests.
+
 Do not open child resource paths directly, infer a similar path, or enumerate directories. A loader error is a plugin-integrity failure; stop this plugin invocation and report the bounded error. Keep the default character budget and never load design checks that do not apply.
 
 ## Load only applicable checks
@@ -29,7 +31,7 @@ Identify the paper type, every relevant design tag, observation unit, evidence s
 2. Reconstruct the author's question and design. Clarify only uncertainties that materially affect this review.
 3. Check applicable constructs, operations, measures, samples, visible analyses and claims. Check other sections, tables, figures and appendices before alleging a conflict; state anything not inspected.
 4. For externally verifiable uncertainties that could change a material recommendation, perform targeted source lookup using available browsing/retrieval tools. Honor offline requests and tool/access limits; report unresolved questions and continue independent checks.
-5. Separate observed facts, interpretations and recommendations. Assign issue kind separately from evidence status/risk; preserve supported contributions. Apply quality review to sources, coverage, duplicates, conflicts and any prior issue dispositions before delivery.
+5. Separate observed facts, interpretations and recommendations. Assign issue kind separately from evidence status/risk; preserve supported contributions. Where in scope, compare contribution with existing target requirements and organize feasible advice by evidence needs, tradeoffs and dependencies. Apply quality review to sources, coverage, duplicates, conflicts and any prior issue dispositions before delivery.
 6. For proposed evidence-bearing changes, load `axes.scope.change-impact` and return affected locations. Deliver the review and stop; no automatic editing or analysis handoff.
 
 Without recalculation authorization, inspect only visible consistency and mark anomalies for verification. Do not try alternate scoring, exclusions, or models. Statistical inconsistency is not evidence of misconduct.
