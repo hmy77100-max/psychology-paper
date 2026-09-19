@@ -26,4 +26,4 @@
 - [x] Run focused and full suites, plugin/changed-Skill validation and diff checks.
 - [x] Fresh-agent synthetic scenario test of revised rules; inspect responses and disclose limitations.
 - [x] Document baseline/final observations and remaining real-manuscript limits. Update README and roadmap status; no acceptance-rate claim.
-- [ ] Commit and push to current development branch; update existing draft PR title/body around combined scope. Keep main and installed plugin unchanged.
+- [x] Commit and push to current development branch; update existing draft PR title/body around combined scope. Keep main and installed plugin unchanged.
