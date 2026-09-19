@@ -40,4 +40,6 @@ Files: scripts/review_evidence.py; scripts/workflow_guards.py; skills/evidence-a
 - [x] Run complete unittest suite, official plugin/Skill validators, and `git diff --check`.
 - [x] Review changed runtime resources for conflicting instructions, overloading, unwanted file writes and ungrounded success claims.
 - [x] Update README and record actual validation outcomes plus remaining limits in docs/validation/review-evidence-phase1.md.
-- [ ] Commit only intended source, tests and documentation with public noreply identity. Push development branch and create a draft PR; leave main and installed plugin unchanged.
+- [x] Commit only intended source, tests and documentation with public noreply identity. Push development branch and create a draft PR; leave main and installed plugin unchanged.
+
+Delivery: draft PR https://github.com/hmy77100-max/psychology-paper/pull/1. Main and the installed plugin are unchanged.
