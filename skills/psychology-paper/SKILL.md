@@ -21,6 +21,8 @@ Do not open child resource paths directly, infer a similar path, or enumerate di
 
 ## Route
 
+Read-only manuscript review takes the short route directly to `evidence-audit`, including full-manuscript scope. It does not require journal positioning or project initialization. When using the guard for this intent, pass `--task evidence_audit`. Targeted source lookup inside that review is not the deferred literature-management workflow.
+
 1. Identify task, scope, language, permission, authoritative source, and whether project mode is needed. Map the user's natural language to controlled task and scope labels, then run `workflow_guards.py project-mode`. If it returns `PROJECT_MODE_CONFIRMATION_REQUIRED`, ask whether to enter project mode before any full-manuscript candidate is drafted.
 2. Check whether the apparent local change carries cross-section evidence impact.
 3. Choose exactly one `PRIMARY_MODULE`; include only necessary `SUPPORT_MODULES`.

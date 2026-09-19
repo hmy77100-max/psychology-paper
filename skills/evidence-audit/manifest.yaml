@@ -2,7 +2,10 @@
   "schema": "psychology-paper-skill-manifest",
   "version": 1,
   "skill": "evidence-audit",
-  "always_load": ["./static/core/audit-principles.md"],
+  "always_load": ["./static/core/audit-principles.md", "./static/core/review-workflow.md"],
+  "conditional_loads": {
+    "external_evidence": ["./references/external-evidence.md", "./references/evidence-note.md"]
+  },
   "axes": {
     "paper_type": {
       "empirical": ["./static/fragments/paper-types/empirical.md"],
