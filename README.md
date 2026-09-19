@@ -20,7 +20,7 @@ For material external questions the model uses available browsing/retrieval tool
 
 The optional `python -X utf8 scripts/review_evidence.py --record -` command reads a JSON evidence note from stdin and checks provenance-field completeness without writing files. `record_complete` never means scientific verification. Review ends at feedback; a later editing request asks full versus targeted revision only when scope is unspecified, then follows the existing revision workflow. Agreement with advice alone does not start editing.
 
-Development sequence: establish review responsibilities and external evidence support first; deepen methods review, contribution/journal comparison, revision advice organization, and longitudinal quality tracking in later increments. Existing checks remain active throughout.
+Review responsibilities and external evidence support are implemented. Methods review and quality/continuity guidance now cover: unit/analysis comparability, error-versus-gap classification, duplicate/conflict reconciliation and evidence-based closure/reopening. `scripts/review_quality.py --record -` optionally checks model-authored issue records without writing state or making scientific judgments. Records can remain in the conversation and reuse existing project memory. Contribution/journal-comparison and revision-advice expansions (steps 4 and 5) remain deferred; their existing basic responsibilities remain active.
 
 ## GitHub distribution and another Codex computer
 
