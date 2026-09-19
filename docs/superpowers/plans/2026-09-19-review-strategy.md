@@ -11,6 +11,6 @@ Extend evidence-audit only. Reuse confirmed article/journal profiles and shared 
 - [x] Add two manifest-declared conditional resources and scoped entry triggers; retain default load ceiling.
 - [x] Run full suite and official validators; assess fresh-context behavioral rehearsal.
 - [x] Document evidence and limits, update README.
-- [ ] Commit/push and update existing draft PR; no merge or installed-cache update.
+- [x] Commit/push and update existing draft PR; no merge or installed-cache update.
 
 No new script is warranted for academic contribution, feasibility or priority judgments. Existing record checkers remain structural helpers. Avoid mandatory option counts, universal study thresholds and claims of measured acceptance improvement.
