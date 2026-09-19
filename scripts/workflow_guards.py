@@ -64,6 +64,10 @@ def decide_project_mode(
     project_mode_active: bool,
 ) -> ProjectModeDecision:
     """Return the workflow gate after intent has been mapped to controlled labels."""
+    # Reading the whole paper is not a request to revise it or initialize state.
+    if task == "evidence_audit":
+        return ProjectModeDecision("READ_ONLY_AUDIT", False)
+
     if project_mode_active:
         return ProjectModeDecision("PROJECT_MODE_ACTIVE", True)
 

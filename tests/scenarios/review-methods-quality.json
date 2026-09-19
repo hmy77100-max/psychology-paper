@@ -1,0 +1,82 @@
+[
+  {
+    "id":"METHODS-QUALITY-001","request":"8个班随机分组，240名学生多次测量，仅报告个体独立检验。只审稿。",
+    "project_state":{"paper_type":"empirical","design_tags":["experiment","longitudinal"],"clustering_reported":false},
+    "expected_primary_module":"evidence-audit","expected_scope":"units and inference",
+    "required_actions":["distinguish assignment observation and analysis units","identify reporting gap versus demonstrated error","ask for existing specification before judging validity"],
+    "forbidden_actions":["treat all pupils as independently randomized","declare invalidity from omission alone","recalculate"],
+    "expected_state_effect":"none","manual_rubric":"Pass when model traces nested/repeated structure and qualifies criticism without selecting a mandatory replacement model.","tags":["methods_units","reporting_gap"]
+  },
+  {
+    "id":"METHODS-QUALITY-002","request":"正文系数与图不同，正文是标准化回归，图是不标准化同一模型。",
+    "project_state":{"paper_type":"empirical","design_tags":["survey"]},
+    "expected_primary_module":"evidence-audit","expected_scope":"coefficient comparability",
+    "required_actions":["check coefficient scale and model identity","withdraw unsupported numerical conflict"],
+    "forbidden_actions":["require matching numerical values","mark data fabrication"],
+    "expected_state_effect":"none","manual_rubric":"Pass if valid scale differences are distinguished from errors; clarify labels only where unclear.","tags":["methods_comparability","false_positive"]
+  },
+  {
+    "id":"METHODS-QUALITY-003","request":"访谈研究没有功效分析，是不是必须补？",
+    "project_state":{"paper_type":"qualitative","design_tags":[]},
+    "expected_primary_module":"evidence-audit","expected_scope":"design-appropriate evidence",
+    "required_actions":["assess sampling rationale and analytic approach","allow justified methodological choices"],
+    "forbidden_actions":["impose quantitative power standard","impose saturation or interrater reliability on every qualitative tradition"],
+    "expected_state_effect":"none","manual_rubric":"Pass if critique follows stated epistemology and method rather than a universal quantitative checklist.","tags":["methods_qualitative","author_choice"]
+  },
+  {
+    "id":"METHODS-QUALITY-004","request":"量表总alpha很高，可以认定全部分量表和跨人群比较都可靠吗？",
+    "project_state":{"paper_type":"scale-development","design_tags":["survey"]},
+    "expected_primary_module":"evidence-audit","expected_scope":"measure claim scope",
+    "required_actions":["match reliability and validity evidence to score and population","distinguish absent reporting from failed measurement"],
+    "forbidden_actions":["transfer total reliability to every subscale","demand all invariance tests without a comparison claim"],
+    "expected_state_effect":"none","manual_rubric":"Pass if necessary evidence depends on actual intended score use and claims.","tags":["methods_measurement","claim_match"]
+  },
+  {
+    "id":"METHODS-QUALITY-005","request":"元分析里同一研究的多个效应都被纳入，但没说明依赖性怎么处理。",
+    "project_state":{"paper_type":"meta-analysis","design_tags":[]},
+    "expected_primary_module":"evidence-audit","expected_scope":"effect dependence",
+    "required_actions":["identify study versus effect unit","request dependence-handling description","review actual inference boundary"],
+    "forbidden_actions":["assume every effect independent","force one named model"],
+    "expected_state_effect":"none","manual_rubric":"Pass if dependency is raised as unresolved reporting until implementation evidence is available.","tags":["methods_meta_analysis","methods_units"]
+  },
+  {
+    "id":"METHODS-QUALITY-006","request":"I-1已凭附录证据解决，新审稿者把同一缺失叫I-9。版本未变。I-2作者要求暂缓。",
+    "project_state":{"manuscript_version":"v2","issues":[{"issue_id":"I-1","status":"RESOLVED","resolution_evidence":"Appendix B inspected"},{"issue_id":"I-2","status":"HELD"}]},
+    "expected_primary_module":"evidence-audit","expected_scope":"repeat review reconciliation",
+    "required_actions":["match issue identity beyond label","link duplicate to existing resolution","retain hold as unresolved disposition"],
+    "forbidden_actions":["reopen solely because new reviewer repeated it","mark hold resolved","require new project state"],
+    "expected_state_effect":"proposed conversation record only","manual_rubric":"Pass if I-9 is reconciled with I-1 and not counted as a new active defect; held issue is not routinely nagged.","tags":["quality_duplicate","quality_hold"]
+  },
+  {
+    "id":"METHODS-QUALITY-007","request":"之前已解决计分问题，现在作者改了计分规则，原结论是否还成立？",
+    "project_state":{"manuscript_version":"v3","prior_issue":"I-3","prior_status":"RESOLVED","new_evidence":"changed scoring"},
+    "expected_primary_module":"evidence-audit","expected_scope":"bounded reopening",
+    "required_actions":["reuse prior issue ID","record changed basis and reopen only affected issue","retain earlier resolution history"],
+    "forbidden_actions":["ignore new evidence because resolved","restart entire review","recalculate without authorization"],
+    "expected_state_effect":"proposed REOPENED record with basis","manual_rubric":"Pass if prior resolution is neither erased nor applied blindly to a materially changed score.","tags":["quality_reopen","quality_delta"]
+  },
+  {
+    "id":"METHODS-QUALITY-008","request":"两份审稿意见对同一个效应相反，一份引用调整回归，另一份引用零阶相关。",
+    "project_state":{"paper_type":"empirical","design_tags":["survey"]},
+    "expected_primary_module":"evidence-audit","expected_scope":"review disagreement",
+    "required_actions":["preserve both note sources","compare sample outcome model contrast and scale","keep unresolved disagreement explicit when needed"],
+    "forbidden_actions":["majority vote","merge distinct analyses as duplicate results","silently pick stronger significance"],
+    "expected_state_effect":"none","manual_rubric":"Pass if disagreement is reconciled against comparable authoritative evidence rather than reviewer authority.","tags":["quality_conflict","methods_comparability"]
+  },
+  {
+    "id":"METHODS-QUALITY-009","request":"只复查已改的两处，正文其他地方没变化；图片读不到。",
+    "project_state":{"mode":"light","scope":"two changed locations","figures_access":"unavailable"},
+    "expected_primary_module":"evidence-audit","expected_scope":"delta review",
+    "required_actions":["inspect changed locations and necessary dependent claims","disclose unread figures","report new changed resolved issues only"],
+    "forbidden_actions":["claim whole-paper clearance","repeat every old comment","create persistent ledger by default"],
+    "expected_state_effect":"none","manual_rubric":"Pass if coverage and unresolved dependencies are explicit without forcing whole-paper review.","tags":["quality_coverage","quality_delta"]
+  },
+  {
+    "id":"METHODS-QUALITY-010","request":"两个问题记录文字完全相同，脚本能自动认定是同一学术问题并合并吗？",
+    "project_state":{"checker":"review_quality.py"},
+    "expected_primary_module":"evidence-audit","expected_scope":"checker limitations",
+    "required_actions":["explain model owns semantic identity and scientific resolution","explain checker only validates explicit links and state fields"],
+    "forbidden_actions":["claim automatic scientific deduplication","claim schema success proves journal readiness"],
+    "expected_state_effect":"none","manual_rubric":"Pass if script output is not promoted into scholarly judgment.","tags":["quality_checker_boundary"]
+  }
+]

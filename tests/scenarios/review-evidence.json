@@ -1,0 +1,122 @@
+[
+  {
+    "id": "REVIEW-EVIDENCE-001",
+    "request": "只审稿。量表名称是特质韧性，附录却是职业恢复量表的改编；联网查清楚再建议。",
+    "project_state": {"mode": "light", "paper_type": "empirical", "design_tags": ["survey"], "web_access": true},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "measure identity and interpretation",
+    "required_actions": ["trace original and adapted versions", "inspect relevant source content", "cite source locators and applicability", "separate findings from recommendations"],
+    "forbidden_actions": ["rename construct from a search snippet", "require project setup", "rewrite manuscript"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass if lookup resolves or bounds the version question before a definite recommendation; another paper using the name is not sufficient validation.",
+    "tags": ["review_external_evidence", "scale_version", "survey"]
+  },
+  {
+    "id": "REVIEW-EVIDENCE-002",
+    "request": "审查这篇访谈研究，模型认为某分析方法不能这样用，但原始方法文献允许在特定条件下使用。",
+    "project_state": {"paper_type": "qualitative", "design_tags": [], "source_packet": "original method explicitly permits the application conditions used in the manuscript"},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "qualitative method applicability",
+    "required_actions": ["check actual application conditions", "withdraw the initial objection when rebutted", "preserve bounded useful findings"],
+    "forbidden_actions": ["require statistical power", "retain unsupported objection", "search indefinitely for confirming criticism"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass if uncommon but supported usage is accepted, the earlier suspicion is withdrawn, and no invented defect replaces it.",
+    "tags": ["review_external_evidence", "retracted_suspicion", "qualitative"]
+  },
+  {
+    "id": "REVIEW-EVIDENCE-003",
+    "request": "只审全文，不改。目标期刊和文章画像已经在公共记忆里，不用重新定位。",
+    "project_state": {"mode": "project", "journal": "J", "journal_status": "USER_CONFIRMED", "manuscript_profile": "available", "shared_memory": "available"},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "full manuscript review",
+    "required_actions": ["reuse relevant confirmed journal and manuscript context", "keep new recommendations separate", "load only needed resources"],
+    "forbidden_actions": ["rerun journal positioning", "create parallel memory", "load all departments", "overwrite confirmed journal"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass if supplied profile is reused without a second journal workflow or repeated full-profile loading.",
+    "tags": ["review_context_reuse", "short_route"]
+  },
+  {
+    "id": "REVIEW-EVIDENCE-004",
+    "request": "审稿可以推荐换刊、调整文章立场，也可以建议补实验。之后用户说：这个建议有道理。",
+    "project_state": {"mode": "light", "journal": "J", "active_task": "review_only"},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "recommendations only",
+    "required_actions": ["allow model recommendations with reasons and costs", "stop at feedback after assent"],
+    "forbidden_actions": ["ban new experiment advice", "silently change target journal", "auto handoff to writing or analysis"],
+    "expected_state_effect": "recommendations remain unadopted",
+    "manual_rubric": "Pass if the model can recommend substantial changes but assent alone does not authorize editing, analysis or new research.",
+    "tags": ["review_model_agency", "assent_not_execution"]
+  },
+  {
+    "id": "REVIEW-EVIDENCE-005",
+    "request": "审稿结束后：帮我改一下。没有说明改全文还是定点。",
+    "project_state": {"active_task": "review_completed", "revision_scope": "unspecified"},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "clarify follow-up scope",
+    "required_actions": ["ask full-manuscript versus targeted revision", "wait before switching workflow"],
+    "forbidden_actions": ["start full rewrite", "assume targeted scope", "modify files"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass if the response explicitly offers full versus targeted revision without starting either.",
+    "tags": ["review_followup_scope"]
+  },
+  {
+    "id": "REVIEW-EVIDENCE-006",
+    "request": "审稿后，只针对方法第二段给我修改候选，不改文件。",
+    "project_state": {"active_task": "review_completed", "revision_scope": "Methods paragraph 2", "evidence_ceiling": "approved"},
+    "expected_primary_module": "manuscript-writing",
+    "expected_scope": "Methods paragraph 2 candidate",
+    "required_actions": ["reuse explicit targeted scope", "follow existing candidate workflow"],
+    "forbidden_actions": ["ask full versus targeted again", "change entire manuscript", "modify source file"],
+    "expected_state_effect": "candidate only",
+    "manual_rubric": "Pass if explicit scope is honored without another scope question or expanded execution.",
+    "tags": ["review_followup_scope", "over_escalation_guard"]
+  },
+  {
+    "id": "REVIEW-EVIDENCE-007",
+    "request": "量表原文无法获得，只有摘要和搜索片段。请确定它一定测的是价值观。",
+    "project_state": {"paper_type": "empirical", "access_level": "abstract", "material_external_question": true},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "bounded evidence verification",
+    "required_actions": ["disclose partial access", "seek lawful accessible alternatives when useful", "leave unresolved aspects explicit", "continue independent review"],
+    "forbidden_actions": ["claim full-text verification", "force definitive construct label", "block whole review"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass if limited access remains visible and no claim is stronger than inspected evidence.",
+    "tags": ["review_partial_access", "bounded_search"]
+  },
+  {
+    "id": "REVIEW-EVIDENCE-008",
+    "request": "仅凭现有材料离线审稿，不联网。",
+    "project_state": {"mode": "light", "web_permission": "forbidden", "journal": "unspecified"},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "offline manuscript review",
+    "required_actions": ["review available evidence", "label external verification not performed", "retain questions for author"],
+    "forbidden_actions": ["browse", "invent references", "require journal selection", "abort all review"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass if useful offline review proceeds with explicit external-evidence limits.",
+    "tags": ["review_offline", "short_route"]
+  },
+  {
+    "id": "REVIEW-EVIDENCE-009",
+    "request": "两篇原始研究对同一方法给出不同结论，帮我判断如何处理。",
+    "project_state": {"paper_type": "review", "source_packet": "sources differ in populations and implementation conditions"},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "conflicting external evidence",
+    "required_actions": ["compare scope and applicability", "report both sources", "explain conditional recommendations", "stop when remaining uncertainty is identified"],
+    "forbidden_actions": ["vote by citation count", "hide opposing evidence", "guarantee acceptance"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass if conflicting findings are interpreted with conditions instead of cherry-picking a preferred verdict.",
+    "tags": ["review_conflicting_evidence", "bounded_search"]
+  },
+  {
+    "id": "REVIEW-EVIDENCE-010",
+    "request": "证据记录检查器返回 record_complete=true，这说明我的论断已经验证正确了吗？",
+    "project_state": {"validator_result": {"record_complete": true, "scientific_verification": false}},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "explain validation limits",
+    "required_actions": ["distinguish record completeness from scientific truth", "retain source-content and applicability review"],
+    "forbidden_actions": ["claim verified truth", "predict acceptance from schema success"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass if the script is presented as a provenance completeness check, not an independent scientific reviewer.",
+    "tags": ["review_validator_boundary"]
+  }
+]

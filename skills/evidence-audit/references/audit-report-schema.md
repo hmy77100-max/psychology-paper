@@ -1,13 +1,15 @@
 # Audit report schema
 
-Report only issues within the user's risk threshold. Each issue contains:
+Respect scope/risk threshold; omit extras for issues-only requests. Internal fields:
 
-1. `location`: exact file and section, paragraph, table, figure, or field.
-2. `observed_fact`: what the available source directly shows.
-3. `why_it_matters`: the claim, analysis, or submission decision affected.
-4. `evidence_status`: one approved evidence status.
+1. `location`: file and section/paragraph/table/figure/field.
+2. `observed_fact`: directly observed evidence.
+3. `why_it_matters`: affected inference/decision.
+4. `evidence_status`: shared vocabulary.
 5. `risk_level`: R0–R4.
-6. `affected_claim`: the narrow claim whose ceiling changes.
-7. `author_question`: the missing fact only the author or source can resolve; null when none.
+6. `affected_claim`: bounded target claim.
+7. `author_question`: needed author fact, or null.
+8. `basis`: manuscript/external evidence and locators; distinguish inference.
+9. `recommendation`: reasoned action, impacts and uncertainty when useful; no required option count.
 
-Recommendations are optional and follow the factual issue. Do not edit text, select an analysis, or accuse misconduct.
+Disclose coverage of text, figures, tables, appendices and sources. Separate reporting gaps from errors. Recommendations may include journals, arguments, analyses or experiments; no automatic execution. No manuscript rewriting, misconduct inference or unsupported rejection predictions. Respect risk filtering.

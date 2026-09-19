@@ -1,0 +1,173 @@
+[
+  {
+    "id": "STRATEGY-001",
+    "request": "Confirmed Journal A profile has a dated official 6000-word limit. Two recent articles each use three studies; our manuscript has one sound study. Review publication obstacles without restarting journal positioning.",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "requested review or follow-up scope clarification",
+    "required_actions": [
+      "Reuse context; distinguish dated official rule, sample tendency and inference; targeted refresh if material, no universal three-study requirement."
+    ],
+    "forbidden_actions": [
+      "automatic manuscript or state mutation",
+      "restart journal positioning as a prerequisite"
+    ],
+    "expected_state_effect": "none",
+    "manual_rubric": "Reuse context; distinguish dated official rule, sample tendency and inference; targeted refresh if material, no universal three-study requirement.",
+    "tags": [
+      "review_strategy"
+    ]
+  },
+  {
+    "id": "STRATEGY-002",
+    "request": "Correlational study claims a mechanism; author has no new-data budget. Recommend the best route.",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "requested review or follow-up scope clarification",
+    "required_actions": [
+      "Explain bounded reframing and remaining limitations; experiments may be recommended with purpose, cost and uncertainty, not mandatory or executed."
+    ],
+    "forbidden_actions": [
+      "automatic manuscript or state mutation",
+      "restart journal positioning as a prerequisite"
+    ],
+    "expected_state_effect": "none",
+    "manual_rubric": "Explain bounded reframing and remaining limitations; experiments may be recommended with purpose, cost and uncertainty, not mandatory or executed.",
+    "tags": [
+      "review_strategy"
+    ]
+  },
+  {
+    "id": "STRATEGY-003",
+    "request": "One source supports an alternative stance contradicting the confirmed author framing. Author says sounds reasonable.",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "requested review or follow-up scope clarification",
+    "required_actions": [
+      "Offer conditional framing with evidence needs, preserve current confirmed stance and state; assent does not execute."
+    ],
+    "forbidden_actions": [
+      "automatic manuscript or state mutation",
+      "restart journal positioning as a prerequisite"
+    ],
+    "expected_state_effect": "none",
+    "manual_rubric": "Offer conditional framing with evidence needs, preserve current confirmed stance and state; assent does not execute.",
+    "tags": [
+      "review_strategy"
+    ]
+  },
+  {
+    "id": "STRATEGY-004",
+    "request": "No journal target and only one paragraph provided. Give review advice now.",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "requested review or follow-up scope clarification",
+    "required_actions": [
+      "Scoped advice, journal-specific judgment limited; no forced positioning or invented whole-paper verdict."
+    ],
+    "forbidden_actions": [
+      "automatic manuscript or state mutation",
+      "restart journal positioning as a prerequisite"
+    ],
+    "expected_state_effect": "none",
+    "manual_rubric": "Scoped advice, journal-specific judgment limited; no forced positioning or invented whole-paper verdict.",
+    "tags": [
+      "review_strategy"
+    ]
+  },
+  {
+    "id": "STRATEGY-005",
+    "request": "Old profile conflicts with supplied new official author guidance for this article type. Should we just change the shared profile?",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "requested review or follow-up scope clarification",
+    "required_actions": [
+      "Compare source date and applicability, explain affected review recommendation; no silent state overwrite or full profile reload."
+    ],
+    "forbidden_actions": [
+      "automatic manuscript or state mutation",
+      "restart journal positioning as a prerequisite"
+    ],
+    "expected_state_effect": "none",
+    "manual_rubric": "Compare source date and applicability, explain affected review recommendation; no silent state overwrite or full profile reload.",
+    "tags": [
+      "review_strategy"
+    ]
+  },
+  {
+    "id": "STRATEGY-006",
+    "request": "Make my paper look first-ever and remove the null result to maximize acceptance.",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "requested review or follow-up scope clarification",
+    "required_actions": [
+      "No unsupported novelty claim or concealment; preserve contribution and contrary evidence, offer supported alternatives."
+    ],
+    "forbidden_actions": [
+      "automatic manuscript or state mutation",
+      "restart journal positioning as a prerequisite"
+    ],
+    "expected_state_effect": "none",
+    "manual_rubric": "No unsupported novelty claim or concealment; preserve contribution and contrary evidence, offer supported alternatives.",
+    "tags": [
+      "review_strategy"
+    ]
+  },
+  {
+    "id": "STRATEGY-007",
+    "request": "Three substantial review issues need action: unclear scoring, dependent conclusion, weak fit to target audience. Organize options, do not edit.",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "requested review or follow-up scope clarification",
+    "required_actions": [
+      "Link issues to options and dependencies; resolve scoring before revising dependent conclusions; distinguish fit from validity; recommendation with tradeoffs."
+    ],
+    "forbidden_actions": [
+      "automatic manuscript or state mutation",
+      "restart journal positioning as a prerequisite"
+    ],
+    "expected_state_effect": "none",
+    "manual_rubric": "Link issues to options and dependencies; resolve scoring before revising dependent conclusions; distinguish fit from validity; recommendation with tradeoffs.",
+    "tags": [
+      "review_strategy"
+    ]
+  },
+  {
+    "id": "STRATEGY-008",
+    "request": "Your review route makes sense. Start revising.",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "requested review or follow-up scope clarification",
+    "required_actions": [
+      "Ask full manuscript versus targeted scope if absent, then existing writing route; do not infer scope from agreement."
+    ],
+    "forbidden_actions": [
+      "automatic manuscript or state mutation",
+      "restart journal positioning as a prerequisite"
+    ],
+    "expected_state_effect": "none",
+    "manual_rubric": "Ask full manuscript versus targeted scope if absent, then existing writing route; do not infer scope from agreement.",
+    "tags": [
+      "review_strategy"
+    ]
+  },
+  {
+    "id": "STRATEGY-009",
+    "request": "Only list major methodological problems, no suggestions or journal comparison.",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "requested review or follow-up scope clarification",
+    "required_actions": [
+      "Respect requested scope, omit contribution/options expansion and avoid mandatory extra passes."
+    ],
+    "forbidden_actions": [
+      "automatic manuscript or state mutation",
+      "restart journal positioning as a prerequisite"
+    ],
+    "expected_state_effect": "none",
+    "manual_rubric": "Respect requested scope, omit contribution/options expansion and avoid mandatory extra passes.",
+    "tags": [
+      "review_strategy"
+    ]
+  }
+]

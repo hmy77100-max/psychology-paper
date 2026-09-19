@@ -6,11 +6,21 @@ Psychology Paper is a Codex plugin project for evidence-calibrated psychology ma
 
 - `psychology-paper`: routes the request and maintains authorization boundaries.
 - `journal-fit-style`: profiles the manuscript, evaluates journal fit, and learns journal writing patterns at light or deep depth.
-- `evidence-audit`: adapts checks to the paper and study design, then reports only issues within the requested risk threshold.
+- `evidence-audit`: reviews the paper with design-appropriate checks, targeted external-source verification, and evidence-grounded advice within the requested scope/risk threshold.
 - `manuscript-writing`: prepares section-specific Chinese, English, or bilingual candidates after the evidence boundary is approved.
 - `analysis-adapter`: confirms design and data fields, locks one formal analysis source, routes design-appropriate methods, records adopted specifications, and supports independent verification.
 
 One module is primary for each task. Other modules receive only the smallest necessary handoff, preferably a file path and exact location rather than duplicated manuscript text.
+
+## Review evidence support
+
+Review-only requests go directly to `evidence-audit`, including whole-paper review. Existing article/journal profiles and project memory are reused selectively; no second journal-positioning workflow or mandatory project setup is introduced. Six internal responsibilities organize review, not six new agents or Skills. The model remains responsible for scientific judgment and may recommend a different journal, argument, analysis or experiment; the author chooses adoption.
+
+For material external questions the model uses available browsing/retrieval tools to check original sources, versions and applicability. It records inspected support, competing evidence and access limits. Offline requests and unavailable full texts produce bounded findings. This is targeted review support, not a new search service or literature-management module.
+
+The optional `python -X utf8 scripts/review_evidence.py --record -` command reads a JSON evidence note from stdin and checks provenance-field completeness without writing files. `record_complete` never means scientific verification. Review ends at feedback; a later editing request asks full versus targeted revision only when scope is unspecified, then follows the existing revision workflow. Agreement with advice alone does not start editing.
+
+Review responsibilities and external evidence support are implemented. Methods review and quality/continuity guidance now cover: unit/analysis comparability, error-versus-gap classification, duplicate/conflict reconciliation and evidence-based closure/reopening. `scripts/review_quality.py --record -` optionally checks model-authored issue records without writing state or making scientific judgments. Records can remain in the conversation and reuse existing project memory. Contribution/journal comparison (step 4) now distinguishes official requirements, observed publication practices and model inference while preserving confirmed context. Revision advice (step 5) organizes meaningful options by benefits, unresolved evidence, feasibility and dependencies. These are conditional review resources, not repeated positioning, a decision engine or automatic editing. All six planned responsibilities now have an initial implementation; longitudinal real-manuscript evaluation remains future work.
 
 ## GitHub distribution and another Codex computer
 
@@ -103,7 +113,7 @@ Every later behavior or rule change begins with a failing automated test or scen
 
 ## Stage boundary
 
-Statistical support is active through `analysis-adapter`, but actual analyses remain gated by confirmed design, field mapping, scoring, sample, model, and source. Literature management, review/revision, submission checks, and document patching remain absent until their separate stages are approved.
+Statistical support is active through `analysis-adapter`, but actual analyses remain gated by confirmed design, field mapping, scoring, sample, model, and source. Targeted literature verification is available inside read-only evidence review. Standalone literature management, formal reviewer-response workflows, submission checks, and document patching remain absent until their separate stages are approved.
 
 ## License
 
