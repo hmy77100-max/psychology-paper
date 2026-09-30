@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -39,11 +40,23 @@ def _manifest_value(manifest: object, selector: str) -> list[str]:
     value = manifest
     for part in selector.split("."):
         if not isinstance(value, dict) or part not in value:
-            raise ResourceResolutionError(f"unknown resource selector: {selector}")
+            raise ResourceResolutionError(
+                f"unknown resource selector: {selector}; valid selectors: "
+                + ", ".join(_selectors(manifest))
+            )
         value = value[part]
     if not isinstance(value, list) or not all(isinstance(item, str) for item in value):
         raise ResourceResolutionError(f"resource selector is not a path list: {selector}")
     return value
+
+
+def _selectors(value: object, prefix: str = "") -> list[str]:
+    if isinstance(value, list) and all(isinstance(x, str) for x in value):
+        return [prefix]
+    if isinstance(value, dict):
+        return [s for k, child in value.items()
+                for s in _selectors(child, f"{prefix}.{k}" if prefix else k)]
+    return []
 
 
 def _within(path: Path, root: Path) -> bool:
@@ -54,13 +67,13 @@ def _within(path: Path, root: Path) -> bool:
     return True
 
 
-def load_skill_resources(
+def _resolve_resources(
     *,
     skill: str,
     selectors: Sequence[str],
     max_chars: int = DEFAULT_MAX_CHARS,
     plugin_root: Path | None = None,
-) -> LoadResult:
+) -> tuple[LoadResult, str, list[str]]:
     if not SKILL_NAME.fullmatch(skill):
         raise ResourceResolutionError(f"invalid skill name: {skill}")
     if max_chars < 1:
@@ -87,6 +100,7 @@ def load_skill_resources(
                 declared_paths.append(raw_path)
 
     resources: list[LoadedResource] = []
+    seen: set[Path] = set()
     total_chars = 0
     for raw_path in declared_paths:
         resolved = (skill_root / raw_path).resolve()
@@ -99,12 +113,11 @@ def load_skill_resources(
             raise ResourceResolutionError(
                 f"declared resource is missing: {display_path}"
             )
+        if resolved in seen:
+            continue
+        seen.add(resolved)
         content = resolved.read_text(encoding="utf-8")
         total_chars += len(content)
-        if total_chars > max_chars:
-            raise ResourceBudgetError(
-                f"resource content requires {total_chars} characters; budget is {max_chars}"
-            )
         resources.append(
             LoadedResource(
                 relative_path=raw_path.removeprefix("./"),
@@ -117,7 +130,44 @@ def load_skill_resources(
         selectors=tuple(selected),
         resources=tuple(resources),
         total_chars=total_chars,
-    )
+    ), hashlib.sha256(manifest_path.read_bytes()).hexdigest(), _selectors(manifest)
+
+
+def describe_resources(**kwargs) -> dict:
+    """Plan exact loads, including complete costs, without printing instruction text."""
+    result, manifest_hash, selectors = _resolve_resources(**kwargs)
+    budget = kwargs.get("max_chars", DEFAULT_MAX_CHARS)
+    cumulative = 0
+    first_overflow = None
+    records = []
+    for resource in result.resources:
+        cumulative += len(resource.content)
+        if cumulative > budget and first_overflow is None:
+            first_overflow = resource.relative_path
+        records.append({"path": resource.relative_path, "chars": len(resource.content),
+                        "sha256": hashlib.sha256(resource.content.encode("utf-8")).hexdigest()})
+    return {"skill": result.skill, "selectors": result.selectors, "valid_selectors": selectors,
+            "manifest_sha256": manifest_hash, "resources": records,
+            "total_chars": result.total_chars, "budget": budget, "first_overflow": first_overflow}
+
+
+def load_skill_resources(**kwargs) -> LoadResult:
+    result, _, _ = _resolve_resources(**kwargs)
+    budget = kwargs.get("max_chars", DEFAULT_MAX_CHARS)
+    if result.total_chars > budget:
+        cumulative = 0
+        first = ""
+        for resource in result.resources:
+            cumulative += len(resource.content)
+            if cumulative > budget:
+                first = resource.relative_path
+                break
+        raise ResourceBudgetError(
+            f"resource content requires {result.total_chars} characters; budget is {budget}; "
+            f"first overflow: {first}; use --describe for the complete plan; "
+            "stop this invocation, do not retry selectors or increase the budget"
+        )
+    return result
 
 
 def render_text(result: LoadResult) -> str:
@@ -135,6 +185,8 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--skill", required=True)
     parser.add_argument("--select", action="append", default=[])
     parser.add_argument("--max-chars", type=int, default=DEFAULT_MAX_CHARS)
+    parser.add_argument("--describe", action="store_true")
+    parser.add_argument("--list-selectors", action="store_true")
     return parser
 
 
@@ -145,6 +197,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         sys.stderr.reconfigure(encoding="utf-8")
     args = build_parser().parse_args(argv)
     try:
+        if args.describe or args.list_selectors:
+            plan = describe_resources(skill=args.skill, selectors=args.select, max_chars=args.max_chars)
+            print(json.dumps(plan["valid_selectors"] if args.list_selectors else plan, ensure_ascii=False, indent=2))
+            return 0
         result = load_skill_resources(
             skill=args.skill,
             selectors=args.select,

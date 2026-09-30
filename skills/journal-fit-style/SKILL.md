@@ -20,6 +20,8 @@ Do not open child resource paths directly, infer a similar path, or enumerate di
 - Confirmed journal: keep that journal authoritative, verify current official requirements, and study closely matched recent articles.
 - Existing profile: refresh only drift-prone policies or observations needed for the current task.
 
+For journal-guided outline/full-manuscript revision, load `conditional_loads.contribution_planning` after confirming the journal. Assess extractable value against the journal trajectory and direct field predecessors, present evidence-bounded recommendations preserving the author's original argument, then ask for the author's own view. Confirm their chosen working direction before restructuring the outline. Journal fit alone is not novelty. Reuse confirmed context instead of restarting positioning.
+
 ## Evidence and browsing
 
 Current journal scope, article types, review model, limits, fees, data/ethics policies, and submission requirements require live verification from official sources. Observed writing style comes from recent published articles and must be labelled as observation rather than requirement. Candidate scans default to 1–2 close articles; confirmed-journal deep study defaults to 2–3 and expands only when their patterns conflict.

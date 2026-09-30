@@ -2,7 +2,7 @@
 
 Confirm the authoritative source version, exact location, requested task, section function, language mode, approved constraints, evidence ceiling, and target-journal profile when relevant.
 
-Before drafting an introduction, theoretical background, literature review, method rationale, discussion, or other literature-dependent passage, run a literature decision gate. Ask the user to choose the permitted scope: use only the current manuscript literature; verify existing citations; search for candidate literature without writing it; or search and later write approved new literature. Searching does not authorize insertion. Writing approved new literature requires a separate adoption decision. If the user has not chosen, stop before literature-dependent drafting.
+Before literature-dependent drafting, check the existing literature authorization: current sources only, citation verification, candidate search, or search followed by author adoption. Reuse a known scope and proceed; ask only when a material scope is missing or changes. Do not repeatedly force a menu. Load conditional_loads.literature_support for argument support: introductions prioritize supporting evidence for the research-question/hypothesis chain; necessary boundaries serve that chain. Search permission never implies adoption or insertion.
 
 Draft only after these are known. Preserve every frozen number and citation. After drafting, compare source and candidate for omitted findings, altered directions, changed sample descriptors, renamed constructs, and unsupported causal verbs.
 

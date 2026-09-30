@@ -1,0 +1,14 @@
+# Literature support: usefulness before quantity
+
+For an introduction, prioritize supporting evidence that builds the argument from the research question to hypotheses. Necessary evidence boundaries serve that chain; do not turn the introduction into an audit report. Do not hide material contradictory results or inflate support to make a hypothesis look established.
+
+1. Read the current argument and identify the missing logical node before searching: definition, established relationship, mechanism, unresolved disagreement, measurement rationale, or the step to a hypothesis. Preserve the author's original reasoning.
+2. Reuse existing search authorization. If the user already authorized literature support, proceed within that scope; do not repeatedly ask them to choose a search mode. Ask only when a genuinely new scope, private-data transmission, paid access or adoption decision is needed. Searching is not manuscript insertion.
+3. Search direct predecessors and relevant current primary studies, not merely recent papers or papers in the target journal. Verify identity, actual results and access depth from original sources. Never imply full-text verification from an abstract. Record query, source URL/DOI, access date and unresolved checks. Respect available-tool limits.
+4. Evaluate each candidate by claim → evidence → directness → incremental value → claim ceiling → deletion impact. Separate direct findings, author interpretation, cross-study synthesis and testable inference. A review may locate primary work but does not automatically replace it as direct support.
+5. Keep only literature with a distinct job in the chain. Report the node it supports, what it adds to existing citations, its limitations and where it belongs. If deleting it would change no argument, exclude it from the recommended set. Keep search pools separate from final recommendations. No citation-count quota.
+6. For discussion, connect the actual finding to agreement, disagreement, boundary conditions, plausible explanation and bounded contribution. Do not retrofit unsupported hypotheses or substitute a literature list for interpretation.
+
+Deliver a compact recommendation with source links and a proposed argument sequence. State which claim still lacks evidence. If no genuinely useful new source is found, say so; do not pad the package. The author may adopt, reject, combine or propose another angle in their own language. Do not insert recommendations into the authoritative manuscript or treat search permission as adoption.
+
+External search/browser/reference tools remain subordinate to this workflow. Use only available tools, record their provenance and never invent a connector. Share only the minimum authorized material, not a private manuscript by default. Reuse verified results while source/version and question remain unchanged; re-open originals for disputed claims or changed evidence.

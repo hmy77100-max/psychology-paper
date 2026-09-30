@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 from pathlib import Path
 import sys
 
@@ -48,6 +49,7 @@ def main(argv: list[str] | None = None) -> int:
     state, body = extract_json_frontmatter(TEMPLATE)
     state["project_root"] = str(project_root)
     state["authoritative_manuscript"] = str(manuscript)
+    state["source_sha256"] = hashlib.sha256(manuscript.read_bytes()).hexdigest()
     state["sources"] = [
         {
             "id": "current-manuscript",

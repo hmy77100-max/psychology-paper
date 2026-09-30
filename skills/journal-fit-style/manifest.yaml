@@ -20,6 +20,9 @@
       "journal_profile": ["./references/journal-profile-schema.md"]
     }
   },
+  "conditional_loads": {
+    "contribution_planning": ["./references/contribution-planning.md"]
+  },
   "shared_loads": {
     "design_tags": ["../.shared/core/research-design-taxonomy.md"],
     "risk": ["../.shared/output/risk-reporting.md"]

@@ -81,6 +81,12 @@ class WritingSafetyTests(unittest.TestCase):
         self.assertIn("generic intent", text)
         self.assertIn("user-specific", text)
 
+    def test_next_does_not_implicitly_approve_without_confirmed_phrase_mapping(self) -> None:
+        text = AUTHORIZATION.read_text(encoding="utf-8")
+        self.assertIn("ADVANCE_ONLY", text)
+        self.assertIn("explicitly approved phrase mapping", text)
+        self.assertNotIn('a standalone “下一步” belongs here', text)
+
     def test_full_manuscript_order_is_body_then_abstract_then_keywords(self) -> None:
         text = FULL_MANUSCRIPT.read_text(encoding="utf-8")
         self.assertIn("Body sections → Abstract → Keywords", text)
@@ -90,12 +96,12 @@ class WritingSafetyTests(unittest.TestCase):
         self.assertIn("Do not expose internal field names", text)
         self.assertIn("300 Chinese characters", text)
 
-    def test_literature_dependent_writing_stops_for_user_choice(self) -> None:
+    def test_literature_permission_is_reused_but_does_not_imply_adoption(self) -> None:
         text = WRITING_WORKFLOW.read_text(encoding="utf-8")
-        self.assertIn("literature decision gate", text)
-        self.assertIn("use only the current manuscript literature", text)
-        self.assertIn("search for candidate literature", text)
-        self.assertIn("write approved new literature", text)
+        self.assertIn("existing literature authorization", text)
+        self.assertIn("Reuse a known scope and proceed", text)
+        self.assertIn("ask only when a material scope is missing or changes", text)
+        self.assertIn("Search permission never implies adoption or insertion", text)
 
     def test_evidence_caveat_is_not_repeated_across_sections(self) -> None:
         text = WRITING_WORKFLOW.read_text(encoding="utf-8")

@@ -1,6 +1,6 @@
 # Psychology Paper
 
-Psychology Paper is a Codex plugin project for evidence-calibrated psychology manuscript work. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. It does not modify source data or manuscript files, manage literature, or prepare submission files yet.
+Psychology Paper is a Codex plugin project for evidence-calibrated psychology manuscript work. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. It does not modify source data or manuscript files, maintain a literature database, or prepare submission files yet. Version 0.4.0 adds focused literature support and author-led contribution planning within the existing modules.
 
 ## Implemented modules
 
@@ -62,7 +62,32 @@ For English manuscript revision, the default TXT order is:
 2. Revised English
 3. Chinese Translation
 
-For Chinese manuscript revision, the default order is original Chinese, revised Chinese, and necessary notes. Chinese-to-English work includes the Chinese source, revised English, and a Chinese back-translation. Full manuscripts are processed in sections instead of being reproduced repeatedly.
+For Chinese manuscript revision, the required order is complete original Chinese, revised Chinese, and necessary notes. Chinese-to-English work includes the Chinese source, revised English, and a Chinese back-translation. Full manuscripts are processed in argument-complete logical units (which may cross layout paragraphs). The author may reply in their own words; no approval command or candidate-ID syntax is required.
+
+## Author-led revision and literature support
+
+Journal-guided full revision follows journal confirmation → contribution recommendations → author's own view and chosen direction → outline → body → abstract → keywords. An explicit author request may override order without approving unfinished units. Recommendations compare the journal's relevant research trajectory and direct field predecessors; fit is not a novelty claim.
+
+Introduction work prioritizes evidence supporting the research-question and hypothesis chain. Each recommended source needs a specific claim, verified support, evidence distance, incremental value, claim ceiling and deletion impact. Necessary caveats serve the chain without suppressing contradictory evidence. Existing search authorization is reused; citation adoption remains a separate author decision.
+
+`scripts/revision_check.py` checks actual files, not caller-supplied success flags:
+
+```powershell
+python -X utf8 scripts/revision_check.py candidate --project-root "C:\path\to\project" --record "candidate-record.json"
+python -X utf8 scripts/revision_check.py preflight --project-root "C:\path\to\project"
+python -X utf8 scripts/revision_check.py stage --project-root "C:\path\to\project" --section introduction
+python -X utf8 scripts/revision_check.py decision --project-root "C:\path\to\project" --record "candidate-record.json" --intent APPROVE_CURRENT --author-response "Use this version"
+```
+
+These are internal commands, not required author replies. Load `conditional_loads.revision_checks` through the manuscript-writing loader for the record contract. Full-mode acceptance binds the standard project file, approved journal profile, actual source hash, author-confirmed framing and adopted counted baseline. After counted adoption, refresh the derived baseline before accepting another candidate. The checker returns proposed state; it never writes manuscript/state or judges scientific truth. Initialization/legacy structural validation alone does not mean full-revision readiness.
+
+Task-scoped bilingual sync checks observed Chinese and English versions under standing authorization. It generates corresponding English candidates after an in-scope change; it is not a background watcher, automatic adoption or Word overwrite.
+
+## Efficient resource execution
+
+Use the loader's `--list-selectors` for exact keys and `--describe` for complete per-resource costs, hashes and first overflow before loading a stage. Errors no longer report only the partial running total. Keep the 12,000-character default; separate genuinely distinct stages rather than stacking every optional resource or retrying guessed keys. Reuse fully read unchanged instructions and source-hashed extraction records, while returning to originals for disputed evidence. Ordinary prose does not require a fixed multi-agent team or repeated status polling. Do not economize by removing original comparison or factual verification.
+
+See [0.4.0 validation and boundaries](docs/validation/author-led-workflow.md). Installing/updating the plugin in Codex is separate from merging the GitHub source.
 
 ## Project state
 
@@ -108,6 +133,8 @@ python -X utf8 "$env:USERPROFILE\.codex\skills\.system\plugin-creator\scripts\va
 These checks validate structure and declared workflow behavior. They do not by themselves prove that the workflow performs correctly on a real manuscript.
 
 ## Development policy
+
+Full review now judges the current submitted manuscript (or the current approved manuscript in a project), independently of older profiles and prior approval. It covers contribution, applicable sections, competing explanations and prioritized advice. Explicit screening, local and incremental requests remain bounded; a requested deep review of unchanged text is not reduced to a diff. No issue-count quota applies. See `docs/validation/review-depth.md` for checks and remaining behavioral validation.
 
 Every later behavior or rule change begins with a failing automated test or scenario. Implement the smallest change that makes it pass, then run the complete regression suite. Local manuscript edits remain candidate-only. Direct document patching stays disabled until the separate write-safety stage is approved.
 

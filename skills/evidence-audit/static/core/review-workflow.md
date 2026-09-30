@@ -1,19 +1,17 @@
 # Review responsibilities
 
-One issue record serves six responsibilities: coordination, literature verification, methods, contribution/journal comparison, advice and quality. These are not new modules, agents, compulsory passes or memories; activate as needed.
+Model judges; plugin organizes; author adopts. Responsibilities share records, not mandatory agents.
 
-The model may recommend journals, arguments, analyses or experiments with reasons/impacts. The plugin organizes; the author adopts. Advice/agreement does not execute changes.
+## Authority and route
 
-## Context and short route
+Review the current completed manuscript without project setup. Projects use the current approved manuscript, not old imports or unapproved candidates. Approved fragments are not a completed export. Identify version/scope; clarify conflicting versions, reuse confirmation. Approval is not scientific validation, including plugin-assisted writing.
 
-Whole-paper review stays here without project setup or journal positioning. Guard intent: `task=evidence_audit`; reading is not writing permission.
+Do not fill omissions in the manuscript from memory or criticize removed claims. Profiles are background. Report conflicts without overwriting state. Reuse valid journal context/sources/extraction, not verdicts. No second profile or repeated positioning. Without a target, limit journal-specific conclusions.
 
-Reuse article/journal profiles and project shared memory; read only relevant fields/sources/issues from known paths. No repeated loading, second profile or parallel memory. Without a target, give general review with limited journal-specific judgment.
+## Depth
 
-Keep suggestions separate from confirmed decisions. Refresh affected evidence only for changed targets/manuscripts or stale/conflicting sources. Surface conflicts with the authoritative manuscript; do not silently overwrite state.
+Use the entrypoint's screening/full/deep/incremental distinctions. Honor explicit scope/risk limits; reuse evidence, not verdicts.
 
-## Review completion and follow-up
+## Delivery
 
-Deliver findings, advice, useful strengths and coverage limits within scope/risk threshold. Distinguish errors, reporting gaps, unresolved verification and acceptable limitations. Deduplicate issues. Check alternative explanations; withdraw refuted objections.
-
-Stop at feedback. For later editing, ask full-manuscript versus targeted revision only when scope is unspecified; otherwise reuse explicit scope. Follow the existing revision workflow. "这个建议有道理" alone requests no execution. Never conceal contrary results or promise acceptance.
+Report findings, strengths and limits; distinguish errors, gaps, uncertainty, limitations and choices. Test alternatives; withdraw refuted objections. Stop at feedback. Later editing asks scope only if unspecified. Agreement is not execution. Never hide contrary results or promise acceptance.

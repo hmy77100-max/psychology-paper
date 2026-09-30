@@ -1,15 +1,11 @@
 # Audit report schema
 
-Respect scope/risk threshold; omit extras for issues-only requests. Internal fields:
+Respect requested scope/risk; issues-only omits extras. Fields:
+- location: file/section/paragraph/table/figure.
+- observed_fact; basis: inspected manuscript/external evidence and locators, separate inference.
+- why_it_matters; affected_claim: inference/decision affected.
+- evidence_status; risk_level: shared vocabulary, R0-R4.
+- author_question: needed fact or null.
+- recommendation: action, impacts, uncertainty; no option quota.
 
-1. `location`: file and section/paragraph/table/figure/field.
-2. `observed_fact`: directly observed evidence.
-3. `why_it_matters`: affected inference/decision.
-4. `evidence_status`: shared vocabulary.
-5. `risk_level`: R0–R4.
-6. `affected_claim`: bounded target claim.
-7. `author_question`: needed author fact, or null.
-8. `basis`: manuscript/external evidence and locators; distinguish inference.
-9. `recommendation`: reasoned action, impacts and uncertainty when useful; no required option count.
-
-Disclose coverage of text, figures, tables, appendices and sources. Separate reporting gaps from errors. Recommendations may include journals, arguments, analyses or experiments; no automatic execution. No manuscript rewriting, misconduct inference or unsupported rejection predictions. Respect risk filtering.
+Disclose text/figure/table/appendix/source coverage. Separate gaps from errors. Advice may include journals, arguments, analyses or experiments, never automatic execution. No rewriting, misconduct inference or unsupported rejection prediction.

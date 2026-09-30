@@ -3,3 +3,5 @@ __pycache__/
 .pytest_cache/
 .coverage
 htmlcov/
+# Local manuscript-specific optimization history is not public plugin content.
+/docs/plugin-optimization-log.md

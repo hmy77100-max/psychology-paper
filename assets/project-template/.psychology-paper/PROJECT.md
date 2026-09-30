@@ -6,6 +6,7 @@
   "current_stage": "INTAKE",
   "primary_module": null,
   "authoritative_manuscript": "",
+  "source_sha256": null,
   "sources": [],
   "optional_state_files": {
     "journal_profile": null,
@@ -26,6 +27,15 @@
     "status": "UNSET"
   },
   "formal_analysis_source": null,
+  "framing": {
+    "status": "UNCONFIRMED",
+    "statement": null,
+    "author_response": null
+  },
+  "revision": {
+    "content_revision": 0,
+    "units": []
+  },
   "issued_candidate_ids": [],
   "current_action": null,
   "approved_decisions": [],
@@ -49,3 +59,7 @@ Record only issues the user intentionally held or issues that still change the n
 # Next action
 
 Record one current next action after it has been agreed.
+
+# Whole-manuscript readiness
+
+Initialization is not full-revision readiness. Before full-mode drafting, load the manuscript-writing revision_checks resource and run revision_check.py preflight. Complete the approved journal profile, author-confirmed contribution direction, logical-unit plan, and adopted counted baseline with actual file hashes. Legacy projects may still pass structural validation but require these records for full revision. Do not auto-approve missing values or replace the manuscript.
