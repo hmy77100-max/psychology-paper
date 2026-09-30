@@ -13,6 +13,7 @@
     "section": {
       "title": ["./static/fragments/sections/title.md"],
       "abstract": ["./static/fragments/sections/abstract.md"],
+      "keywords": ["./static/fragments/sections/keywords.md"],
       "introduction": ["./static/fragments/sections/introduction.md"],
       "hypotheses": ["./static/fragments/sections/hypotheses.md"],
       "methods": ["./static/fragments/sections/methods.md"],
@@ -35,6 +36,9 @@
     }
   },
   "conditional_loads": {
+    "literature_support": ["./references/literature-support.md"],
+    "bilingual_sync": ["./references/bilingual-sync.md"],
+    "revision_checks": ["./references/revision-checks.md"],
     "confirmed_style_delta": ["./references/style-delta-schema.md"]
   },
   "shared_loads": {

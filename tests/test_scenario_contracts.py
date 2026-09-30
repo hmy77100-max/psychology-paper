@@ -91,7 +91,7 @@ class ScenarioContractTests(unittest.TestCase):
         full = [scenario for scenario in scenarios if "full_manuscript" in scenario["tags"]]
         self.assertGreaterEqual(len(full), 1)
         self.assertTrue(
-            any("chunk by section" in scenario["required_actions"] for scenario in full)
+            any("chunk by logical unit" in scenario["required_actions"] for scenario in full)
         )
         self.assertTrue(
             any(

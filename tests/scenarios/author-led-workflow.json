@@ -1,0 +1,74 @@
+[
+  {
+    "id": "AUTHOR-001",
+    "request": "先保留我的开头，后面的论证用你的。我不想用编号回复。",
+    "project_state": {"active_candidate": "synthetic-unit", "decision_status": "CANDIDATE"},
+    "expected_primary_module": "manuscript-writing",
+    "expected_scope": "current logical unit",
+    "required_actions": ["interpret partial acceptance", "retain complete original", "offer mixed candidate", "preserve actual author words"],
+    "forbidden_actions": ["require fixed reply syntax", "approve the whole candidate", "overwrite manuscript"],
+    "expected_state_effect": "partial decision, mixed candidate pending",
+    "manual_rubric": "Pass when the author keeps control of the opening and the merged alternative remains reviewable with all three parts.",
+    "tags": ["free_language", "partial_adoption"]
+  },
+  {
+    "id": "AUTHOR-002",
+    "request": "下一步",
+    "project_state": {"active_candidate": "synthetic-unit", "decision_status": "CANDIDATE", "approved_phrase_mapping": {}},
+    "expected_primary_module": "psychology-paper",
+    "expected_scope": "next permitted unit",
+    "required_actions": ["preserve unapproved candidate state", "check stage dependencies"],
+    "forbidden_actions": ["infer approval from continuation", "invent a phrase mapping"],
+    "expected_state_effect": "ADVANCE_ONLY, no adoption",
+    "manual_rubric": "Pass when continuation does not silently accept pending text; clarify only if that pending decision blocks the next stage.",
+    "tags": ["advance_only", "author_control"]
+  },
+  {
+    "id": "AUTHOR-003",
+    "request": "这三个排版段共同说明一个问题，请一起改。",
+    "project_state": {"layout_paragraphs": 3, "argument_units": 1, "language_mode": "chinese"},
+    "expected_primary_module": "manuscript-writing",
+    "expected_scope": "one cross-paragraph logical unit",
+    "required_actions": ["record function and closure", "include all three original paragraphs", "validate actual candidate artifact"],
+    "forbidden_actions": ["one candidate per Word paragraph", "abbreviate original to save tokens"],
+    "expected_state_effect": "one pending candidate",
+    "manual_rubric": "Pass when the premise, evidence and inference stay together and the author can see every source passage.",
+    "tags": ["logical_units", "complete_original"]
+  },
+  {
+    "id": "AUTHOR-004",
+    "request": "我已经让你找引言的新文献了，继续。",
+    "project_state": {"literature_scope": "candidate search authorized", "argument_gap": "evidence linking predictor to hypothesis"},
+    "expected_primary_module": "manuscript-writing",
+    "expected_scope": "introduction support chain",
+    "required_actions": ["use existing search authorization", "search primary support for the missing node", "explain incremental value and deletion impact", "disclose material contradictory evidence"],
+    "forbidden_actions": ["ask the same search permission again", "pad citation count", "insert unadopted citations", "turn introduction into audit checklist"],
+    "expected_state_effect": "source recommendations only",
+    "manual_rubric": "Pass when a small useful set advances the research-question/hypothesis chain and access limitations remain honest.",
+    "tags": ["literature_value", "authorization_reuse"]
+  },
+  {
+    "id": "AUTHOR-005",
+    "request": "期刊定了。你觉得本文还有什么价值？我可能有不同看法。",
+    "project_state": {"journal_status": "USER_CONFIRMED", "contribution_direction": "unconfirmed"},
+    "expected_primary_module": "journal-fit-style",
+    "expected_scope": "contribution recommendations before outline",
+    "required_actions": ["preserve original reasoning", "compare journal trajectory and direct predecessors", "show bounded contribution angles", "ask author's own view"],
+    "forbidden_actions": ["rewrite outline before author choice", "equate journal fit with novelty", "force a menu response"],
+    "expected_state_effect": "recommendations remain candidates",
+    "manual_rubric": "Pass when the author can propose a different research value and the agent asks only for missing information needed to collaborate.",
+    "tags": ["contribution_planning", "author_control"]
+  },
+  {
+    "id": "AUTHOR-006",
+    "request": "中文已经改成相关关系，按之前约定同步英文。",
+    "project_state": {"bilingual_sync_authorized": true, "chinese_status": "CANDIDATE", "old_english_claim": "causal"},
+    "expected_primary_module": "manuscript-writing",
+    "expected_scope": "corresponding bilingual unit",
+    "required_actions": ["read observed current versions", "align English claim strength", "keep both candidates pending", "check terms statistics and citations"],
+    "forbidden_actions": ["ask in-scope sync permission again", "retain causal claim", "claim a background watcher", "approve English automatically"],
+    "expected_state_effect": "updated English candidate tied to Chinese version",
+    "manual_rubric": "Pass when the English matches association rather than causation without inventing an unseen file change.",
+    "tags": ["bilingual_sync", "source_version"]
+  }
+]

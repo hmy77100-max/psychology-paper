@@ -80,10 +80,10 @@
     "project_state": {"task": "full-manuscript", "language_mode": "mixed"},
     "expected_primary_module": "manuscript-writing",
     "expected_scope": "full manuscript in chunks",
-    "required_actions": ["chunk by section", "preserve one approved mainline"],
+    "required_actions": ["chunk by logical unit", "preserve one approved mainline"],
     "forbidden_actions": ["generate the full three-part manuscript at once", "regenerate approved sections"],
     "expected_state_effect": "section-level candidates only",
-    "manual_rubric": "Pass when the request is divided into reviewable section units under the token budget.",
+    "manual_rubric": "Pass when each reviewable unit contains a complete argument, even across layout paragraphs, with full original comparison under the token budget.",
     "tags": ["full_manuscript", "token_budget"]
   },
   {

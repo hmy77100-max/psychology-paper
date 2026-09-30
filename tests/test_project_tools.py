@@ -1,4 +1,5 @@
 import json
+import hashlib
 import os
 import subprocess
 import sys
@@ -77,6 +78,9 @@ class ProjectToolTests(unittest.TestCase):
             self.assertTrue(state_path.exists())
             state, _ = read_frontmatter(state_path)
             self.assertEqual(state["authoritative_manuscript"], str(manuscript.resolve()))
+            self.assertEqual(state["source_sha256"], hashlib.sha256(manuscript.read_bytes()).hexdigest())
+            self.assertEqual(state["framing"]["status"], "UNCONFIRMED")
+            self.assertEqual(state["revision"]["units"], [])
             self.assertEqual(state["journal"]["status"], "USER_CONFIRMED")
             self.assertEqual(
                 state["body_budget"],

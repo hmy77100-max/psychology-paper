@@ -16,6 +16,7 @@ Resolve the [resource loader](../../scripts/load_skill_resources.py) relative to
 - `--select conditional_loads.module_handoff` when another module is required.
 - `--select conditional_loads.recovery` when source, scope, or permission is unresolved.
 - Add a named `shared_loads.*` selector only when that shared rule is required.
+- Use `conditional_loads.efficient_execution` when coordinating resource reuse or external tools.
 
 Do not open child resource paths directly, infer a similar path, or enumerate directories. A loader error is a plugin-integrity failure; stop this plugin invocation and report the bounded error. Keep the default character budget and never load every conditional branch for convenience.
 
@@ -29,6 +30,8 @@ Read-only manuscript review takes the short route directly to `evidence-audit`, 
 4. Pass the minimal packet defined by the shared handoff schema.
 5. Stop at the applicable approval, authority, evidence, or stage boundary.
 
+For journal-directed whole-manuscript work: journal confirmation → evidence-bounded contribution recommendations → author's own view and chosen direction → logical-unit outline → body → abstract → keywords. Keep read-only review on its short route. A prior agreed contribution can be reused unless new evidence changes it. Literature support belongs to manuscript-writing's focused support resource; uncertain sources/claims can route to evidence-audit. Do not demand repeated search approval within an already authorized scope.
+
 ## Approval and state
 
 Discussion, approval, and write permission are separate. Update project state only after the user explicitly approves the information being recorded. Keep rejected candidates and full chat history out of state.
@@ -36,3 +39,5 @@ Discussion, approval, and write permission are separate. Update project state on
 ## Current stage boundary
 
 Route statistical reconstruction, recalculation, field verification, and source comparison to `analysis-adapter`. The adapter may create approved analysis-state files and reproducible analysis outputs, but it cannot modify source data or manuscript files. Literature management, manuscript patching, reviewer-response workflows, and submission audits remain unavailable until their later modules are implemented.
+
+Targeted literature support, contribution planning and task-scoped bilingual candidates are available inside existing modules; they are not a new literature database, file watcher or manuscript patcher.

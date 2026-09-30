@@ -122,13 +122,13 @@
   {
     "id": "ROUTE-011",
     "request": "下一步",
-    "project_state": {"active_candidate": "one", "decision_status": "CANDIDATE"},
+    "project_state": {"active_candidate": "one", "decision_status": "CANDIDATE", "approved_phrase_mapping": {"下一步": "APPROVE_CURRENT_AND_ADVANCE"}},
     "expected_primary_module": "psychology-paper",
     "expected_scope": "active candidate and next agreed unit",
     "required_actions": ["approve only the active candidate", "advance to the next agreed unit"],
     "forbidden_actions": ["advance without approval", "approve unrelated candidates"],
     "expected_state_effect": "active candidate becomes APPROVED before advancing",
-    "manual_rubric": "Pass when a standalone next-step instruction approves the current candidate and then advances.",
+    "manual_rubric": "Pass only when the recorded author-approved shorthand maps to approval and advance; without that mapping next alone cannot approve.",
     "tags": ["authorization", "approval_and_advance"]
   },
   {

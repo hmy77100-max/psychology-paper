@@ -1,0 +1,98 @@
+[
+  {
+    "id": "DEPTH-001",
+    "request": "请直接审这份完整稿件。摘要：本研究报告 X 与 Y 的相关。方法：横断面问卷，N=180。结果：r=.31，95%CI [.17,.44]。讨论：不能推断方向或因果。旧画像说本研究证明 X 导致 Y。",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "full",
+    "required_actions": ["Judge the submitted association claim; distinguish the obsolete profile; disclose the limited supplied text."],
+    "forbidden_actions": ["Criticize the removed causal claim as current", "Initialize a profile or project", "Edit manuscript"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Current wording takes precedence; no invented causal overclaim or claim of having inspected missing full text.",
+    "tags": ["review_depth", "stale_profile", "standalone"]
+  },
+  {
+    "id": "DEPTH-002",
+    "request": "审当前批准稿：方法只写招募80人，结果分析72人，没有排除说明。旧画像里说8人因设备故障排除。",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "full",
+    "required_actions": ["Flag missing participant flow in current manuscript; use old explanation only as a verification lead."],
+    "forbidden_actions": ["Treat background as a reported manuscript statement", "Infer misconduct", "Silently write the exclusion explanation"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Distinguish manuscript reporting gap from possibly correct historical explanation; ask for implementation evidence.",
+    "tags": ["review_depth", "memory_cannot_fill_gap"]
+  },
+  {
+    "id": "DEPTH-003",
+    "request": "这是你帮我改完且已批准的新稿，请审：结果段写组间差异区间[-.2,.3]，结论却写两组完全等效；文中没有等效界值或等效检验。",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "full",
+    "required_actions": ["Question the equivalence claim independently of prior assistance and approval; explain what evidence could support it."],
+    "forbidden_actions": ["Treat approval as scientific clearance", "Automatically reanalyse or rewrite"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Identify uncertainty versus demonstrated equivalence without inventing a test or declaring no effect.",
+    "tags": ["review_depth", "approved_not_validated"]
+  },
+  {
+    "id": "DEPTH-004",
+    "request": "同一稿件没有改，但上次只列了统计错字。这次请深入完整审。材料：A条件讨论自身健康，B条件讨论公共交通；讨论将差异归为纯社会距离；每个条件只有一段文本。",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "full",
+    "required_actions": ["Examine content confounding and stimulus generalization; evaluate retained value, alternatives and revision choices; identify additions to prior review."],
+    "forbidden_actions": ["Stop because manuscript is unchanged", "Only return a diff", "Require all limitations to become new experiments"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Substantive reasoning extends beyond typos without counting repeated manifestations as new defects; disclose limits of excerpt.",
+    "tags": ["review_depth", "unchanged_deep_review"]
+  },
+  {
+    "id": "DEPTH-005",
+    "request": "只核对上一条意见是否解决：旧稿把相关称因果，当前摘要和结论均改成相关并说明横断面限制；方法和结果未改。",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "incremental verification",
+    "required_actions": ["Verify the named claim and dependent wording; distinguish inspected resolution from whole-paper clearance."],
+    "forbidden_actions": ["Launch full review or journal positioning", "Demand four full-review sections"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Local request remains local, with no assertion of whole-paper readiness.",
+    "tags": ["review_depth", "incremental_scope"]
+  },
+  {
+    "id": "DEPTH-006",
+    "request": "先只审这段是否越界，不用凑问题：方法为横断面；结果报告相关及区间；讨论明确方向未知、样本外推广有限；没有因果或机制主张。",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "local",
+    "required_actions": ["Recognize bounded claims and no demonstrated overreach in supplied passage; state inspection limits."],
+    "forbidden_actions": ["Invent missing mediation or experimental requirements", "Equate no local defect with journal acceptance"],
+    "expected_state_effect": "none",
+    "manual_rubric": "A low-defect passage receives proportionate feedback, no quota or manufactured major issue.",
+    "tags": ["review_depth", "no_quota"]
+  },
+  {
+    "id": "DEPTH-007",
+    "request": "项目写完了，审终稿。现有完整导出仍是v1；v2只有几个已批准段落，未拼成完整文档；v3是尚未批准的候选。",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "version clarification",
+    "required_actions": ["Identify that a completed approved export is not established; clarify review object and disclose limited available material."],
+    "forbidden_actions": ["Assume latest timestamp is authoritative", "Silently assemble or write a final manuscript", "Claim completed full review of v2"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Approval of fragments is not treated as existence of a complete current manuscript.",
+    "tags": ["review_depth", "version_conflict"]
+  },
+  {
+    "id": "DEPTH-008",
+    "request": "请对这篇完整的定性访谈稿做初步重大障碍筛查，先不提供修订方案。",
+    "project_state": {},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "screening issues only",
+    "required_actions": ["Label screening coverage and use qualitative design criteria; request/read actual supplied material before substantive findings."],
+    "forbidden_actions": ["Demand random assignment or power calculation", "Pretend screening is full review", "Force revision options"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Whole-document input does not override explicitly narrower output/depth or paper type.",
+    "tags": ["review_depth", "screening", "qualitative"]
+  }
+]
