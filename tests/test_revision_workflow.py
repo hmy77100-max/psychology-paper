@@ -85,6 +85,13 @@ class RevisionWorkflowTests(unittest.TestCase):
         self.save_state()
         self.assertTrue(revision.preflight(self.root))
 
+    def test_preflight_normalizes_equivalent_project_path_at_api_boundary(self):
+        child = self.root / "child"
+        child.mkdir()
+        alias = child / ".."
+        self.assertNotEqual(alias, alias.resolve())
+        self.assertEqual(revision.preflight(alias), [])
+
     def test_unknown_scope_unconfirmed_framing_and_unapproved_profile_block(self):
         for field in ("scope", "framing", "profile"):
             with self.subTest(field=field):

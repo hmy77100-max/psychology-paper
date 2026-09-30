@@ -28,7 +28,9 @@ The suite includes actual CLI/file checks in isolated temporary directories, sou
 
 Commands: `python -X utf8 -m unittest discover -s tests -v`, official Skill validators for all five entrypoints, official standalone plugin validator, and `git diff --check`. GitHub CI runs the regression suite on Windows and Linux using Python 3.13.
 
-Local release check on 2026-09-30: **141 tests passed**; all five official Skill validators and the official plugin validator passed; whitespace check passed. Shared authorization was reconciled with the checker: unqualified continuation is not adoption unless the author explicitly approved a different shorthand mapping. Invalid candidates cannot be approved or advanced through the decision checker.
+Local release check on 2026-09-30: **142 tests passed**; all five official Skill validators and the official plugin validator passed; whitespace check passed. Shared authorization was reconciled with the checker: unqualified continuation is not adoption unless the author explicitly approved a different shorthand mapping. Invalid candidates cannot be approved or advanced through the decision checker.
+
+The first Windows CI run exposed equivalent project paths being compared before both were canonicalized at the library API boundary; CLI callers already normalized their roots. Linux was cancelled by matrix fail-fast, not independently shown to fail. A local real-path alias regression reproduced the error before the fix; preflight now resolves its project root before standard-state validation. The full suite was rerun after that single fix.
 
 The default 12,000-character resource ceiling is unchanged. Metadata inspection returns complete selected costs without dumping instruction bodies; it is not a substitute for reading selected instructions. Freshly loaded resources and source snapshots must still be checked after version changes.
 

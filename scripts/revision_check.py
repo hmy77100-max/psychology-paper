@@ -121,6 +121,7 @@ def preflight(root):
     """Read standard state, approved profile, authority and counted baseline."""
     errors = []
     try:
+        root = Path(root).expanduser().resolve()
         state = load_project(root)
         errors.extend(validate_state(state, root))
         errors.extend(v.message for v in evaluate_rules(state, load_state_rules(RULE_PATH),
