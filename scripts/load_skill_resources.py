@@ -178,15 +178,26 @@ def render_text(result: LoadResult) -> str:
     return "\n\n".join(sections) + "\n"
 
 
+class ResourceArgumentParser(argparse.ArgumentParser):
+    def error(self, message):
+        super().error(f"ARGUMENT_ERROR: {message}")
+
+
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(
+    parser = ResourceArgumentParser(
         description="Load only Manifest-selected resources for one psychology-paper Skill."
     )
     parser.add_argument("--skill", required=True)
     parser.add_argument("--select", action="append", default=[])
     parser.add_argument("--max-chars", type=int, default=DEFAULT_MAX_CHARS)
-    parser.add_argument("--describe", action="store_true")
-    parser.add_argument("--list-selectors", action="store_true")
+    modes = parser.add_mutually_exclusive_group()
+    modes.add_argument("--describe", action="store_true")
+    modes.add_argument("--list-selectors", action="store_true")
+    modes.add_argument("--plan", action="store_true", help="Plan whole-resource stages without loading bodies")
+    modes.add_argument("--stage", type=int, help="Read a planned stage after acknowledged predecessors")
+    modes.add_argument("--check-coverage", action="store_true", help="Check caller-attested reading coverage")
+    parser.add_argument("--context-id", help="Fresh task/read-context ID; change after context loss")
+    parser.add_argument("--receipts", type=Path, help="Task-local JSON list of explicit read attestations")
     return parser
 
 
@@ -195,8 +206,35 @@ def main(argv: Sequence[str] | None = None) -> int:
         sys.stdout.reconfigure(encoding="utf-8")
     if hasattr(sys.stderr, "reconfigure"):
         sys.stderr.reconfigure(encoding="utf-8")
-    args = build_parser().parse_args(argv)
+    parser = build_parser()
+    args = parser.parse_args(argv)
+    staged = args.plan or args.stage is not None or args.check_coverage
+    if staged and (not args.context_id or args.max_chars != DEFAULT_MAX_CHARS):
+        parser.error("staged reads require --context-id and the unchanged default budget")
+    if not staged and (args.context_id or args.receipts):
+        parser.error("--context-id/--receipts require a staged mode")
+    if args.plan and args.receipts:
+        parser.error("--plan does not consume or acknowledge receipts")
+    from resource_stages import ReceiptError, build_plan, load_stage, check_coverage
+    from resource_stages import loader as staged_loader
     try:
+        if staged:
+            request = dict(skill=args.skill, selectors=args.select, context_id=args.context_id)
+            if args.plan:
+                payload = build_plan(**request)
+            else:
+                receipts = []
+                if args.receipts:
+                    try:
+                        receipts = json.loads(args.receipts.read_text(encoding="utf-8-sig"))
+                    except (OSError, ValueError) as exc:
+                        raise ReceiptError("receipt file is unreadable or invalid JSON") from exc
+                if args.check_coverage:
+                    payload = check_coverage(**request, receipts=receipts)
+                else:
+                    payload = load_stage(**request, stage_id=args.stage, receipts=receipts)
+            print(json.dumps(payload, ensure_ascii=False, indent=2))
+            return 1 if payload.get("status") == "INCOMPLETE" else 0
         if args.describe or args.list_selectors:
             plan = describe_resources(skill=args.skill, selectors=args.select, max_chars=args.max_chars)
             print(json.dumps(plan["valid_selectors"] if args.list_selectors else plan, ensure_ascii=False, indent=2))
@@ -206,8 +244,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             selectors=args.select,
             max_chars=args.max_chars,
         )
-    except (ResourceResolutionError, ResourceBudgetError) as exc:
-        print(f"resource loader error: {exc}", file=sys.stderr)
+    except ReceiptError as exc:
+        print(f"resource loader error: READ_RECEIPT_INVALID: {exc}", file=sys.stderr)
+        return 2
+    except (ResourceResolutionError, ResourceBudgetError,
+            staged_loader.ResourceResolutionError, staged_loader.ResourceBudgetError) as exc:
+        kind = "BUDGET_EXCEEDED" if isinstance(
+            exc, (ResourceBudgetError, staged_loader.ResourceBudgetError)
+        ) else "RESOLUTION_ERROR"
+        print(f"resource loader error: {kind}: {exc}", file=sys.stderr)
         return 2
     sys.stdout.write(render_text(result))
     return 0

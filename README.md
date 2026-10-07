@@ -1,6 +1,6 @@
 # Psychology Paper
 
-Psychology Paper is a Codex plugin project for evidence-calibrated psychology manuscript work. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. It does not modify source data or manuscript files, maintain a literature database, or prepare submission files yet. Version 0.4.0 adds focused literature support and author-led contribution planning within the existing modules.
+Psychology Paper is a Codex plugin project for evidence-calibrated psychology manuscript work. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. It does not modify source data or manuscript files, maintain a literature database, or prepare submission files yet. Version 0.5.0 adds on-demand prose diagnostics, author-led collaboration guidance and bounded staged resource loading within the existing modules.
 
 ## Implemented modules
 
@@ -46,7 +46,7 @@ The marketplace manifest is `<marketplace-root>\.agents\plugins\marketplace.json
 
 Every implemented Skill loads internal rules through `scripts/load_skill_resources.py`. The caller selects logical Manifest groups; the loader resolves exact declared paths relative to its installed plugin root and includes only that Skill's `always_load` resources plus the selected groups.
 
-Runtime loading never enumerates directories, guesses similar filenames, or falls back to repository-wide search. Unknown selectors and invalid paths fail as bounded plugin-integrity errors. The default output ceiling is 12,000 characters per load so an accidental broad selection cannot flood the model context. Build-time tests separately verify that every Manifest-declared resource exists.
+Runtime loading never enumerates directories, guesses similar filenames, or falls back to repository-wide search. Unknown selectors and invalid paths fail as bounded plugin-integrity errors. The default ceiling is 12,000 instruction-body characters per load; labels and JSON metadata are additional, so this is not a token limit or a bound on the serialized tool response. Build-time tests separately verify that every Manifest-declared resource exists.
 
 Example:
 
@@ -85,7 +85,35 @@ Task-scoped bilingual sync checks observed Chinese and English versions under st
 
 ## Efficient resource execution
 
-Use the loader's `--list-selectors` for exact keys and `--describe` for complete per-resource costs, hashes and first overflow before loading a stage. Errors no longer report only the partial running total. Keep the 12,000-character default; separate genuinely distinct stages rather than stacking every optional resource or retrying guessed keys. Reuse fully read unchanged instructions and source-hashed extraction records, while returning to originals for disputed evidence. Ordinary prose does not require a fixed multi-agent team or repeated status polling. Do not economize by removing original comparison or factual verification.
+### Version 0.5.0 writing and collaboration additions
+
+Focused `conditional_loads.prose_diagnostics` adds concrete repairs, protections against over-editing and sample-based author-voice observations to manuscript-writing. It preserves the full source comparison, logical units, citations and statistical reporting; observations become lasting style rules only after explicit author approval. See [third-party notice](THIRD_PARTY_NOTICES.md).
+
+The router's `conditional_loads.collaboration` handles explicitly requested perspectives, mixed feedback and revision-milestone checks. Names are configurable; there is no mandatory four-role exchange or independent agent panel. Existing project records retain scoped decisions, rejections, supersession and unresolved evidence separately. State is reported saved only after readback; revision completion requires checking the actual candidate against applicable decisions, not merely having discussed them.
+
+These additions require installing version 0.5.0; merging source alone does not refresh an existing installation. See [pre-release validation scope](docs/validation/writing-collaboration.md).
+
+Use the loader's `--list-selectors` for exact keys and `--describe` for complete per-resource costs, hashes and first overflow. For a multi-stage preparation, `--plan` deterministically separates core, task axes and requested conditional/shared groups without duplicate core output. Select all required groups, in preparation order; do not omit requirements to fit a load. Each stage stays within 12,000 instruction-body characters and contains whole resources; an oversized indivisible group fails for resource repair.
+
+Example of planning the three supplementary groups implicated in the capacity failure (include the applicable task/language/section axes when planning a whole writing task):
+
+```powershell
+$stageArgs = @('--skill', 'manuscript-writing', '--context-id', 'current-task-read-1', '--select', 'conditional_loads.bilingual_sync', '--select', 'conditional_loads.revision_checks', '--select', 'conditional_loads.literature_support')
+python -X utf8 .\scripts\load_skill_resources.py @stageArgs --plan
+python -X utf8 .\scripts\load_skill_resources.py @stageArgs --stage 0
+# After actually reading the complete output, record its explicit attestation.
+python -X utf8 .\scripts\load_skill_resources.py @stageArgs --stage 1 --receipts '<task-temp>\resource-reads.json'
+# Continue the remaining stage IDs from the plan; attest each complete read.
+python -X utf8 .\scripts\load_skill_resources.py @stageArgs --check-coverage --receipts '<task-temp>\resource-reads.json'
+```
+
+Each delivery contains `content` and a `receipt_template` with `read_complete: false` and `output_ref: null`. Only after the assistant has read the entire untruncated output may it copy that template into a task-local JSON list, set `read_complete: true`, and name the actual tool output in `output_ref`. The script never writes or confirms receipts itself. This internal bookkeeping imposes no response format or approval step on the author.
+
+Receipts bind the current read context, plugin root, entire plan, manifest and resource hashes. Missing predecessors block later stages. Lost context, a different resource selection or changed files invalidate reuse; replan and read the required instructions. Earlier ordinary loads cannot be silently converted into staged receipts. Reuse a completed unchanged plan within the same read context instead of repeating this cycle for every unit. Coverage returns exit 1 / `INCOMPLETE` for pending reads, or exit 0 / `ACKNOWLEDGED` for complete caller attestations. It does not verify the output reference, comprehension, selection sufficiency, author approval or manuscript quality.
+
+Failures return exit 2 with `ARGUMENT_ERROR`, `RESOLUTION_ERROR`, `BUDGET_EXCEEDED` or `READ_RECEIPT_INVALID`. Stop the failed invocation and correct its specific cause. Budget failure can transition to a metadata stage plan; it cannot justify raising the limit, guessing selectors or dropping required rules. Retain the simpler ordinary load for small tasks. See [stage validation](docs/validation/resource-stages.md) for verified scope and limitations.
+
+Reuse source-hashed extraction records while returning to originals for disputed evidence. Ordinary prose does not require a fixed multi-agent team or repeated status polling. Do not economize by removing original comparison or factual verification.
 
 See [0.4.0 validation and boundaries](docs/validation/author-led-workflow.md). Installing/updating the plugin in Codex is separate from merging the GitHub source.
 

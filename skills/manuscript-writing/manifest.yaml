@@ -36,6 +36,7 @@
     }
   },
   "conditional_loads": {
+    "prose_diagnostics": ["./references/prose-diagnostics.md"],
     "literature_support": ["./references/literature-support.md"],
     "bilingual_sync": ["./references/bilingual-sync.md"],
     "revision_checks": ["./references/revision-checks.md"],

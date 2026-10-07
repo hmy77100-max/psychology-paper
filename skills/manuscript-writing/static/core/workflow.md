@@ -6,6 +6,8 @@ Before literature-dependent drafting, check the existing literature authorizatio
 
 Draft only after these are known. Preserve every frozen number and citation. After drafting, compare source and candidate for omitted findings, altered directions, changed sample descriptors, renamed constructs, and unsupported causal verbs.
 
+Apply all effective author decisions, not just the latest reply. For each applicable requirement, check its candidate location and result; leave unexamined cross-section or bilingual dependencies pending. For a concrete prose/voice problem, use the focused prose_diagnostics resource; keep ordinary checks lightweight and do not turn its examples into a blacklist.
+
 Give each recurring evidence caveat one manuscript home, normally the most relevant limitation or discussion passage. Elsewhere, state only the result or the shortest necessary boundary; do not repeat the full audit explanation across experiment discussions and the general discussion. A synchronization list may name affected locations without copying the explanation into each location.
 
 User-specific style preferences become persistent only when they are cross-paragraph, differ from the shared baseline, and the user explicitly approves them. Then use [the style-delta schema](../../references/style-delta-schema.md). One-off wording instructions remain local.

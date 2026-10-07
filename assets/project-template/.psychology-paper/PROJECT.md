@@ -52,9 +52,13 @@ The frontmatter is the machine-readable project state. This body is a compact hu
 
 Record only decisions explicitly approved by the user. Rejected AI drafts and full chat history do not belong here.
 
+Use scoped item records in approved_decisions with the user's words/source, actual content and current status. For a newer decision, retain its supersedes relationship to the older item. A short explicit-rejection record may preserve what must not be executed; it is not approval of the rejected wording. Only effective accepted items guide execution. Keep the machine-readable frontmatter and this compact view consistent; do not create another approval log.
+
 # Intentional holds and unresolved issues
 
 Record only issues the user intentionally held or issues that still change the next decision.
+
+intentional_holds requires an explicit author postponement. Pending candidates, evidence questions and unadopted external/assistant suggestions stay in their own existing statuses or unresolved_issues with source and scope. Partial approval preserves accepted items without blanket acceptance of the mixed candidate.
 
 # Next action
 

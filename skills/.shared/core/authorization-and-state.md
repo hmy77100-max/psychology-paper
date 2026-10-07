@@ -27,6 +27,10 @@ Never require these internal labels, canned replies or candidate IDs from author
 
 ## State namespaces
 
+For discussion feedback, use item-level decisions in the existing PROJECT record: approved content and scope with the user's words, unresolved items separately, and a supersedes link for newer corrections. Partial approval preserves the identified accepted requirements without approving a pending candidate as a whole. An unapproved item is not an intentional hold unless the author actually postpones it. An explicit rejection is a scoped decision, not a pending proposal; retain only its short status/reason, not rejected prose. External feedback and assistant recommendations remain source-labelled and unadopted until the user decides. If an exception-list referent is unavailable, record the identifiable subset and clarify only the remainder; do not record a blanket “everything else”.
+
+Resume from cumulative effective decisions. After an authorized state update, read back the saved content before reporting its actual location and what is confirmed versus open. Without a successful write, report a proposed update, not a saved decision. Structural validity and author approval do not prove scientific validity or completed revision.
+
 Use separate fields for `decision_status`, `write_permission`, `patch_status`, `source_role`, `evidence_status`, `risk_level`, and `check_status`. Do not create a combined Cartesian-product status. Consult [state-consistency.md](state-consistency.md) for machine-enforced illegal combinations.
 
 ## Document invariants

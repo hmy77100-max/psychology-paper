@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.0 — 2026-10-07
+
+- Add optional manifest-bound resource stage plans, canonical cross-stage deduplication and explicit same-context read attestations; keep the 12,000-character body budget and whole-resource groups.
+- Separate argument, resolution, capacity and read-receipt failures; add regression coverage for the observed three-supplement overflow and complete staged CLI journeys. Read coverage is not comprehension or manuscript verification; see `docs/validation/resource-stages.md`.
+
+- Add focused prose diagnostics, over-editing protections, evidence-aware contribution wording and author-sample observations within the existing candidate workflow.
+- Add configurable, explicitly invoked collaboration perspectives without a default multi-agent panel; preserve evidence-based dissent and researcher decisions.
+- Clarify item-level partial approval, rejection, intentional holds, supersession, save receipts and cumulative decision recovery in existing project records.
+- Require task-scoped requirement-to-candidate verification, including relevant cross-section and bilingual dependencies; structural checks do not establish scientific correctness.
+- Preserve source manuscripts and data. Installation is a separate explicit step; see `docs/validation/writing-collaboration.md` and `docs/validation/resource-stages.md` for pre-release verification scope and limits.
+
 ## 0.4.0 — 2026-09-30
 
 - Enforce complete three-part candidate artifacts with actual source/extraction hashes and logical-unit spans; keep unrestricted author replies and candidate-only manuscript boundaries.
