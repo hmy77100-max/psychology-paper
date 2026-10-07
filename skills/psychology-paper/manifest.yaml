@@ -7,6 +7,7 @@
     "./static/core/authorization.md"
   ],
   "conditional_loads": {
+    "collaboration": ["./references/collaboration.md"],
     "efficient_execution": ["./references/efficient-execution.md"],
     "project_mode": ["./static/core/project-mode.md"],
     "ambiguous_route": ["./references/task-routing.md"],

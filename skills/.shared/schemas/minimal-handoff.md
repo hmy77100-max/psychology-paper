@@ -25,6 +25,7 @@ STOP_CONDITION
 - `paper_and_design_tags`: the paper, design, observation-unit, and evidence-source tags that control checks.
 - `authoritative_source`: the source ID and role governing this task.
 - `approved_constraints`: only user-approved limits and frozen content.
+- Carry cumulative effective item-level decisions and source references within `approved_constraints`; exclude superseded/rejected instructions from execution. Carry relevant unresolved evidence separately from author-approved direction. For revision verification, include the affected requirement, candidate/source version and unchecked locations in the existing output/open-issue fields, not a second approval store.
 - `evidence_ceiling`: the strongest claim permitted by the current evidence.
 - `required_output`: diagnosis, candidate, profile, synchronization list, or state update.
 - `open_issue`: one unresolved question that can change the task; use null when none exists.

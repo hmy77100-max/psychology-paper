@@ -17,8 +17,13 @@ Resolve the [resource loader](../../scripts/load_skill_resources.py) relative to
 - `--select conditional_loads.recovery` when source, scope, or permission is unresolved.
 - Add a named `shared_loads.*` selector only when that shared rule is required.
 - Use `conditional_loads.efficient_execution` when coordinating resource reuse or external tools.
+- Use `conditional_loads.collaboration` when the user invokes a collaboration perspective, gives mixed feedback/decisions, or a revision milestone requires checking cumulative decisions. Load only the professional module needed for the actual issue; roles are not new modules or automatic independent agents.
 
-Do not open child resource paths directly, infer a similar path, or enumerate directories. A loader error is a plugin-integrity failure; stop this plugin invocation and report the bounded error. Keep the default character budget and never load every conditional branch for convenience.
+Do not open child resource paths directly, infer a similar path, or enumerate directories. Keep the default character budget and never load every conditional branch for convenience.
+
+For multiple preparation groups or uncertain capacity, use the same loader with `--plan --context-id <fresh-read-context>` and all required selectors in intended preparation order. It emits metadata only: core once, task axes, then whole conditional/shared groups with canonical deduplication. Keep that selector list and context ID for `--stage <id>` calls. Fully read each stage before explicitly confirming its `receipt_template` (`read_complete: true` and the actual tool `output_ref`) in a task-local JSON list; pass that list with `--receipts <path>` for subsequent stages and `--check-coverage` before dependent delivery. Never auto-confirm output success or truncated text. Receipts are caller attestations, not proof of comprehension, complete task selection or scientific verification. They bind plan, plugin root, manifest and content hashes; start fresh after context loss or changes. Do not put them in author-decision state or require user replies for them. Reuse the completed unchanged plan within this read context, not a new receipt cycle for every paragraph.
+
+Stop any failed invocation. `ARGUMENT_ERROR` or `RESOLUTION_ERROR` requires correcting the exact invocation/resource defect, not guessing selectors. `BUDGET_EXCEEDED` permits metadata planning of the same necessary groups, not a raised limit, omitted rules or arbitrary text slicing; an oversized indivisible stage requires resource repair. `READ_RECEIPT_INVALID` requires inspecting the missing/stale receipt, then completing missing reads or replanning in the current context. Failed/metadata-only loads never count as complete. Keep ordinary bounded single loads for simple tasks; staging is not mandatory ceremony.
 
 ## Route
 
@@ -35,6 +40,8 @@ For journal-directed whole-manuscript work: journal confirmation → evidence-bo
 ## Approval and state
 
 Discussion, approval, and write permission are separate. Update project state only after the user explicitly approves the information being recorded. Keep rejected candidates and full chat history out of state.
+
+Default to constructive work with routine evidence checking and feedback recording. Visible critic or producer perspectives require the user's explicit call; there is no four-role rotation. Use configured role names, not a global nickname. Apply item-level approval and supersession in the existing authoritative state; return confirmed items, genuinely open items and the verified save location. A pending candidate is not an intentional hold, and approved direction is not approved wording. Resume from cumulative effective decisions, not only the latest message.
 
 ## Current stage boundary
 
