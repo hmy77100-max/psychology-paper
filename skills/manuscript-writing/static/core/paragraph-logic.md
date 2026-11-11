@@ -1,7 +1,5 @@
 # Paragraph logic
 
-Identify what the logical unit must do: pose a problem, define a construct, synthesize evidence, introduce a method, report a result, interpret a pattern, establish a boundary, or transition to the next question. Choose boundaries by argumentative closure, not physical paragraph breaks. Preserve premise, evidence and inference together even across multiple layout paragraphs; record the unit's function and source span before revising.
+Understand the author's intended argument and the function of the passage in context. Select enough source to preserve its meaning, even across layout paragraphs; record the function and source span. These source boundaries do not authorize restructuring or enlarging the edit.
 
-Use problem → evidence → inference when that sequence fits the paragraph. Lead with evidence before interpretation in results and discussion. Begin a study transition with the unresolved question rather than a generic study announcement.
-
-Avoid mechanical total-part-total structure, dense “therefore/however/in summary” chains, packaged conclusions such as “all results supported the hypothesis,” and defensive meta-commentary that repeats limits already clear from precise wording.
+Preserve an effective author argument. When a connection is unclear, identify the missing reasoning and propose a repair supported by the study and literature. Neither a section label nor a preferred problem/evidence/inference sequence determines sentence order. Organization follows the author's purpose and applicable journal requirements.

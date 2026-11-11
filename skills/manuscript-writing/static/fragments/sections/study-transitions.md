@@ -1,5 +1,5 @@
 # Study transitions
 
-Use between studies in a multi-study paper. State what the previous study established, the precise uncertainty it left, and which feature of the next design addresses that uncertainty.
+Explain the actual relationship between studies when a transition is useful: replication, extension, a new comparison or another author-supported purpose. Not every study must repair an unresolved problem in the previous one.
 
-Do not repeat the full result section or add a standalone mini-discussion by default. If a contradiction requires interpretation before the next study, use only the sentences necessary to define the next empirical question.
+Include the context needed to understand that relationship, without automatically replaying results or inserting a mini-discussion. Preserve the author's chosen organization.

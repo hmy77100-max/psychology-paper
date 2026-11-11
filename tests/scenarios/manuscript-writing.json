@@ -44,7 +44,7 @@
     "project_state": {"section": "results", "numbers": "frozen"},
     "expected_primary_module": "manuscript-writing",
     "expected_scope": "results paragraph",
-    "required_actions": ["preserve every number sign and direction", "report pattern before inference"],
+    "required_actions": ["preserve every number sign and direction", "keep results and interpretations distinguishable"],
     "forbidden_actions": ["recalculate", "change significance labels", "add broad theory"],
     "expected_state_effect": "candidate only",
     "manual_rubric": "Pass when prose improves without numerical or inferential drift.",
@@ -88,15 +88,15 @@
   },
   {
     "id": "WRITE-008",
-    "request": "按目标期刊要求修改全文。",
-    "project_state": {"task": "full-manuscript", "body_budget": "configured"},
+    "request": "按目标期刊要求修改全文，先改摘要，正文还没审完。",
+    "project_state": {"task": "full-manuscript", "body_budget": "configured", "author_sequence": "abstract first"},
     "expected_primary_module": "manuscript-writing",
     "expected_scope": "full manuscript in approved units",
-    "required_actions": ["revise body sections before the abstract", "revise keywords after the abstract", "project each candidate against the journal body budget"],
-    "forbidden_actions": ["start with the abstract", "expand an over-limit manuscript"],
-    "expected_state_effect": "body units advance before abstract and keywords",
-    "manual_rubric": "Pass when the sequence is body, abstract, then keywords and the recorded journal limit controls length.",
-    "tags": ["full_manuscript", "body_first_sequence", "journal_body_budget"]
+    "required_actions": ["follow the author's chosen sequence", "note later abstract synchronization without blocking drafting", "project each candidate against the journal body budget"],
+    "forbidden_actions": ["force body-first approval", "approve unfinished body units", "expand an over-limit manuscript"],
+    "expected_state_effect": "abstract candidate can advance without adopting unfinished body units",
+    "manual_rubric": "Pass when the author's abstract-first request proceeds, the budget is checked, and later body changes still require abstract synchronization.",
+    "tags": ["full_manuscript", "author_chosen_sequence", "journal_body_budget"]
   },
   {
     "id": "WRITE-009",
@@ -152,9 +152,9 @@
     "project_state": {"evidence_caveat": "approved", "primary_home": "limitations"},
     "expected_primary_module": "manuscript-writing",
     "expected_scope": "cross-section synchronization",
-    "required_actions": ["keep the full explanation in one manuscript home", "use only the shortest necessary boundary elsewhere"],
+    "required_actions": ["retain necessary boundaries where readers need them", "reuse the author's chosen primary location without a global location quota"],
     "forbidden_actions": ["repeat the full audit explanation in every experiment discussion", "inflate the manuscript with duplicated caveats"],
-    "expected_state_effect": "one primary caveat passage and a compact synchronization list",
+    "expected_state_effect": "necessary scope is preserved with a compact synchronization list",
     "manual_rubric": "Pass when synchronization preserves the boundary without multiplying the same explanation across sections.",
     "tags": ["deduplicated_evidence_boundary"]
   }

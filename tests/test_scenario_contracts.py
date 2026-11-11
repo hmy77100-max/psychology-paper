@@ -66,7 +66,7 @@ class ScenarioContractTests(unittest.TestCase):
             "approval_and_advance",
             "full_manuscript_project_gate",
             "journal_body_budget",
-            "body_first_sequence",
+            "author_chosen_sequence",
             "literature_decision_gate",
             "unique_candidate_id",
             "natural_language_output",
@@ -100,7 +100,7 @@ class ScenarioContractTests(unittest.TestCase):
                 for scenario in full
             )
         )
-        self.assertTrue(any("body_first_sequence" in scenario["tags"] for scenario in full))
+        self.assertTrue(any("author_chosen_sequence" in scenario["tags"] for scenario in full))
 
 
 if __name__ == "__main__":

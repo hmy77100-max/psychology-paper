@@ -3,6 +3,7 @@
   "version": 1,
   "skill": "psychology-paper",
   "always_load": [
+    "../.shared/core/author-led-writing.md",
     "./static/core/routing-principles.md",
     "./static/core/authorization.md"
   ],

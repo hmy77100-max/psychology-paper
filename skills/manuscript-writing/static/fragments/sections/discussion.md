@@ -1,5 +1,5 @@
 # Discussion
 
-Use when interpreting results. Organize the discussion by theoretical questions or constructs and integrate evidence across studies within each. Cover the most stable evidence, conditional evidence, and inconsistent or nonsignificant evidence without turning those categories into mandatory headings.
+Interpret the findings in relation to the author's question and relevant research, following the chosen argument rather than a fixed study-by-study or theory-by-theory order. Preserve supported findings and relevant inconsistent evidence.
 
-For each issue: state the pattern, explain what it changes theoretically, compare it with external evidence, and identify the next question. Use literature both to support the interpretation and to explain differences. Treat behavior, measurement, state/trait, and context differences as potential explanatory dimensions only to the extent the studies test them.
+Develop the reasoning behind proposed meanings or differences: for example, what differs in materials, measures, participants or context, and why that difference matters. Distinguish observed effects from plausible explanations and untested mechanisms. These are reasoning checks, not required paragraph steps or a demand that every issue end with a limitation or future question.

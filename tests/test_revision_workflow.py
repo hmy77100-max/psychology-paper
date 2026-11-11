@@ -128,6 +128,30 @@ class RevisionWorkflowTests(unittest.TestCase):
             result = revision.propose_decision(self.root, self.record, intent, "保留开头，后面我还想想")
             self.assertNotEqual(result.get("proposed_state", self.state)["revision"]["units"][0]["status"], "APPROVED")
 
+    def test_author_can_adopt_abstract_while_body_units_remain_pending(self):
+        abstract = {**copy.deepcopy(self.unit), "id": "abstract", "section": "abstract",
+                    "function": "summarize current findings", "counted_in_budget": False}
+        self.state["revision"]["units"][1] = abstract
+        self.record["unit"] = copy.deepcopy(abstract)
+        self.save_state()
+        result = revision.propose_decision(self.root, self.record, "APPROVE_CURRENT", "采用这个摘要版本")
+        self.assertEqual(result["status"], "PROPOSED")
+        self.assertEqual(result["errors"], [])
+        self.assertTrue(result["stage_notes"])
+        self.assertEqual(result["proposed_state"]["revision"]["units"][0]["status"], "PENDING")
+        self.assertEqual(result["proposed_state"]["revision"]["units"][1]["status"], "APPROVED")
+        self.assertEqual(revision.load_project(self.root)["revision"]["units"][1]["status"], "PENDING")
+
+    def test_stage_cli_reports_pending_dependencies_without_rejecting_order(self):
+        result = subprocess.run([sys.executable, "-X", "utf8", str(Path(revision.__file__)),
+            "stage", "--project-root", str(self.root), "--section", "abstract"],
+            capture_output=True, text=True, encoding="utf-8")
+        payload = json.loads(result.stdout)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertEqual(payload["errors"], [])
+        self.assertTrue(payload["stage_notes"])
+        self.assertFalse(payload["scientific_verification"])
+
     def test_invalid_candidate_cannot_be_approved(self):
         self.record["artifact"] = self.file("candidate.txt", "修改后中文\nonly candidate")
         for intent in ("APPROVE_CURRENT", "ADVANCE_ONLY"):
@@ -196,10 +220,7 @@ class RevisionWorkflowTests(unittest.TestCase):
         return subprocess.run([sys.executable, "-X", "utf8", str(Path(revision.__file__)), command,
             "--project-root", str(self.root), *args], capture_output=True, text=True, encoding="utf-8")
 
-    def test_stage_cli_blocks_early_abstract_and_records_explicit_exception(self):
-        result = self.run_cli("stage", "--section", "abstract")
-        self.assertEqual(result.returncode, 1, result.stderr)
-        self.assertTrue(json.loads(result.stdout)["errors"])
+    def test_stage_cli_retains_explicit_author_order_without_reapproval(self):
         result = self.run_cli("stage", "--section", "abstract", "--explicit-stage-request", "本次先给我摘要候选")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(json.loads(result.stdout)["author_stage_request"], "本次先给我摘要候选")

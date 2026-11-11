@@ -167,8 +167,13 @@ def preflight(root):
 
 
 def check_stage(state, section, explicit_override=""):
+    """Return order/synchronization notes, never a compulsory writing sequence.
+
+    Source, candidate and adoption checks remain separate blocking checks.
+    An author's draft order does not approve other units or mark them current.
+    """
     if explicit_override:
-        return []  # exact author instruction is supplied, never inferred from page order
+        return []  # retain the existing explicit author-order interface
     if section not in {"abstract", "keywords"}:
         return []
     flow = state.get("revision", {})
@@ -176,12 +181,12 @@ def check_stage(state, section, explicit_override=""):
     body = [u for u in units if u.get("section") not in LATE]
     current = state.get("source_sha256")
     if not body or any(u.get("status") not in ACCEPTED or u.get("source_sha256") != current for u in body):
-        return ["Complete and obtain author decisions for all body logical units first"]
+        return ["Body units remain pending or refer to an older source. Follow the author's writing order; reconcile the summary when those units change."]
     if section == "keywords":
         abstracts = [u for u in units if u.get("section") == "abstract"]
         if not abstracts or any(u.get("status") not in ACCEPTED or
             u.get("body_revision") != flow.get("content_revision") or u.get("source_sha256") != current for u in abstracts):
-            return ["Keywords require an abstract synchronized to the current approved body"]
+            return ["The abstract is pending or not synchronized to the current body. Keywords may be drafted now and checked again when the abstract changes."]
     return []
 
 
@@ -214,7 +219,8 @@ def propose_decision(root, record, intent, utterance, explicit_override=""):
         same_authority = record["source"]["sha256"] == state.get("source_sha256") and resolve(record["source"]["path"], root) == resolve(state["authoritative_manuscript"], root)
         if same_authority and target.get("approved_artifact_sha256") == artifact_hash and target.get("source_sha256") == record["source"]["sha256"] and target.get("status") == intended_status:
             return {"status": "ALREADY_APPROVED", "errors": [], "proposed_state": state}
-        errors = preflight(root) + check_stage(state, target["section"], explicit_override)
+        errors = preflight(root)
+        stage_notes = check_stage(state, target["section"], explicit_override)
         if not same_authority:
             errors.append("Candidate source differs from project authority")
         if errors:
@@ -246,7 +252,7 @@ def propose_decision(root, record, intent, utterance, explicit_override=""):
             for unit in proposed["revision"]["units"]:
                 if unit["section"] == "keywords":
                     unit.update(status="PENDING", body_revision=None)
-        return {"status": "PROPOSED", "errors": [], "proposed_state": proposed,
+        return {"status": "PROPOSED", "errors": [], "stage_notes": stage_notes, "proposed_state": proposed,
                 "write_allowed": False, "scientific_verification": False}
     except (OSError, ValueError, KeyError, TypeError, AttributeError, UnicodeError) as exc:
         return {"status": "INVALID", "errors": [str(exc)]}
@@ -288,7 +294,8 @@ def main(argv=None):
         elif args.command == "stage":
             if not args.section:
                 raise ValueError("--section is required")
-            result = {"errors": preflight(root) + check_stage(load_project(root), args.section, args.explicit_stage_request),
+            result = {"errors": preflight(root),
+                      "stage_notes": check_stage(load_project(root), args.section, args.explicit_stage_request),
                       "author_stage_request": args.explicit_stage_request}
         else:
             if not args.record:

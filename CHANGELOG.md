@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.1 — 2026-11-11
+
+- Consolidate author-led writing guidance into one shared short core for routing, direct writing and review; remove fixed paragraph sequences, caveat-location quotas and automatic audit escalation for supported in-scope wording changes.
+- Make revision-order dependencies advisory while retaining source/version, candidate integrity, approval and budget checks; later body or abstract changes still mark dependent units pending.
+- Extend existing staged read receipts with validated origin requests, allowing identical resources to be reused across modules and selector changes in the same context. Preserve legacy plan-bound receipts, the 12,000-character budget, explicit read attestations and ordinary loading for small tasks.
+- Keep manuscript and source-data writes unavailable. Local validation and cost measurements are recorded in `docs/validation/author-led-core.md`. Updating source alone does not refresh an existing plugin installation.
+
 ## 0.5.0 — 2026-10-07
 
 - Add optional manifest-bound resource stage plans, canonical cross-stage deduplication and explicit same-context read attestations; keep the 12,000-character body budget and whole-resource groups.

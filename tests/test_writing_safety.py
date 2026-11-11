@@ -87,9 +87,12 @@ class WritingSafetyTests(unittest.TestCase):
         self.assertIn("explicitly approved phrase mapping", text)
         self.assertNotIn('a standalone “下一步” belongs here', text)
 
-    def test_full_manuscript_order_is_body_then_abstract_then_keywords(self) -> None:
+    def test_full_manuscript_order_follows_author_and_keeps_dependencies(self) -> None:
         text = FULL_MANUSCRIPT.read_text(encoding="utf-8")
-        self.assertIn("Body sections → Abstract → Keywords", text)
+        self.assertIn("author's chosen sequence", text)
+        self.assertIn("not a prerequisite for drafting", text)
+        self.assertIn("invalidate affected abstract/keywords", text)
+        self.assertNotIn("stage error blocks", text)
 
     def test_user_facing_output_is_natural_language_and_preview_is_short(self) -> None:
         text = CANDIDATE_FORMAT.read_text(encoding="utf-8")
@@ -103,10 +106,11 @@ class WritingSafetyTests(unittest.TestCase):
         self.assertIn("ask only when a material scope is missing or changes", text)
         self.assertIn("Search permission never implies adoption or insertion", text)
 
-    def test_evidence_caveat_is_not_repeated_across_sections(self) -> None:
+    def test_evidence_caveat_has_no_position_quota_or_repeated_audit(self) -> None:
         text = WRITING_WORKFLOW.read_text(encoding="utf-8")
-        self.assertIn("one manuscript home", text)
-        self.assertIn("do not repeat the full audit explanation", text)
+        self.assertIn("no location or sentence quota", text)
+        self.assertIn("Do not repeat the full audit explanation", text)
+        self.assertNotIn("one manuscript home", text)
 
     def test_writing_skill_allocates_candidate_ids(self) -> None:
         text = WRITING_SKILL.read_text(encoding="utf-8")

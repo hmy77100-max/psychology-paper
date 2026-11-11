@@ -1,10 +1,10 @@
 # Change propagation
 
-A `change-impact audit` is required when a proposed edit changes sample size, exclusions, scoring, analysis version, significance, effect direction, construct names, manipulation names, outcome names, study numbering, hypotheses, central findings, mechanism claims, source authority, or a title/abstract statement that positions the whole paper.
+Check dependent locations when an edit changes scientific meaning, source authority, a shared number or identifier, or the paper's framing. Names and labels alone do not require a new module handoff. Use a focused `change-impact audit` for a material unresolved evidence conflict; already verified and authorized changes can proceed with the relevant consistency checks.
 
 ## Escalation order
 
-1. Read `PROJECT.md`, the terminology ledger, and any approved analysis registry already in scope.
+1. Reuse current project decisions, terminology and verified analysis records already in scope; no new project is needed for a local edit.
 2. Search extracted manuscript text for headings, variable names, numbers, statistic patterns, study labels, and the central claim.
 3. Read context around every match.
 4. Read related sections when local context cannot establish whether the claim propagates.
@@ -14,4 +14,4 @@ The output is a synchronization list, not a rewritten manuscript. Check title, a
 
 Record `read_scope` and `write_scope` separately. Broader reading never authorizes broader writing. The user approves which locations enter the write list; Stage 1A stops at candidates and state updates.
 
-Pure spelling, grammar, punctuation, and meaning-preserving formatting edits remain local unless the target itself carries a cross-paper identifier or central claim.
+Pure spelling, grammar, punctuation, and meaning-preserving formatting edits remain local. Read enough context to preserve a shared identifier or central claim; their mere presence does not turn a language edit into a scientific revision.

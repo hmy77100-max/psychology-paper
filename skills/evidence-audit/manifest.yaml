@@ -2,7 +2,7 @@
   "schema": "psychology-paper-skill-manifest",
   "version": 1,
   "skill": "evidence-audit",
-  "always_load": ["./static/core/audit-principles.md", "./static/core/review-workflow.md"],
+  "always_load": ["../.shared/core/author-led-writing.md", "./static/core/audit-principles.md", "./static/core/review-workflow.md"],
   "conditional_loads": {
     "external_evidence": ["./references/external-evidence.md", "./references/evidence-note.md"],
     "methods_review": ["./references/methods-review.md"],
