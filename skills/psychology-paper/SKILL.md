@@ -9,7 +9,7 @@ Use this skill when a psychology manuscript request may require journal position
 
 ## Deterministic resource loading
 
-Resolve the [resource loader](../../scripts/load_skill_resources.py) relative to this entry file and run it with `--skill psychology-paper`. The loader includes `always_load` automatically. Add only the selectors required by the current route:
+Resolve the [resource loader](../../scripts/load_skill_resources.py) relative to this entry file and run it with `--skill psychology-paper`. The loader includes the shared author-led short core in `always_load`; direct writing uses the same resource. Add only the selectors required by the current route:
 
 - `--select conditional_loads.project_mode` for full-manuscript, reanalysis, review-response, or submission work.
 - `--select conditional_loads.ambiguous_route` when the primary module is unclear.
@@ -21,9 +21,11 @@ Resolve the [resource loader](../../scripts/load_skill_resources.py) relative to
 
 Do not open child resource paths directly, infer a similar path, or enumerate directories. Keep the default character budget and never load every conditional branch for convenience.
 
-For multiple preparation groups or uncertain capacity, use the same loader with `--plan --context-id <fresh-read-context>` and all required selectors in intended preparation order. It emits metadata only: core once, task axes, then whole conditional/shared groups with canonical deduplication. Keep that selector list and context ID for `--stage <id>` calls. Fully read each stage before explicitly confirming its `receipt_template` (`read_complete: true` and the actual tool `output_ref`) in a task-local JSON list; pass that list with `--receipts <path>` for subsequent stages and `--check-coverage` before dependent delivery. Never auto-confirm output success or truncated text. Receipts are caller attestations, not proof of comprehension, complete task selection or scientific verification. They bind plan, plugin root, manifest and content hashes; start fresh after context loss or changes. Do not put them in author-decision state or require user replies for them. Reuse the completed unchanged plan within this read context, not a new receipt cycle for every paragraph.
+Use ordinary bounded loads for simple tasks; staging is not mandatory. For multiple preparation groups or uncertain capacity, use `--plan --context-id <fresh-read-context>` with the needed selectors; metadata is not a completed read. Read each `--stage <id>` fully, then record its receipt_template with `read_complete: true` and the actual `output_ref`. Pass the explicit JSON list through `--receipts <path>` and check `--check-coverage` before dependent delivery.
 
-Stop any failed invocation. `ARGUMENT_ERROR` or `RESOLUTION_ERROR` requires correcting the exact invocation/resource defect, not guessing selectors. `BUDGET_EXCEEDED` permits metadata planning of the same necessary groups, not a raised limit, omitted rules or arbitrary text slicing; an oversized indivisible stage requires resource repair. `READ_RECEIPT_INVALID` requires inspecting the missing/stale receipt, then completing missing reads or replanning in the current context. Failed/metadata-only loads never count as complete. Keep ordinary bounded single loads for simple tasks; staging is not mandatory ceremony.
+Reuse valid receipts for unchanged resources across modules in the same read context; keep the planned selectors for each stage. Start fresh after context loss or changed resources. Never attest truncated output, infer a read from tool success, or treat a receipt as understanding or scientific verification. No per-paragraph receipt cycle or author approval is needed.
+
+Stop a failed invocation. Correct exact ARGUMENT_ERROR/RESOLUTION_ERROR defects; do not guess selectors. BUDGET_EXCEEDED permits planning the same necessary groups, not raising the budget or omitting/truncating rules. An oversized whole stage needs resource repair. For READ_RECEIPT_INVALID, inspect the stale/missing record and complete the required reads or replan.
 
 ## Route
 
@@ -33,9 +35,9 @@ Read-only manuscript review takes the short route directly to `evidence-audit`, 
 2. Check whether the apparent local change carries cross-section evidence impact.
 3. Choose exactly one `PRIMARY_MODULE`; include only necessary `SUPPORT_MODULES`.
 4. Pass the minimal packet defined by the shared handoff schema.
-5. Stop at the applicable approval, authority, evidence, or stage boundary.
+5. Respect approval, source authority and unresolved evidence; section-order advice is not a drafting gate.
 
-For journal-directed whole-manuscript work: journal confirmation → evidence-bounded contribution recommendations → author's own view and chosen direction → logical-unit outline → body → abstract → keywords. Keep read-only review on its short route. A prior agreed contribution can be reused unless new evidence changes it. Literature support belongs to manuscript-writing's focused support resource; uncertain sources/claims can route to evidence-audit. Do not demand repeated search approval within an already authorized scope.
+For journal-directed whole-manuscript work, reuse the confirmed journal context and author-chosen contribution, outline and revision sequence. Recommend changes when evidence warrants them; no universal section order determines the author's argument. Keep read-only review on its short route. Literature support belongs to manuscript-writing; material unresolved evidence conflicts can use evidence-audit. Do not repeat settled positioning or search approval.
 
 ## Approval and state
 

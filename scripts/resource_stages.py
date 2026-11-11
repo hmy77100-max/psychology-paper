@@ -83,59 +83,151 @@ def build_plan(**kwargs):
     return _prepare(**kwargs)[0]
 
 
-def _acknowledged(plan, receipts):
+def _receipt_source(plan, receipt, cache):
+    """Rebuild a portable receipt's origin; legacy receipts stay plan-bound.
+
+    No receipts are recursively imported. A source request is resolved against
+    this plugin root and context, so the original plan digest must still match.
+    """
+    if receipt.get("context_id") != plan["context_id"]:
+        raise ReceiptError("stale context receipt; read in the current context")
+    if "schema" not in receipt and "source" not in receipt:
+        if receipt.get("plan_id") != plan["plan_id"]:
+            raise ReceiptError("legacy receipt is valid only for its original plan")
+        return plan, False
+    if receipt.get("schema") != "resource-read-receipt-v2":
+        raise ReceiptError("unknown read receipt schema")
+    source = receipt.get("source")
+    if not isinstance(source, dict) or set(source) != {"skill", "selectors", "plugin_root"}:
+        raise ReceiptError("portable receipt requires its exact source request")
+    if (not isinstance(source["skill"], str) or
+            not isinstance(source["selectors"], list) or
+            not all(isinstance(s, str) for s in source["selectors"]) or
+            not isinstance(source["plugin_root"], str)):
+        raise ReceiptError("invalid receipt source request")
+    try:
+        if Path(source["plugin_root"]).resolve() != Path(plan["plugin_root"]):
+            raise ReceiptError("receipt belongs to a different plugin root")
+    except (OSError, ValueError) as exc:
+        raise ReceiptError("invalid receipt plugin root") from exc
+    key = (source["skill"], tuple(source["selectors"]))
+    if key not in cache:
+        try:
+            cache[key], _ = _prepare(skill=source["skill"], selectors=source["selectors"],
+                                     context_id=plan["context_id"],
+                                     plugin_root=Path(plan["plugin_root"]))
+        except (loader.ResourceResolutionError, loader.ResourceBudgetError) as exc:
+            raise ReceiptError("receipt source can no longer be resolved") from exc
+    origin = cache[key]
+    if receipt.get("plan_id") != origin["plan_id"]:
+        raise ReceiptError("stale source plan/manifest/resource receipt; read again")
+    return origin, True
+
+
+def _resource_identity(resource):
+    # A source can still validate against a different on-disk snapshot than the
+    # already-prepared target. Never transfer coverage by path alone.
+    return resource["path"], resource["sha256"], resource["chars"]
+
+
+def _read_resources(plan, receipts):
+    """Validate explicit reads, without inheriting bodies omitted by reuse.
+
+    V2 receipts attest only bodies actually delivered. Earlier receipts must
+    remain present for reused resources. Resolve predecessor coverage
+    iteratively so circular claims cannot manufacture an initial read.
+    """
     if not isinstance(receipts, list):
         raise ReceiptError("receipts must be a JSON list")
-    known = {s["id"]: s for s in plan["stages"]}
-    seen = set()
-    acknowledged = set()
+    cache = {(plan["skill"], tuple(plan["selectors"])): plan}
+    seen = {}
+    pending = []
     for receipt in receipts:
         if not isinstance(receipt, dict):
             raise ReceiptError("each receipt must be an object")
+        origin, portable = _receipt_source(plan, receipt, cache)
         stage_id = receipt.get("stage_id")
-        if type(stage_id) is not int or stage_id not in known or stage_id in seen:
-            raise ReceiptError("unknown or duplicate stage_id")
-        seen.add(stage_id)
-        if (receipt.get("plan_id") != plan["plan_id"] or
-                receipt.get("context_id") != plan["context_id"] or
-                receipt.get("resources") != known[stage_id]["resources"]):
-            raise ReceiptError("stale plan/context/resource receipt; replan in the current context")
+        if type(stage_id) is not int or not 0 <= stage_id < len(origin["stages"]):
+            raise ReceiptError("unknown stage_id")
+        stage = origin["stages"][stage_id]
+        resources = receipt.get("resources")
+        if not isinstance(resources, list) or not resources:
+            raise ReceiptError("receipt requires a nonempty resource list")
+        expected = {r["path"]: r for r in stage["resources"]}
+        paths = []
+        for resource in resources:
+            if not isinstance(resource, dict) or not isinstance(resource.get("path"), str):
+                raise ReceiptError("malformed receipt resource")
+            path = resource["path"]
+            if path in paths or resource != expected.get(path):
+                raise ReceiptError("duplicate or stale receipt resource")
+            paths.append(path)
+        ordered = [r for r in stage["resources"] if r["path"] in paths]
+        if resources != ordered or (not portable and resources != stage["resources"]):
+            raise ReceiptError("receipt resources do not match their source stage")
+        key = (origin["plan_id"], stage_id)
+        previous = seen.setdefault(key, set())
+        if previous.intersection(paths):
+            raise ReceiptError("duplicate read receipt resources")
+        previous.update(paths)
         if type(receipt.get("read_complete")) is not bool:
             raise ReceiptError("read_complete must be an explicit boolean")
         if receipt["read_complete"]:
             ref = receipt.get("output_ref")
             if not isinstance(ref, str) or not ref.strip():
                 raise ReceiptError("complete read requires an actual output_ref")
-            acknowledged.add(stage_id)
-    # A later attestation cannot make up for a missing predecessor.
-    for stage_id in acknowledged:
-        if not set(range(stage_id)).issubset(acknowledged):
-            raise ReceiptError("acknowledged stage has an unread predecessor")
-    return acknowledged
+            prerequisites = {_resource_identity(r) for s in origin["stages"][:stage_id]
+                             for r in s["resources"]}
+            pending.append(({_resource_identity(r) for r in resources}, prerequisites))
+    read = set()
+    while pending:
+        remaining = []
+        for paths, prerequisites in pending:
+            if prerequisites.issubset(read):
+                read.update(paths)
+            else:
+                remaining.append((paths, prerequisites))
+        if len(remaining) == len(pending):
+            raise ReceiptError("acknowledged stage has an unread or cyclic predecessor")
+        pending = remaining
+    return read
+
+
+def _covered_stages(plan, read):
+    return {s["id"] for s in plan["stages"]
+            if {_resource_identity(r) for r in s["resources"]}.issubset(read)}
 
 
 def load_stage(*, stage_id, receipts, **kwargs):
-    """Return exactly one complete stage; never auto-acknowledge tool delivery."""
+    """Return unread whole resources; delivery never auto-acknowledges reading."""
     plan, bodies = _prepare(**kwargs)
     if type(stage_id) is not int or not 0 <= stage_id < len(plan["stages"]):
         raise ReceiptError("unknown stage_id")
-    acknowledged = _acknowledged(plan, receipts)
+    read = _read_resources(plan, receipts)
+    acknowledged = _covered_stages(plan, read)
     if not set(range(stage_id)).issubset(acknowledged):
         raise ReceiptError("read and acknowledge every predecessor before this stage")
     stage = plan["stages"][stage_id]
-    content = "\n\n".join(f"--- resource: {r['path']} ---\n{bodies[r['path']]}"
-                            for r in stage["resources"])
-    template = {"plan_id": plan["plan_id"], "context_id": plan["context_id"],
-                "stage_id": stage_id, "resources": stage["resources"],
-                "read_complete": False, "output_ref": None}
-    return {"status": "DELIVERED_NOT_ACKNOWLEDGED", "stage_id": stage_id,
-            "chars": stage["chars"], "content": content, "receipt_template": template}
+    reused = [r for r in stage["resources"] if _resource_identity(r) in read]
+    unread = [r for r in stage["resources"] if _resource_identity(r) not in read]
+    content = "\n\n".join(f"--- resource: {r['path']} ---\n{bodies[r['path']]}" for r in unread)
+    template = None
+    if unread:
+        template = {"schema": "resource-read-receipt-v2", "plan_id": plan["plan_id"],
+                    "context_id": plan["context_id"], "stage_id": stage_id,
+                    "source": {"skill": plan["skill"], "selectors": plan["selectors"],
+                               "plugin_root": plan["plugin_root"]},
+                    "resources": unread, "read_complete": False, "output_ref": None}
+    return {"status": "DELIVERED_NOT_ACKNOWLEDGED" if unread else "ALREADY_ACKNOWLEDGED",
+            "stage_id": stage_id, "chars": sum(r["chars"] for r in unread),
+            "stage_chars": stage["chars"], "reused_chars": sum(r["chars"] for r in reused),
+            "reused_resources": reused, "content": content, "receipt_template": template}
 
 
 def check_coverage(*, receipts, **kwargs):
     """Validate declared read coverage, not task scope or scientific completion."""
     plan, _ = _prepare(**kwargs)
-    acknowledged = _acknowledged(plan, receipts)
+    acknowledged = _covered_stages(plan, _read_resources(plan, receipts))
     pending = [s["id"] for s in plan["stages"] if s["id"] not in acknowledged]
     return {"status": "INCOMPLETE" if pending else "ACKNOWLEDGED",
             "plan_id": plan["plan_id"], "pending_stages": pending,

@@ -1,5 +1,5 @@
 # Introduction
 
-Use when writing or revising an introduction. Establish the phenomenon or problem, identify what existing explanations leave unresolved, introduce constructs only when the preceding gap requires them, and earn the hypotheses through the argument.
+Clarify the research question and the reasoning that leads to the study. Build on the author's intended argument, relevant literature and the target journal's requirements; do not impose a universal gap-first sequence or a prescribed final paragraph.
 
-Organize citations by the claim they support. Distinguish established evidence, theoretical proposal, and the present study's question. End with the research strategy and expected relations at the design's evidence level, not a preview that assumes the results.
+Use citations for identifiable argumentative work. Distinguish established evidence, theoretical proposals and the present question. Predictions need reasons and must not be rewritten after observing results merely to appear confirmed.

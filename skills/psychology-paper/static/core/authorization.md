@@ -1,7 +1,7 @@
 # Authorization routing
 
-Consult [the shared authorization contract](../../../.shared/core/authorization-and-state.md) for user-language mappings and [the shared state rules](../../../.shared/core/state-consistency.md) before any state update.
+Before a state update use the manifest's shared authorization and state rules, reusing valid reads.
 
-`DISCUSSION` and `CANDIDATE` permit analysis or candidate output only. `APPROVED` records the user's selection but does not itself set `WRITE_ALLOWED`. A request to write applies only to the approved content and named target.
+`DISCUSSION` and `CANDIDATE` permit analysis or candidate output. `APPROVED` records selection, not `WRITE_ALLOWED`; a write request covers its named content and target.
 
-Stage 1A may record approved state in `.psychology-paper/`. It cannot modify the manuscript even when the user requests a direct write; return a future patch handoff and stop.
+Stage 1A may record approved state in `.psychology-paper/`, but cannot modify manuscripts. For a direct-write request return a future patch handoff; do not imply a write occurred.

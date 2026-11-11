@@ -2,12 +2,14 @@
 
 Psychology Paper is a Codex plugin project for evidence-calibrated psychology manuscript work. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. It does not modify source data or manuscript files, maintain a literature database, or prepare submission files yet. Version 0.5.0 adds on-demand prose diagnostics, author-led collaboration guidance and bounded staged resource loading within the existing modules.
 
+Version 0.5.1 consolidates author-led guidance and extends resource reuse without imposing a writing sequence. An existing installation must be explicitly updated to use it.
+
 ## Implemented modules
 
 - `psychology-paper`: routes the request and maintains authorization boundaries.
 - `journal-fit-style`: profiles the manuscript, evaluates journal fit, and learns journal writing patterns at light or deep depth.
 - `evidence-audit`: reviews the paper with design-appropriate checks, targeted external-source verification, and evidence-grounded advice within the requested scope/risk threshold.
-- `manuscript-writing`: prepares section-specific Chinese, English, or bilingual candidates after the evidence boundary is approved.
+- `manuscript-writing`: prepares section-specific Chinese, English, or bilingual candidates within the author's scope and the available evidence.
 - `analysis-adapter`: confirms design and data fields, locks one formal analysis source, routes design-appropriate methods, records adopted specifications, and supports independent verification.
 
 One module is primary for each task. Other modules receive only the smallest necessary handoff, preferably a file path and exact location rather than duplicated manuscript text.
@@ -66,7 +68,7 @@ For Chinese manuscript revision, the required order is complete original Chinese
 
 ## Author-led revision and literature support
 
-Journal-guided full revision follows journal confirmation → contribution recommendations → author's own view and chosen direction → outline → body → abstract → keywords. An explicit author request may override order without approving unfinished units. Recommendations compare the journal's relevant research trajectory and direct field predecessors; fit is not a novelty claim.
+The author chooses the argument, theoretical role and revision order in the target journal's context. The plugin supplies sources, recommendations and consistency checks, not a compulsory paper outline. Body-first revision can reduce summary rework when it fits the author's plan; it is not a prerequisite for drafting or adopting an abstract. Stage checks report pending synchronization as `stage_notes`, while actual source, candidate and authorization errors remain blocking. Adopting one unit never approves the others; later content changes still invalidate dependent summaries. Recommendations compare relevant journal research and direct field predecessors; fit is not a novelty claim.
 
 Introduction work prioritizes evidence supporting the research-question and hypothesis chain. Each recommended source needs a specific claim, verified support, evidence distance, incremental value, claim ceiling and deletion impact. Necessary caveats serve the chain without suppressing contradictory evidence. Existing search authorization is reused; citation adoption remains a separate author decision.
 
@@ -79,11 +81,17 @@ python -X utf8 scripts/revision_check.py stage --project-root "C:\path\to\projec
 python -X utf8 scripts/revision_check.py decision --project-root "C:\path\to\project" --record "candidate-record.json" --intent APPROVE_CURRENT --author-response "Use this version"
 ```
 
-These are internal commands, not required author replies. Load `conditional_loads.revision_checks` through the manuscript-writing loader for the record contract. Full-mode acceptance binds the standard project file, approved journal profile, actual source hash, author-confirmed framing and adopted counted baseline. After counted adoption, refresh the derived baseline before accepting another candidate. The checker returns proposed state; it never writes manuscript/state or judges scientific truth. Initialization/legacy structural validation alone does not mean full-revision readiness.
+These are internal commands, not required author replies. Load `conditional_loads.revision_checks` through the manuscript-writing loader for the record contract and reuse it across unchanged units. Full-mode acceptance binds the standard project file, approved journal profile, actual source hash, author-confirmed framing and adopted counted baseline. After counted adoption, refresh the derived baseline before accepting another candidate. The checker returns proposed state; it never writes manuscript/state or judges scientific truth. Stage notes are planning advice, not a compulsory drafting sequence. Initialization/legacy structural validation alone does not mean full-revision readiness.
 
 Task-scoped bilingual sync checks observed Chinese and English versions under standing authorization. It generates corresponding English candidates after an in-scope change; it is not a background watcher, automatic adoption or Word overwrite.
 
 ## Efficient resource execution
+
+### Version 0.5.1: shared author guidance and resource reuse
+
+Router, direct writing and review entries use one short author-led core. It replaces overlapping stance instructions; section guidance describes what to consider without fixing paragraph order or adding a defensive conclusion. Scientific wording changes receive the necessary in-scope verification, not an automatic new audit workflow. Detailed prose diagnostics remain optional. The author decides substantive direction; factual accuracy and manuscript-file protection remain intact.
+
+Keep ordinary bounded loads for short tasks. Do not create a staged-read cycle solely to avoid a short repeated prompt: plan and receipt metadata also cost context. When already using staged preparation, V2 receipts can reuse unchanged complete resources across modules and selector changes within one valid read context. Reuse existing content across subsequent paragraphs without calling the loader again merely to demonstrate that it was read.
 
 ### Version 0.5.0 writing and collaboration additions
 
@@ -107,9 +115,11 @@ python -X utf8 .\scripts\load_skill_resources.py @stageArgs --stage 1 --receipts
 python -X utf8 .\scripts\load_skill_resources.py @stageArgs --check-coverage --receipts '<task-temp>\resource-reads.json'
 ```
 
-Each delivery contains `content` and a `receipt_template` with `read_complete: false` and `output_ref: null`. Only after the assistant has read the entire untruncated output may it copy that template into a task-local JSON list, set `read_complete: true`, and name the actual tool output in `output_ref`. The script never writes or confirms receipts itself. This internal bookkeeping imposes no response format or approval step on the author.
+When a delivery includes unread resources, it contains `content` and a `receipt_template` with `read_complete: false` and `output_ref: null`. Only after reading the entire untruncated output may the assistant append that template to the existing task-local JSON list, set `read_complete: true`, and name the actual output in `output_ref`. V2 templates include the originating skill, selectors and plugin root; their `resources` cover only bodies actually delivered. Retain earlier receipts for reused resources. The script never writes or confirms receipts itself. This internal bookkeeping imposes no response format or approval step on the author.
 
-Receipts bind the current read context, plugin root, entire plan, manifest and resource hashes. Missing predecessors block later stages. Lost context, a different resource selection or changed files invalidate reuse; replan and read the required instructions. Earlier ordinary loads cannot be silently converted into staged receipts. Reuse a completed unchanged plan within the same read context instead of repeating this cycle for every unit. Coverage returns exit 1 / `INCOMPLETE` for pending reads, or exit 0 / `ACKNOWLEDGED` for complete caller attestations. It does not verify the output reference, comprehension, selection sufficiency, author approval or manuscript quality.
+V2 receipts are validated by rebuilding their origin against the same context and plugin root, including the original manifest and resource hashes. The loader reuses only identical resource paths, hashes and lengths; unchanged resources can carry over to a new module or selector list. Legacy receipts remain valid only for their original plan. Lost context or changed origin files invalidates reuse; start with current instructions. Earlier ordinary loads cannot be silently converted into staged receipts.
+
+Missing predecessors still block later stages. `load_stage` reports newly delivered `chars`, complete `stage_chars`, and `reused_chars`; a fully covered stage returns `ALREADY_ACKNOWLEDGED`, empty content and a null template, which must not be appended as a receipt. Coverage returns exit 1 / `INCOMPLETE` for pending reads, or exit 0 / `ACKNOWLEDGED` for complete caller attestations. It does not verify the output reference, comprehension, selection sufficiency, author approval or manuscript quality. See [author-led core validation](docs/validation/author-led-core.md) for scope and measured costs.
 
 Failures return exit 2 with `ARGUMENT_ERROR`, `RESOLUTION_ERROR`, `BUDGET_EXCEEDED` or `READ_RECEIPT_INVALID`. Stop the failed invocation and correct its specific cause. Budget failure can transition to a metadata stage plan; it cannot justify raising the limit, guessing selectors or dropping required rules. Retain the simpler ordinary load for small tasks. See [stage validation](docs/validation/resource-stages.md) for verified scope and limitations.
 

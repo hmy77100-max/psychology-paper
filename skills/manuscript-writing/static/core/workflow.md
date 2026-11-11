@@ -1,15 +1,15 @@
 # Writing workflow
 
-Confirm the authoritative source version, exact location, requested task, section function, language mode, approved constraints, evidence ceiling, and target-journal profile when relevant.
+Identify the current source and location, task, language, effective author choices, evidence and relevant journal requirements. Reuse settled information; clarify only material gaps.
 
-Before literature-dependent drafting, check the existing literature authorization: current sources only, citation verification, candidate search, or search followed by author adoption. Reuse a known scope and proceed; ask only when a material scope is missing or changes. Do not repeatedly force a menu. Load conditional_loads.literature_support for argument support: introductions prioritize supporting evidence for the research-question/hypothesis chain; necessary boundaries serve that chain. Search permission never implies adoption or insertion.
+For literature-dependent work check the existing literature authorization. Reuse a known scope and proceed; ask only when a material scope is missing or changes. Use conditional_loads.literature_support for the author's actual argument, not a mandatory introduction skeleton. Search permission never implies adoption or insertion.
 
-Draft only after these are known. Preserve every frozen number and citation. After drafting, compare source and candidate for omitted findings, altered directions, changed sample descriptors, renamed constructs, and unsupported causal verbs.
+Compare source and candidate for omitted findings, changed numbers, directions, samples, terms, citations and claim strength. Preserve frozen values; evidence-backed corrections still require authorization within the task.
 
-Apply all effective author decisions, not just the latest reply. For each applicable requirement, check its candidate location and result; leave unexamined cross-section or bilingual dependencies pending. For a concrete prose/voice problem, use the focused prose_diagnostics resource; keep ordinary checks lightweight and do not turn its examples into a blacklist.
+Apply cumulative effective decisions. Check the candidate against applicable requirements; leave unexamined cross-section or bilingual dependencies pending. Use prose_diagnostics for a concrete expression problem; examples are not a blacklist.
 
-Give each recurring evidence caveat one manuscript home, normally the most relevant limitation or discussion passage. Elsewhere, state only the result or the shortest necessary boundary; do not repeat the full audit explanation across experiment discussions and the general discussion. A synchronization list may name affected locations without copying the explanation into each location.
+Place necessary boundaries where readers need them; no location or sentence quota applies. Do not repeat the full audit explanation across sections. A synchronization list can identify affected locations without copying that explanation into each passage.
 
-User-specific style preferences become persistent only when they are cross-paragraph, differ from the shared baseline, and the user explicitly approves them. Then use [the style-delta schema](../../references/style-delta-schema.md). One-off wording instructions remain local.
+Persist reusable user-specific style only with explicit approval through conditional_loads.confirmed_style_delta. One-off wording instructions remain local.
 
 Return the candidate and stop for approval. Stage 1A cannot apply it to the manuscript.

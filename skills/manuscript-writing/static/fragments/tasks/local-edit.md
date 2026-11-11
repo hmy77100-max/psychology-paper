@@ -2,4 +2,4 @@
 
 Use for one sentence or paragraph. Read only the target and enough surrounding context to preserve meaning and terminology. Freeze numbers and citations unless the approved task changes them.
 
-Before drafting, check the change-propagation triggers. A pure language correction remains local; an evidence-bearing change routes to a change-impact audit. Produce a candidate and stop.
+Check whether meaning or dependent locations change. Meaning-preserving edits stay local; verified scientific revisions follow the existing authorization. Use a focused change-impact audit for a material unresolved conflict, without expanding the write scope. Produce a candidate and stop.

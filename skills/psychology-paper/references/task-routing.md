@@ -13,4 +13,4 @@
 | Patch DOCX/TXT/Markdown | unavailable until Stage 1B | Prepare minimal handoff; do not edit |
 | Formal response letter or submission audit | unavailable until Stage 3 | Explain boundary and stop |
 
-When a writing request changes evidence-bearing content, route first to `evidence-audit`; after the user accepts the evidence ceiling, a later turn may route the wording candidate to `manuscript-writing`.
+For a writing request, inspect actual meaning and dependencies. A material unresolved evidence conflict warrants focused `evidence-audit`; already verified changes within the user's scope can proceed in `manuscript-writing`. Do not require a new turn or approval merely because the text concerns scientific content. Substantive choices and additional write scope remain the author's decision.

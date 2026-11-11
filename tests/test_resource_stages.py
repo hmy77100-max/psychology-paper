@@ -216,7 +216,7 @@ class ResourceStageTests(unittest.TestCase):
             with self.assertRaises(api.ReceiptError):
                 api.check_coverage(**args, receipts=[receipt])
 
-    def test_stage_bodies_match_hashes_and_changed_selection_invalidates_receipts(self):
+    def test_stage_bodies_match_hashes_and_changed_selection_reuses_portable_receipts(self):
         api = self.api()
         receipts = []
         args = self.args()
@@ -231,8 +231,13 @@ class ResourceStageTests(unittest.TestCase):
             self.assertEqual(delivery["content"], "\n\n".join(expected))
             receipts.append(self.acknowledge(delivery))
         args["selectors"] = SUPPLEMENTS[:-1]
+        self.assertEqual(api.check_coverage(**args, receipts=receipts)["status"], "ACKNOWLEDGED")
+        legacy = copy.deepcopy(receipts)
+        for receipt in legacy:
+            receipt.pop("schema")
+            receipt.pop("source")
         with self.assertRaises(api.ReceiptError):
-            api.check_coverage(**args, receipts=receipts)
+            api.check_coverage(**args, receipts=legacy)
 
     def test_cli_cannot_raise_stage_budget_or_mix_modes(self):
         command = [sys.executable, "-X", "utf8", str(ROOT / "scripts/load_skill_resources.py"), "--skill", "manuscript-writing"]
