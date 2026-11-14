@@ -20,6 +20,8 @@ Published examples are not universal thresholds. Two multi-study articles do not
 
 State what the inspected evidence adds for the intended audience and which supported strengths should survive revision. Judge contribution in relation to the question and comparable literature, not only sample size, significance or novelty language. Verify material literature-dependent claims through the existing targeted-evidence route; a limited search cannot establish first-ever novelty or absence of research.
 
+For theoretical claims, use the shared theory resource when needed to distinguish load-bearing assumptions, competing predictions and explanatory fit. Do not make an independent model prediction a universal publication requirement. Source-specific claims follow the existing external-evidence rules; keep access limits separate from the author's decision to use a useful recommendation.
+
 For an alternative framing or journal recommendation, explain its supporting evidence, unresolved requirements and tradeoffs for the current argument. Keep the confirmed target/stance separate from recommendations. A literature conflict can justify discussion or a proposed change; it does not automatically adopt that change. Never conceal contrary/null results to improve apparent fit.
 
 Deliver a compact connection: supported contribution -> obstacle -> basis and limits -> implication for the current target. Scale to requested scope; a local passage cannot establish whole-manuscript readiness. Prioritize material scientific/explicit requirement obstacles and dependencies before optional positioning polish, using model judgment and author resources. No mandatory score, ranking formula or second journal profile.

@@ -21,6 +21,8 @@ Stop a failed invocation. Correct exact ARGUMENT_ERROR/RESOLUTION_ERROR defects;
 
 Load a confirmed journal profile only when it exists and matters to the requested section.
 
+Select `shared_loads.theory_reasoning` when the current argument needs a theoretical bridge, competing predictions or interpretation of a mismatch; add `shared_loads.theory_examples` only when a worked example helps. Infer need from the author's task, not keywords. These are optional aids, not a sequence or a new review workflow; reuse already read resources.
+
 Use `conditional_loads.prose_diagnostics` when the author requests less formulaic writing, supplies a voice sample, or a concrete prose problem remains after ordinary revision. It supplements, not replaces, the logical-unit and candidate contracts. Plan its load separately from literature, bilingual and revision-check preparation; reuse unchanged instructions.
 
 Use `conditional_loads.literature_support` for citation-dependent argument work, `conditional_loads.bilingual_sync` for authorized paired updates, and `conditional_loads.revision_checks` before first candidate validation/project preflight. Load distinct preparation stages separately; never combine every optional resource. Use `--list-selectors` for exact values and `--describe` to plan costs before loading. Reuse already fully read instructions while their hashes and task remain unchanged; do not repeatedly reload for every unit. Inspection options do not replace reading selected instructions completely.

@@ -21,10 +21,12 @@
     }
   },
   "conditional_loads": {
-    "contribution_planning": ["./references/contribution-planning.md"]
+    "contribution_planning": ["./references/contribution-planning.md", "../evidence-audit/references/external-evidence.md"]
   },
   "shared_loads": {
     "design_tags": ["../.shared/core/research-design-taxonomy.md"],
-    "risk": ["../.shared/output/risk-reporting.md"]
+    "risk": ["../.shared/output/risk-reporting.md"],
+    "theory_reasoning": ["../.shared/references/theory-reasoning.md"],
+    "theory_examples": ["../.shared/references/theory-reasoning-examples.md"]
   }
 }

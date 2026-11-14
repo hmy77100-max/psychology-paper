@@ -42,6 +42,8 @@
     "design_taxonomy": ["../.shared/core/research-design-taxonomy.md"],
     "terminology": ["../.shared/core/terminology-ledger.md"],
     "source_authority": ["../.shared/core/source-authority.md"],
-    "impact": ["../.shared/core/change-propagation.md"]
+    "impact": ["../.shared/core/change-propagation.md"],
+    "theory_reasoning": ["../.shared/references/theory-reasoning.md"],
+    "theory_examples": ["../.shared/references/theory-reasoning-examples.md"]
   }
 }
