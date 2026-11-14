@@ -171,6 +171,49 @@ class ResourceLoaderTests(unittest.TestCase):
                     plugin_root=plugin_root,
                 )
 
+    def test_theory_resources_are_opt_in_and_shared_across_modules(self) -> None:
+        loader = import_loader()
+        expected = (PLUGIN_ROOT / 'skills/.shared/references/theory-reasoning.md').resolve()
+        for skill, baseline in [('journal-fit-style', 611), ('evidence-audit', 2326), ('manuscript-writing', 3604)]:
+            with self.subTest(skill=skill):
+                base = loader.load_skill_resources(skill=skill, selectors=[])
+                self.assertEqual(base.total_chars, baseline)
+                self.assertFalse(any('theory-reasoning' in r.relative_path for r in base.resources))
+                loaded = loader.load_skill_resources(skill=skill, selectors=['shared_loads.theory_reasoning'])
+                added = [r for r in loaded.resources if r not in base.resources]
+                self.assertEqual(len(added), 1)
+                self.assertEqual((PLUGIN_ROOT / 'skills' / skill / added[0].relative_path).resolve(), expected)
+                self.assertLessEqual(len(added[0].content), 4500)
+
+    def test_theory_examples_can_be_selected_separately_without_implicit_chain(self) -> None:
+        loader = import_loader()
+        for skill in ('journal-fit-style', 'evidence-audit', 'manuscript-writing'):
+            with self.subTest(skill=skill):
+                examples = loader.load_skill_resources(skill=skill, selectors=['shared_loads.theory_examples'])
+                names = [Path(r.relative_path).name for r in examples.resources]
+                self.assertIn('theory-reasoning-examples.md', names)
+                self.assertNotIn('theory-reasoning.md', names)
+                self.assertFalse(any('external-evidence' in n or 'literature-support' in n for n in names))
+                combined = loader.load_skill_resources(skill=skill, selectors=[
+                    'shared_loads.theory_reasoning', 'shared_loads.theory_examples',
+                    'shared_loads.theory_reasoning'])
+                paths = [(PLUGIN_ROOT / 'skills' / skill / r.relative_path).resolve() for r in combined.resources]
+                self.assertEqual(len(paths), len(set(paths)))
+                self.assertLessEqual(combined.total_chars, 12000)
+
+    def test_source_based_writing_and_planning_reuse_verification_guidance(self) -> None:
+        loader = import_loader()
+        expected = (PLUGIN_ROOT / 'skills/evidence-audit/references/external-evidence.md').resolve()
+        for skill, selector in [('manuscript-writing', 'conditional_loads.literature_support'),
+                                ('journal-fit-style', 'conditional_loads.contribution_planning'),
+                                ('evidence-audit', 'conditional_loads.external_evidence')]:
+            with self.subTest(skill=skill):
+                selected = loader.load_skill_resources(skill=skill, selectors=[selector])
+                paths = [(PLUGIN_ROOT / 'skills' / skill / r.relative_path).resolve() for r in selected.resources]
+                self.assertEqual(paths.count(expected), 1)
+                base = loader.load_skill_resources(skill=skill, selectors=[])
+                self.assertFalse(any(Path(r.relative_path).name == 'external-evidence.md' for r in base.resources))
+
     def test_resource_cannot_escape_the_plugin_root(self) -> None:
         loader = import_loader()
         with tempfile.TemporaryDirectory() as temp_dir:

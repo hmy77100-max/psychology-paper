@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.2 — 2026-11-14
+
+- Add a blue-teal and gold quill icon for the plugin listing and composer, bundled locally with no external image dependency.
+- Add two separately optional shared resources for theoretical reasoning and worked examples within the three existing journal, review and writing modules; no fixed drafting sequence or new top-level workflow.
+- Reuse existing source-verification guidance for literature support and contribution planning. Bind attributed claims to short original evidence and locators; distinguish actual instrument versions from their development and adaptation lineage.
+- Retain affirmative abstract-supported recommendations with an explicit access label; missing full text leaves adoption and further checking to the author. Evidence notes do not replace substantive explanations or become manuscript boilerplate.
+- Keep the resource loader, analysis programs and default resource bodies unchanged. Existing installations require an explicit update to 0.5.2.
+
 ## 0.5.1 — 2026-11-11
 
 - Consolidate author-led writing guidance into one shared short core for routing, direct writing and review; remove fixed paragraph sequences, caveat-location quotas and automatic audit escalation for supported in-scope wording changes.

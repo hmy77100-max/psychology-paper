@@ -1,6 +1,7 @@
 import json
 import re
 import unittest
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 
@@ -26,11 +27,28 @@ def referenced_paths(value: object) -> list[str]:
 
 
 class PluginStructureTests(unittest.TestCase):
+    def test_plugin_icons_resolve_to_bundled_images(self) -> None:
+        manifest = json.loads(
+            (PLUGIN_ROOT / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8")
+        )
+        for field in ("logo", "composerIcon"):
+            with self.subTest(field=field):
+                raw_path = manifest["interface"].get(field, "")
+                self.assertTrue(raw_path.startswith("./"), f"{field}: expected plugin-local path")
+                image_path = (PLUGIN_ROOT / raw_path).resolve()
+                self.assertTrue(image_path.is_relative_to(PLUGIN_ROOT.resolve()), field)
+                self.assertTrue(image_path.is_file(), image_path)
+                self.assertIn(image_path.suffix.lower(), (".png", ".svg"))
+                if image_path.suffix.lower() == ".png":
+                    self.assertTrue(image_path.read_bytes().startswith(b"\x89PNG\r\n\x1a\n"))
+                else:
+                    self.assertEqual(ET.parse(image_path).getroot().tag, "{http://www.w3.org/2000/svg}svg")
+
     def test_plugin_manifest_declares_stage_1a_skill_root(self) -> None:
         manifest_path = PLUGIN_ROOT / ".codex-plugin" / "plugin.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         self.assertEqual(manifest["name"], "psychology-paper")
-        self.assertEqual(manifest["version"], "0.5.1")
+        self.assertEqual(manifest["version"], "0.5.2")
         self.assertEqual(manifest["skills"], "./skills/")
         self.assertNotIn("apps", manifest)
         self.assertNotIn("mcpServers", manifest)

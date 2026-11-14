@@ -1,5 +1,29 @@
 [
   {
+    "id": "REVIEW-LINEAGE-001",
+    "request": "只根据所给虚构原文核对：我准备写C采用A的12题量表，说明该量表适用于学生。给理由和可用表述，不改文件。",
+    "project_state": {"source_packet": "A Methods p3: We developed a 12-item scale of workplace recovery. B Methods p5: We adapted A's scale to eight items for student recovery. C Methods p4: We used B's eight-item student version. C cites A and B.", "web_access": false},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "scale version and claim support",
+    "required_actions": ["quote the inspected wording with source and locator", "identify C's actual B version separately from A's original", "distinguish use from validation", "offer a supported formulation"],
+    "forbidden_actions": ["infer original-version use from a citation", "invent psychometrics", "claim independent access to unavailable documents", "modify manuscript"],
+    "expected_state_effect": "none",
+    "manual_rubric": "Pass only if the answer provides the actual short C/B evidence and positions, attributes eight-item use to B, and does not treat student use as psychometric validation. A correct paraphrase without the requested original evidence is incomplete.",
+    "tags": ["source_quotation", "scale_lineage", "review_external_evidence"]
+  },
+  {
+    "id": "REVIEW-ABSTRACT-002",
+    "request": "D全文没拿到，仍推荐这篇。摘要明确支持的内容用肯定句，注明级别，由我判断采用。另请确认D用了A原版量表。",
+    "project_state": {"source_packet": "Fictional D abstract: Immediate feedback increased voluntary practice in two randomized classroom studies. The abstract says nothing about a scale.", "access_level": "abstract", "web_access": false},
+    "expected_primary_module": "evidence-audit",
+    "expected_scope": "abstract-supported recommendation and unresolved scale identity",
+    "required_actions": ["retain the recommendation and affirmative supported claim", "provide the exact abstract excerpt and abstract locator", "label 摘要级别支持；全文未取得", "leave adoption and further retrieval to author", "separate unreported scale identity from supported finding"],
+    "forbidden_actions": ["reject the source solely for missing full text", "invent scale identity or method detail", "rewrite all supported findings as mere possibilities", "decide adoption for author"],
+    "expected_state_effect": "recommendation only",
+    "manual_rubric": "The source remains recommended for the reported practice finding, with short original support and access tier. The source label does not license the absent scale claim; adoption remains the author's choice without a new workflow.",
+    "tags": ["source_quotation", "abstract_support", "author_decision", "over_escalation_guard"]
+  },
+  {
     "id": "REVIEW-EVIDENCE-001",
     "request": "只审稿。量表名称是特质韧性，附录却是职业恢复量表的改编；联网查清楚再建议。",
     "project_state": {"mode": "light", "paper_type": "empirical", "design_tags": ["survey"], "web_access": true},

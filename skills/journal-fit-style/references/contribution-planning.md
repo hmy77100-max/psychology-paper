@@ -4,6 +4,8 @@ Trigger after journal selection when the author requests journal-guided outline 
 
 Read the current manuscript and preserve its original argument, design, actual findings and evidence ceiling. Examine the journal's relevant research trajectory and recent related work using verifiable primary sources, alongside direct predecessors from the wider field. Separate journal style from scientific novelty. Journal acceptance and publication are not promised.
 
+The selected resource group includes shared external-verification guidance for source quotations, attribution and access levels. Keep useful abstract-supported recommendations available for the author's judgment; missing full text does not cancel contribution planning. When a theoretical comparison needs more reasoning, use the optional shared theory resource rather than repeat a positioning workflow.
+
 Deliver recommendations, not a replacement decision:
 
 - Reconstruct the author's present question and reasoning, including valuable parts that should remain.

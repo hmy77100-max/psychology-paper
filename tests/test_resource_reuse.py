@@ -229,6 +229,23 @@ class ResourceReuseTests(unittest.TestCase):
         self.assertEqual(repeated["content"], "")
         self.assertIsNone(repeated["receipt_template"])
 
+    def test_actual_theory_resources_are_reused_across_all_three_modules(self):
+        receipts = []
+        theory_deliveries = []
+        for skill in ('journal-fit-style', 'evidence-audit', 'manuscript-writing'):
+            args = dict(skill=skill, plugin_root=ROOT, context_id='synthetic-theory-reuse',
+                        selectors=['shared_loads.theory_reasoning', 'shared_loads.theory_examples'])
+            delivered = []
+            for stage in stages.build_plan(**args)['stages']:
+                output = stages.load_stage(**args, stage_id=stage['id'], receipts=receipts)
+                if output['receipt_template']:
+                    delivered.extend(r['path'] for r in output['receipt_template']['resources']
+                                     if '/theory-reasoning' in r['path'])
+                    receipts.append(self.ack(output))
+            theory_deliveries.append(len(delivered))
+            self.assertEqual(stages.check_coverage(**args, receipts=receipts)['status'], 'ACKNOWLEDGED')
+        self.assertEqual(theory_deliveries, [2, 0, 0])
+
     def test_ordinary_load_has_no_new_receipt_requirement(self):
         result = loader.load_skill_resources(skill="writing", selectors=[], plugin_root=self.root)
         self.assertEqual(result.total_chars, len("shared author guidance") + len("writing core"))

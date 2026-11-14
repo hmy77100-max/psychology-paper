@@ -125,6 +125,7 @@ class ResourceStageTests(unittest.TestCase):
     def test_actual_full_intro_and_collaboration_state_paths_have_coverage(self):
         api = self.api()
         cases = [
+            ("manuscript-writing", ["axes.task.local-edit", "axes.language.english", "axes.section.discussion", "conditional_loads.literature_support", "shared_loads.theory_reasoning", "shared_loads.theory_examples"]),
             ("manuscript-writing", ["axes.task.full-manuscript", "axes.language.chinese", "axes.section.introduction", "shared_loads.candidate_format", "conditional_loads.literature_support", "conditional_loads.revision_checks"]),
             ("psychology-paper", ["conditional_loads.collaboration", "shared_loads.authorization", "shared_loads.state_rules"]),
             ("evidence-audit", ["axes.paper_type.empirical", "axes.design_tags.survey", "axes.scope.full", "axes.risk_threshold.all", "conditional_loads.methods_review", "conditional_loads.quality_review", "conditional_loads.external_evidence"]),

@@ -2,7 +2,7 @@
 
 Psychology Paper is a Codex plugin project for evidence-calibrated psychology manuscript work. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. It does not modify source data or manuscript files, maintain a literature database, or prepare submission files yet. Version 0.5.0 adds on-demand prose diagnostics, author-led collaboration guidance and bounded staged resource loading within the existing modules.
 
-Version 0.5.1 consolidates author-led guidance and extends resource reuse without imposing a writing sequence. An existing installation must be explicitly updated to use it.
+Version 0.5.2 adds optional theory-reasoning support, more precise source attribution and a quill icon to the author-led guidance and resource reuse introduced in 0.5.1. An existing installation must be explicitly updated to use it.
 
 ## Implemented modules
 
@@ -86,6 +86,12 @@ These are internal commands, not required author replies. Load `conditional_load
 Task-scoped bilingual sync checks observed Chinese and English versions under standing authorization. It generates corresponding English candidates after an in-scope change; it is not a background watcher, automatic adoption or Word overwrite.
 
 ## Efficient resource execution
+
+### Version 0.5.2: optional theory reasoning and source attribution
+
+Journal contribution planning, evidence review and manuscript writing can select the same `shared_loads.theory_reasoning` resource for assumptions, competing predictions and interpretation. `shared_loads.theory_examples` is separate and optional. The agent judges need from the task; keywords and a fixed writing sequence are not required. Examples preserve synthetic facts and illustrate author choices, not mandatory paragraph patterns. These resources are absent from default loads.
+
+Literature support and contribution planning reuse the existing targeted external-verification resource without invoking a full review. Source-specific claims receive brief original evidence and locators, keeping the actual version used distinct from its earlier developers and adapters. When only an abstract is available, retain useful affirmative recommendations with an abstract-level/full-text-unavailable label; adoption and further checking remain the author's decision. A source note is not a manuscript outline or proof that the scientific inference is correct. Version 0.5.2 also bundles a blue-teal and gold quill for the plugin listing and composer. Installing the release is separate from merging source.
 
 ### Version 0.5.1: shared author guidance and resource reuse
 

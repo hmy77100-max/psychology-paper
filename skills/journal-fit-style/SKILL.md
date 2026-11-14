@@ -24,6 +24,8 @@ For journal-guided outline/full-manuscript revision, load `conditional_loads.con
 
 ## Evidence and browsing
 
+Select `shared_loads.theory_reasoning` when contribution advice needs to compare theoretical assumptions or predictions; select `shared_loads.theory_examples` only when an example helps the author choose. Infer this need from the task, without requiring keywords or making theory construction a prerequisite for applied contributions. Reuse already read resources.
+
 Current journal scope, article types, review model, limits, fees, data/ethics policies, and submission requirements require live verification from official sources. Observed writing style comes from recent published articles and must be labelled as observation rather than requirement. Candidate scans default to 1–2 close articles; confirmed-journal deep study defaults to 2–3 and expands only when their patterns conflict.
 
 ## Output and approval

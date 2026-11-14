@@ -37,7 +37,7 @@
   },
   "conditional_loads": {
     "prose_diagnostics": ["./references/prose-diagnostics.md"],
-    "literature_support": ["./references/literature-support.md"],
+    "literature_support": ["./references/literature-support.md", "../evidence-audit/references/external-evidence.md"],
     "bilingual_sync": ["./references/bilingual-sync.md"],
     "revision_checks": ["./references/revision-checks.md"],
     "confirmed_style_delta": ["./references/style-delta-schema.md"]
@@ -46,6 +46,8 @@
     "candidate_format": ["../.shared/output/candidate-format.md"],
     "evidence": ["../.shared/core/evidence-boundaries.md"],
     "terminology": ["../.shared/core/terminology-ledger.md"],
-    "impact": ["../.shared/core/change-propagation.md"]
+    "impact": ["../.shared/core/change-propagation.md"],
+    "theory_reasoning": ["../.shared/references/theory-reasoning.md"],
+    "theory_examples": ["../.shared/references/theory-reasoning-examples.md"]
   }
 }

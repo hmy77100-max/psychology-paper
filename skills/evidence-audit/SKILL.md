@@ -41,6 +41,8 @@ Prioritize essential corrections, substantial improvements and acceptable limits
 
 ## Applicable checks
 
+Select `shared_loads.theory_reasoning` when the requested review needs to distinguish assumptions, predictions or competing explanations; `shared_loads.theory_examples` is separately optional when a demonstration helps. Judge need from the task, not keywords. Do not turn these aids into a fixed checklist, new-study requirement or automatic writing handoff; reuse already read resources.
+
 Identify the paper type, every relevant design tag, observation unit, evidence source, scope, and requested risk threshold. Do not apply experimental checks to a survey or quantitative parameter checks to a qualitative paper.
 
 ## Audit sequence

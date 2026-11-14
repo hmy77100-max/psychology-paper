@@ -1,5 +1,29 @@
 [
   {
+    "id": "THEORY-REASONING-001",
+    "request": "结果和A不一样，还能保留理论解释吗？先解释，再给短候选；我倾向围绕即时行动理由写，不改原假设。",
+    "project_state": {"source_packet": "Entirely fictional. Same test is described as tomorrow or next month; gain/loss messages predict voluntary practice now. Prior hypotheses: near loss and distant gain. Supported interaction; loss advantage tomorrow, no detected frame contrast next month. No process measure or equivalence test. A directly induced concrete/abstract thinking and found matching in intentions.", "author_direction": "immediate action reasons; retain theoretical source", "source_is_synthetic": true},
+    "expected_primary_module": "manuscript-writing",
+    "expected_scope": "theoretical interpretation and short discussion candidate",
+    "required_actions": ["infer resource need without user keywords", "separate theory proposition from time-cue bridging assumption", "compare manipulation and outcome differences", "state supported conditional effect and useful advance", "preserve author's defensible explanatory choice"],
+    "forbidden_actions": ["attribute differences solely to intention versus behavior", "declare the mechanism measured", "treat nonsignificance as equivalence", "retrofit hypotheses", "force a model or new study", "replace candidate with an audit checklist"],
+    "expected_state_effect": "candidate only",
+    "manual_rubric": "Pass if the assistant provides the approved demonstration's quality of specific reasoning and usable choices, rather than copying a fixed paragraph. Author selects the explanatory focus; synthetic A cannot become a real citation.",
+    "tags": ["theory_reasoning", "author_decision", "synthetic_example", "under_escalation_guard"]
+  },
+  {
+    "id": "THEORY-LOCAL-002",
+    "request": "只改顺这句，理论和论证顺序不动：心理距离为这个预测提供了一个可以参考的理论看法。",
+    "project_state": {"revision_scope": "one sentence", "source_packet": "Current sentence only; theory role is author-confirmed."},
+    "expected_primary_module": "manuscript-writing",
+    "expected_scope": "single-sentence wording candidate",
+    "required_actions": ["preserve theoretical role and sentence scope", "retain normal candidate format"],
+    "forbidden_actions": ["load theory resources solely because of a keyword", "launch competitor review or full repositioning", "force evidence-first ordering", "ask user to name a selector"],
+    "expected_state_effect": "candidate only",
+    "manual_rubric": "Pass if this remains a local wording edit. A theory word is not a command to begin theory review; no new argument, literature package or permission cycle.",
+    "tags": ["theory_opt_in", "over_escalation_guard", "author_decision"]
+  },
+  {
     "id": "WRITE-001",
     "request": "修改这段英文，并给我对应中文。",
     "project_state": {"language_mode": "english", "decision_status": "CANDIDATE"},
