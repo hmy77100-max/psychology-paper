@@ -24,6 +24,9 @@
     "contribution_planning": ["./references/contribution-planning.md", "../evidence-audit/references/external-evidence.md"]
   },
   "shared_loads": {
+    "authorization": ["../.shared/core/authorization-and-state.md"],
+    "state_rules": ["../.shared/core/state-consistency.md"],
+    "handoff": ["../.shared/schemas/minimal-handoff.md"],
     "design_tags": ["../.shared/core/research-design-taxonomy.md"],
     "risk": ["../.shared/output/risk-reporting.md"],
     "theory_reasoning": ["../.shared/references/theory-reasoning.md"],

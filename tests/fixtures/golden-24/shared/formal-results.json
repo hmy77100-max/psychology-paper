@@ -1,0 +1,15 @@
+{
+  "fixture_kind": "synthetic_preexisting_formal_record",
+  "source_id": "F1",
+  "status": "FORMAL_IN_SCENARIO_ONLY",
+  "provenance": "Constructed arithmetic fixture, not empirical data or independent host output. No new implementation results used.",
+  "method": "paired t on post-pre",
+  "n_pairs": 6,
+  "mean_difference": 2,
+  "sample_variance_difference": 0.8,
+  "t": 5.477225575051661,
+  "df": 5,
+  "p": "not prefilled; compute if reported",
+  "hand_check": "d=1,2,3,1,2,3; sum=12; sum squared deviations=4; s²=4/5; t=2/sqrt(.8/6)=sqrt(30).",
+  "adoption_permission": false
+}

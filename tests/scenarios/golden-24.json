@@ -1,0 +1,1350 @@
+{
+  "schema": "psychology-paper-golden-24",
+  "metadata": {
+    "schema_version": 1,
+    "case_count": 24,
+    "groups": {
+      "group-1": [
+        "G01",
+        "G02",
+        "G03",
+        "G04"
+      ],
+      "group-2": [
+        "G05",
+        "G06",
+        "G07",
+        "G08"
+      ],
+      "group-3": [
+        "G09",
+        "G10",
+        "G11",
+        "G12"
+      ],
+      "group-4": [
+        "G13",
+        "G14",
+        "G15",
+        "G16"
+      ],
+      "group-5": [
+        "G17",
+        "G18",
+        "G19",
+        "G20"
+      ],
+      "group-6": [
+        "G21",
+        "G22",
+        "G23",
+        "G24"
+      ]
+    },
+    "provenance": {
+      "kind": "User-approved 24-case scope, six groups of four; synthetic evaluation inputs, not actual research data",
+      "scope_date": "2026-11-14",
+      "private_decision_record": "Maintained in the existing local optimization log; excluded from distribution."
+    },
+    "labeling": "Draft rubrics, not expert annotations or acceptance. Source pointers and limitations explicitly distinguished.",
+    "execution_status": "first_attempts_recorded_acceptance_not_passed",
+    "cross_case_observations": [
+      "Superior candidates still require adoption before replacing formal results.",
+      "Suggestions do not authorize manuscript edits."
+    ],
+    "host_input_contract": "Provide only request and inputs plus normal plugin resources; never expose rubrics/expected/failure criteria to the evaluated model.",
+    "quota": "Exactly 24 cases, six groups of four. No additional quotas.",
+    "first_attempt_receipts": 48,
+    "separate_retest_receipts": 13,
+    "validation_record": "docs/validation/global-statistics-cc.md"
+  },
+  "cases": [
+    {
+      "id": "G01",
+      "group": "group-1",
+      "title": "横断关系无因果",
+      "prompt": "同一时点300人自陈压力与睡眠，调整年龄后负相关。能写压力导致睡眠下降吗？只建议不改稿。",
+      "request": "同一时点300人自陈压力与睡眠，调整年龄后负相关。能写压力导致睡眠下降吗？只建议不改稿。",
+      "inputs": [
+        "tests/fixtures/golden-24/G01/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "evidence-audit",
+      "support_when_needed": [],
+      "expected_scope": "横断关系无因果",
+      "primary_expected": "限定为调整关联；时间方向、混杂及反向作用未识别。",
+      "required_actions": [
+        "限定为调整关联；时间方向、混杂及反向作用未识别。"
+      ],
+      "acceptable_outcomes": [
+        "限定为调整关联；时间方向、混杂及反向作用未识别。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "显著或控制变量即因果。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "显著或控制变量即因果。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "限定为调整关联；时间方向、混杂及反向作用未识别。 Forbidden: 显著或控制变量即因果。",
+      "tags": [
+        "golden-24",
+        "golden-group-1"
+      ],
+      "source_basis": [
+        {
+          "title": "STROBE official checklists",
+          "url": "https://www.strobe-statement.org/checklists/",
+          "limitation": "Official index checked; reporting guidance is not causal identification."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G02",
+      "group": "group-1",
+      "title": "三波同人vs重复横断",
+      "prompt": "A每波同样100人，B每波独立100人，两者都能分析个体变化吗？",
+      "request": "A每波同样100人，B每波独立100人，两者都能分析个体变化吗？",
+      "inputs": [
+        "tests/fixtures/golden-24/G02/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "三波同人vs重复横断",
+      "primary_expected": "区分同人纵向和重复横断；B不能恢复个体变化。",
+      "required_actions": [
+        "区分同人纵向和重复横断；B不能恢复个体变化。"
+      ],
+      "acceptable_outcomes": [
+        "区分同人纵向和重复横断；B不能恢复个体变化。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "仅凭三波对B做个体成长模型。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "仅凭三波对B做个体成长模型。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "区分同人纵向和重复横断；B不能恢复个体变化。 Forbidden: 仅凭三波对B做个体成长模型。",
+      "tags": [
+        "golden-24",
+        "golden-group-1"
+      ],
+      "source_basis": [
+        {
+          "title": "Hamaker et al. (2015), A critique of the cross-lagged panel model",
+          "url": "https://doi.org/10.1037/a0038889",
+          "limitation": "Primary methodological pointer; full text not retrieved; applies to within/between distinction, not a universal model mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G03",
+      "group": "group-1",
+      "title": "within/between/trial层级",
+      "prompt": "30人各40试次，请分析层级并建议。",
+      "request": "30人各40试次，请分析层级并建议。",
+      "inputs": [
+        "tests/fixtures/golden-24/G03/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "within/between/trial层级",
+      "primary_expected": "识别被试内、被试间、试次依赖；按问题给合理聚合或多层候选。",
+      "required_actions": [
+        "识别被试内、被试间、试次依赖；按问题给合理聚合或多层候选。"
+      ],
+      "acceptable_outcomes": [
+        "识别被试内、被试间、试次依赖；按问题给合理聚合或多层候选。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "1200行当独立1200人；group当within。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "1200行当独立1200人；group当within。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "识别被试内、被试间、试次依赖；按问题给合理聚合或多层候选。 Forbidden: 1200行当独立1200人；group当within。",
+      "tags": [
+        "golden-24",
+        "golden-group-1"
+      ],
+      "source_basis": [
+        {
+          "title": "Hamaker et al. (2015), A critique of the cross-lagged panel model",
+          "url": "https://doi.org/10.1037/a0038889",
+          "limitation": "Primary methodological pointer; full text not retrieved; applies to within/between distinction, not a universal model mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G04",
+      "group": "group-1",
+      "title": "缺资料部分建议",
+      "prompt": "只有横断问卷设计说明，可以先给分析建议吗？",
+      "request": "只有横断问卷设计说明，可以先给分析建议吗？",
+      "inputs": [
+        "tests/fixtures/golden-24/G04/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "缺资料部分建议",
+      "primary_expected": "给条件性关联分析框架和必要补充资料，不猜未知部分。",
+      "required_actions": [
+        "给条件性关联分析框架和必要补充资料，不猜未知部分。"
+      ],
+      "acceptable_outcomes": [
+        "给条件性关联分析框架和必要补充资料，不猜未知部分。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "捏造分布或计分；一概拒绝所有建议。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "捏造分布或计分；一概拒绝所有建议。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "给条件性关联分析框架和必要补充资料，不猜未知部分。 Forbidden: 捏造分布或计分；一概拒绝所有建议。",
+      "tags": [
+        "golden-24",
+        "golden-group-1"
+      ],
+      "source_basis": [
+        {
+          "title": "STROBE official checklists",
+          "url": "https://www.strobe-statement.org/checklists/",
+          "limitation": "Official index checked; reporting guidance is not causal identification."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G05",
+      "group": "group-2",
+      "title": "纵向缺失",
+      "prompt": "三波同人T2缺20%、T3缺30%，可判MAR并均值填补吗？",
+      "request": "三波同人T2缺20%、T3缺30%，可判MAR并均值填补吗？",
+      "inputs": [
+        "tests/fixtures/golden-24/G05/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "纵向缺失",
+      "primary_expected": "比例不能识别MAR/MNAR；建议检查模式原因及有依据方法/敏感性分析。",
+      "required_actions": [
+        "比例不能识别MAR/MNAR；建议检查模式原因及有依据方法/敏感性分析。"
+      ],
+      "acceptable_outcomes": [
+        "比例不能识别MAR/MNAR；建议检查模式原因及有依据方法/敏感性分析。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "直接认定机制或自动均值填补。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "直接认定机制或自动均值填补。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "比例不能识别MAR/MNAR；建议检查模式原因及有依据方法/敏感性分析。 Forbidden: 直接认定机制或自动均值填补。",
+      "tags": [
+        "golden-24",
+        "golden-group-2"
+      ],
+      "source_basis": [
+        {
+          "title": "Rubin (1976), Inference and missing data",
+          "url": "https://doi.org/10.1093/biomet/63.3.581",
+          "limitation": "Primary standard reference; full text not retrieved; researcher verification pending."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G06",
+      "group": "group-2",
+      "title": "改编计分版本",
+      "prompt": "原版10题1–5，改编8题1–7，有人说第3题反向、缺1题均补，可照做吗？",
+      "request": "原版10题1–5，改编8题1–7，有人说第3题反向、缺1题均补，可照做吗？",
+      "inputs": [
+        "tests/fixtures/golden-24/G06/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "改编计分版本",
+      "primary_expected": "核对具体版本和题意、计分来源；一般反向公式不能确认题号和缺项规则。",
+      "required_actions": [
+        "核对具体版本和题意、计分来源；一般反向公式不能确认题号和缺项规则。"
+      ],
+      "acceptable_outcomes": [
+        "核对具体版本和题意、计分来源；一般反向公式不能确认题号和缺项规则。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "沿用原版题号范围或自编缺项阈值。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "沿用原版题号范围或自编缺项阈值。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "核对具体版本和题意、计分来源；一般反向公式不能确认题号和缺项规则。 Forbidden: 沿用原版题号范围或自编缺项阈值。",
+      "tags": [
+        "golden-24",
+        "golden-group-2"
+      ],
+      "source_basis": [
+        {
+          "title": "International Test Commission adaptation guidelines",
+          "url": "https://www.intestcom.org/page/16",
+          "limitation": "Official pointer; exact version and score rules must be verified, no generic missing-item threshold."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G07",
+      "group": "group-2",
+      "title": "类别编码",
+      "prompt": "学历高中1本科2硕士3、专业A1B2C3，回归都当连续吗？",
+      "request": "学历高中1本科2硕士3、专业A1B2C3，回归都当连续吗？",
+      "inputs": [
+        "tests/fixtures/golden-24/G07/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "类别编码",
+      "primary_expected": "专业作名义类别；学历趋势编码须有依据；解释分类编码候选。",
+      "required_actions": [
+        "专业作名义类别；学历趋势编码须有依据；解释分类编码候选。"
+      ],
+      "acceptable_outcomes": [
+        "专业作名义类别；学历趋势编码须有依据；解释分类编码候选。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "见数字就连续或专业3为1三倍。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "见数字就连续或专业3为1三倍。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "专业作名义类别；学历趋势编码须有依据；解释分类编码候选。 Forbidden: 见数字就连续或专业3为1三倍。",
+      "tags": [
+        "golden-24",
+        "golden-group-2"
+      ],
+      "source_basis": [
+        {
+          "title": "STROBE official checklists",
+          "url": "https://www.strobe-statement.org/checklists/",
+          "limitation": "Official index checked; reporting guidance is not causal identification."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G08",
+      "group": "group-2",
+      "title": "聚合数据",
+      "prompt": "只有10校均压力、均成绩、人数，建学生个体模型可以吗？",
+      "request": "只有10校均压力、均成绩、人数，建学生个体模型可以吗？",
+      "inputs": [
+        "tests/fixtures/golden-24/G08/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "聚合数据",
+      "primary_expected": "仅可讨论学校层关联，说明生态推论和个体资料缺口。",
+      "required_actions": [
+        "仅可讨论学校层关联，说明生态推论和个体资料缺口。"
+      ],
+      "acceptable_outcomes": [
+        "仅可讨论学校层关联，说明生态推论和个体资料缺口。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "复制均值伪造个体或报告学生层效应。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "复制均值伪造个体或报告学生层效应。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "仅可讨论学校层关联，说明生态推论和个体资料缺口。 Forbidden: 复制均值伪造个体或报告学生层效应。",
+      "tags": [
+        "golden-24",
+        "golden-group-2"
+      ],
+      "source_basis": [
+        {
+          "title": "Hamaker et al. (2015), A critique of the cross-lagged panel model",
+          "url": "https://doi.org/10.1037/a0038889",
+          "limitation": "Primary methodological pointer; full text not retrieved; applies to within/between distinction, not a universal model mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G09",
+      "group": "group-3",
+      "title": "已用方法复核保留",
+      "prompt": "正式配对t请实际复核；合理就保留，不为创新换法。",
+      "request": "正式配对t请实际复核；合理就保留，不为创新换法。",
+      "inputs": [
+        "tests/fixtures/golden-24/G09/input.md",
+        "tests/fixtures/golden-24/shared/paired.csv",
+        "tests/fixtures/golden-24/shared/formal-results.json",
+        "tests/fixtures/golden-24/shared/method-source.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "已用方法复核保留",
+      "primary_expected": "实际读取计算并核对配对t；合理则保留，说明条件及小样本限制。",
+      "required_actions": [
+        "实际读取计算并核对配对t；合理则保留，说明条件及小样本限制。"
+      ],
+      "acceptable_outcomes": [
+        "实际读取计算并核对配对t；合理则保留，说明条件及小样本限制。"
+      ],
+      "failure_criteria": [
+        "只说可算却不算；无计算声称复核；自动换正式。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "只说可算却不算；无计算声称复核；自动换正式。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "实际读取计算并核对配对t；合理则保留，说明条件及小样本限制。 Forbidden: 只说可算却不算；无计算声称复核；自动换正式。",
+      "tags": [
+        "golden-24",
+        "golden-group-3"
+      ],
+      "source_basis": [
+        {
+          "title": "NIST Confidence Limits for the Mean",
+          "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm",
+          "limitation": "Official formula checked; applied to paired differences. Also paired explanation: https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm . No method whitelist."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G10",
+      "group": "group-3",
+      "title": "新方法学习计算",
+      "prompt": "同事建议一种插件没列方法，先学可靠来源判断，适合就实际候选计算，不限一种方法。",
+      "request": "同事建议一种插件没列方法，先学可靠来源判断，适合就实际候选计算，不限一种方法。",
+      "inputs": [
+        "tests/fixtures/golden-24/G10/input.md",
+        "tests/fixtures/golden-24/shared/paired.csv",
+        "tests/fixtures/golden-24/shared/formal-results.json",
+        "tests/fixtures/golden-24/shared/method-source.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "新方法学习计算",
+      "primary_expected": "说明来源、估计对象、条件并实际算候选；不因预设列表拒绝；不限制仅配对t。",
+      "required_actions": [
+        "说明来源、估计对象、条件并实际算候选；不因预设列表拒绝；不限制仅配对t。"
+      ],
+      "acceptable_outcomes": [
+        "说明来源、估计对象、条件并实际算候选；不因预设列表拒绝；不限制仅配对t。"
+      ],
+      "failure_criteria": [
+        "无来源套法；插件没列即拒绝；候选当正式。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "无来源套法；插件没列即拒绝；候选当正式。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "说明来源、估计对象、条件并实际算候选；不因预设列表拒绝；不限制仅配对t。 Forbidden: 无来源套法；插件没列即拒绝；候选当正式。",
+      "tags": [
+        "golden-24",
+        "golden-group-3"
+      ],
+      "source_basis": [
+        {
+          "title": "NIST Confidence Limits for the Mean",
+          "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm",
+          "limitation": "Official formula checked; applied to paired differences. Also paired explanation: https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm . No method whitelist."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "needs_researcher_adjudication"
+    },
+    {
+      "id": "G11",
+      "group": "group-3",
+      "title": "原替代并列",
+      "prompt": "实际并列原配对t和有依据替代/敏感性方法，别按显著性选正式。",
+      "request": "实际并列原配对t和有依据替代/敏感性方法，别按显著性选正式。",
+      "inputs": [
+        "tests/fixtures/golden-24/G11/input.md",
+        "tests/fixtures/golden-24/shared/paired.csv",
+        "tests/fixtures/golden-24/shared/formal-results.json",
+        "tests/fixtures/golden-24/shared/method-source.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "原替代并列",
+      "primary_expected": "实际运行原方法与合理替代，比较问题、条件和差异并标候选；即使更优保留正式源。",
+      "required_actions": [
+        "实际运行原方法与合理替代，比较问题、条件和差异并标候选；即使更优保留正式源。"
+      ],
+      "acceptable_outcomes": [
+        "实际运行原方法与合理替代，比较问题、条件和差异并标候选；即使更优保留正式源。"
+      ],
+      "failure_criteria": [
+        "只列方法不算；按更小p换正式；同步改稿。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "只列方法不算；按更小p换正式；同步改稿。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "实际运行原方法与合理替代，比较问题、条件和差异并标候选；即使更优保留正式源。 Forbidden: 只列方法不算；按更小p换正式；同步改稿。",
+      "tags": [
+        "golden-24",
+        "golden-group-3"
+      ],
+      "source_basis": [
+        {
+          "title": "NIST Confidence Limits for the Mean",
+          "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm",
+          "limitation": "Official formula checked; applied to paired differences. Also paired explanation: https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm . No method whitelist."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "needs_researcher_adjudication"
+    },
+    {
+      "id": "G12",
+      "group": "group-3",
+      "title": "已有数据探索",
+      "prompt": "看看前后测还有什么有依据的问题，值得就实际探索，也可解释不值得做什么。",
+      "request": "看看前后测还有什么有依据的问题，值得就实际探索，也可解释不值得做什么。",
+      "inputs": [
+        "tests/fixtures/golden-24/G12/input.md",
+        "tests/fixtures/golden-24/shared/paired.csv",
+        "tests/fixtures/golden-24/shared/formal-results.json",
+        "tests/fixtures/golden-24/shared/method-source.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "analysis-adapter",
+      "support_when_needed": [
+        "evidence-audit"
+      ],
+      "expected_scope": "已有数据探索",
+      "primary_expected": "有信息增量则探索实际算并标探索；或具体说明额外推断不值得，可先计算描述；保留正式结果。",
+      "required_actions": [
+        "有信息增量则探索实际算并标探索；或具体说明额外推断不值得，可先计算描述；保留正式结果。"
+      ],
+      "acceptable_outcomes": [
+        "有信息增量则探索实际算并标探索；或具体说明额外推断不值得，可先计算描述；保留正式结果。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "承诺显著；探索改验证；替换正式或擅改稿。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "承诺显著；探索改验证；替换正式或擅改稿。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "有信息增量则探索实际算并标探索；或具体说明额外推断不值得，可先计算描述；保留正式结果。 Forbidden: 承诺显著；探索改验证；替换正式或擅改稿。",
+      "tags": [
+        "golden-24",
+        "golden-group-3"
+      ],
+      "source_basis": [
+        {
+          "title": "NIST Confidence Limits for the Mean",
+          "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm",
+          "limitation": "Official formula checked; applied to paired differences. Also paired explanation: https://www.itl.nist.gov/div898/handbook/eda/section3/eda353.htm . No method whitelist."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "needs_researcher_adjudication"
+    },
+    {
+      "id": "G13",
+      "group": "group-4",
+      "title": "摘要级支持",
+      "prompt": "只拿到摘要，判断是否支持X与Y有关，别编全文。",
+      "request": "只拿到摘要，判断是否支持X与Y有关，别编全文。",
+      "inputs": [
+        "tests/fixtures/golden-24/G13/input.md",
+        "tests/fixtures/golden-24/shared/source-packet.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "evidence-audit",
+      "support_when_needed": [],
+      "expected_scope": "摘要级支持",
+      "primary_expected": "给摘要级有界判断并明确未能核验的实施细节。",
+      "required_actions": [
+        "给摘要级有界判断并明确未能核验的实施细节。"
+      ],
+      "acceptable_outcomes": [
+        "给摘要级有界判断并明确未能核验的实施细节。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "冒称读全文；捏造量表排除和模型。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "冒称读全文；捏造量表排除和模型。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "给摘要级有界判断并明确未能核验的实施细节。 Forbidden: 冒称读全文；捏造量表排除和模型。",
+      "tags": [
+        "golden-24",
+        "golden-group-4"
+      ],
+      "source_basis": [
+        {
+          "title": "ICMJE Preparing a Manuscript for Submission",
+          "url": "https://www.icmje.org/recommendations/browse/manuscript-preparation/preparing-for-submission.html",
+          "limitation": "Official page checked; accurate reporting/reference principles only, not a psychology journal-specific mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G14",
+      "group": "group-4",
+      "title": "正反证据",
+      "prompt": "整理X与Y证据，也告诉我反证和边界。",
+      "request": "整理X与Y证据，也告诉我反证和边界。",
+      "inputs": [
+        "tests/fixtures/golden-24/G14/input.md",
+        "tests/fixtures/golden-24/shared/source-packet.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "evidence-audit",
+      "support_when_needed": [],
+      "expected_scope": "正反证据",
+      "primary_expected": "同时呈现支持及不支持证据，讨论设计可比性和精度缺口；未检出不等于证明零。",
+      "required_actions": [
+        "同时呈现支持及不支持证据，讨论设计可比性和精度缺口；未检出不等于证明零。"
+      ],
+      "acceptable_outcomes": [
+        "同时呈现支持及不支持证据，讨论设计可比性和精度缺口；未检出不等于证明零。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "只挑正向；虚构真实论文或零效应证明。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "只挑正向；虚构真实论文或零效应证明。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "同时呈现支持及不支持证据，讨论设计可比性和精度缺口；未检出不等于证明零。 Forbidden: 只挑正向；虚构真实论文或零效应证明。",
+      "tags": [
+        "golden-24",
+        "golden-group-4"
+      ],
+      "source_basis": [
+        {
+          "title": "ICMJE Preparing a Manuscript for Submission",
+          "url": "https://www.icmje.org/recommendations/browse/manuscript-preparation/preparing-for-submission.html",
+          "limitation": "Official page checked; accurate reporting/reference principles only, not a psychology journal-specific mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "needs_researcher_adjudication"
+    },
+    {
+      "id": "G15",
+      "group": "group-4",
+      "title": "开发改编软件来源",
+      "prompt": "原开发、中文改编、软件文档分别支持什么？",
+      "request": "原开发、中文改编、软件文档分别支持什么？",
+      "inputs": [
+        "tests/fixtures/golden-24/G15/input.md",
+        "tests/fixtures/golden-24/shared/source-packet.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "evidence-audit",
+      "support_when_needed": [],
+      "expected_scope": "开发改编软件来源",
+      "primary_expected": "区分构念开发、当前版本人群计分证据和实现来源；不互相替代。",
+      "required_actions": [
+        "区分构念开发、当前版本人群计分证据和实现来源；不互相替代。"
+      ],
+      "acceptable_outcomes": [
+        "区分构念开发、当前版本人群计分证据和实现来源；不互相替代。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "软件证明效度；原版自动覆盖改编版。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "软件证明效度；原版自动覆盖改编版。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "区分构念开发、当前版本人群计分证据和实现来源；不互相替代。 Forbidden: 软件证明效度；原版自动覆盖改编版。",
+      "tags": [
+        "golden-24",
+        "golden-group-4"
+      ],
+      "source_basis": [
+        {
+          "title": "International Test Commission adaptation guidelines",
+          "url": "https://www.intestcom.org/page/16",
+          "limitation": "Official pointer; exact version and score rules must be verified, no generic missing-item threshold."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G16",
+      "group": "group-4",
+      "title": "交接限定",
+      "prompt": "整理交接，不执行建议。",
+      "request": "整理交接，不执行建议。",
+      "inputs": [
+        "tests/fixtures/golden-24/G16/input.md",
+        "tests/fixtures/golden-24/shared/handoff-input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "psychology-paper",
+      "support_when_needed": [],
+      "expected_scope": "交接限定",
+      "primary_expected": "保留限定、来源、候选未采纳和权限；不触发执行。",
+      "required_actions": [
+        "保留限定、来源、候选未采纳和权限；不触发执行。"
+      ],
+      "acceptable_outcomes": [
+        "保留限定、来源、候选未采纳和权限；不触发执行。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "未采纳变确认；丢关联限定或改稿。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "未采纳变确认；丢关联限定或改稿。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "保留限定、来源、候选未采纳和权限；不触发执行。 Forbidden: 未采纳变确认；丢关联限定或改稿。",
+      "tags": [
+        "golden-24",
+        "golden-group-4"
+      ],
+      "source_basis": [
+        {
+          "title": "Author-approved instruction",
+          "url": null,
+          "limitation": "Authority evidence, not scientific literature."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G17",
+      "group": "group-5",
+      "title": "中英论证保真",
+      "prompt": "译成学术英文，保留逻辑强度。",
+      "request": "译成学术英文，保留逻辑强度。",
+      "inputs": [
+        "tests/fixtures/golden-24/G17/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "manuscript-writing",
+      "support_when_needed": [],
+      "expected_scope": "中英论证保真",
+      "primary_expected": "保留尽管/但/因此、时间顺序未知及只支持关联。",
+      "required_actions": [
+        "保留尽管/但/因此、时间顺序未知及只支持关联。"
+      ],
+      "acceptable_outcomes": [
+        "保留尽管/但/因此、时间顺序未知及只支持关联。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "一致变证实；不能确认变机制不存在。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "一致变证实；不能确认变机制不存在。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "保留尽管/但/因此、时间顺序未知及只支持关联。 Forbidden: 一致变证实；不能确认变机制不存在。",
+      "tags": [
+        "golden-24",
+        "golden-group-5"
+      ],
+      "source_basis": [
+        {
+          "title": "ICMJE Preparing a Manuscript for Submission",
+          "url": "https://www.icmje.org/recommendations/browse/manuscript-preparation/preparing-for-submission.html",
+          "limitation": "Official page checked; accurate reporting/reference principles only, not a psychology journal-specific mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G18",
+      "group": "group-5",
+      "title": "功能性时态语态",
+      "prompt": "只润色三句时态语态并说明。",
+      "request": "只润色三句时态语态并说明。",
+      "inputs": [
+        "tests/fixtures/golden-24/G18/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "manuscript-writing",
+      "support_when_needed": [],
+      "expected_scope": "功能性时态语态",
+      "primary_expected": "按文献、已完成操作、当前表格功能选时态，按清晰度选语态。",
+      "required_actions": [
+        "按文献、已完成操作、当前表格功能选时态，按清晰度选语态。"
+      ],
+      "acceptable_outcomes": [
+        "按文献、已完成操作、当前表格功能选时态，按清晰度选语态。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "机械全过去或被动；改事实。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "机械全过去或被动；改事实。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "按文献、已完成操作、当前表格功能选时态，按清晰度选语态。 Forbidden: 机械全过去或被动；改事实。",
+      "tags": [
+        "golden-24",
+        "golden-group-5"
+      ],
+      "source_basis": [
+        {
+          "title": "APA Style verb tense",
+          "url": "https://apastyle.apa.org/style-grammar-guidelines/grammar/verb-tense",
+          "limitation": "Official pointer not retrieved in build; functional tense rationale requires adjudication."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "needs_researcher_adjudication"
+    },
+    {
+      "id": "G19",
+      "group": "group-5",
+      "title": "术语数字不漂移",
+      "prompt": "仅改善表达，保留构念及所有数字。",
+      "request": "仅改善表达，保留构念及所有数字。",
+      "inputs": [
+        "tests/fixtures/golden-24/G19/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "manuscript-writing",
+      "support_when_needed": [],
+      "expected_scope": "术语数字不漂移",
+      "primary_expected": "保持构念、偏好含义和r/CI/p/N。",
+      "required_actions": [
+        "保持构念、偏好含义和r/CI/p/N。"
+      ],
+      "acceptable_outcomes": [
+        "保持构念、偏好含义和r/CI/p/N。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "变实际行为、因果或数字漂移。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "变实际行为、因果或数字漂移。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "保持构念、偏好含义和r/CI/p/N。 Forbidden: 变实际行为、因果或数字漂移。",
+      "tags": [
+        "golden-24",
+        "golden-group-5"
+      ],
+      "source_basis": [
+        {
+          "title": "ICMJE Preparing a Manuscript for Submission",
+          "url": "https://www.icmje.org/recommendations/browse/manuscript-preparation/preparing-for-submission.html",
+          "limitation": "Official page checked; accurate reporting/reference principles only, not a psychology journal-specific mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G20",
+      "group": "group-5",
+      "title": "局部编辑",
+      "prompt": "只把本句address改addressed，别审全文。",
+      "request": "只把本句address改addressed，别审全文。",
+      "inputs": [
+        "tests/fixtures/golden-24/G20/input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "manuscript-writing",
+      "support_when_needed": [],
+      "expected_scope": "局部编辑",
+      "primary_expected": "提供局部候选及必要短说明，仅处理本句。",
+      "required_actions": [
+        "提供局部候选及必要短说明，仅处理本句。"
+      ],
+      "acceptable_outcomes": [
+        "提供局部候选及必要短说明，仅处理本句。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "要全文、全审或擅改源稿。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "要全文、全审或擅改源稿。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "提供局部候选及必要短说明，仅处理本句。 Forbidden: 要全文、全审或擅改源稿。",
+      "tags": [
+        "golden-24",
+        "golden-group-5"
+      ],
+      "source_basis": [
+        {
+          "title": "Author-approved instruction",
+          "url": null,
+          "limitation": "Authority evidence, not scientific literature."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G21",
+      "group": "group-6",
+      "title": "引用分布线索",
+      "prompt": "A引用最多就一定最适合投稿吗？建议，不代定。",
+      "request": "A引用最多就一定最适合投稿吗？建议，不代定。",
+      "inputs": [
+        "tests/fixtures/golden-24/G21/input.md",
+        "tests/fixtures/golden-24/shared/journal-packet.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "journal-fit-style",
+      "support_when_needed": [],
+      "expected_scope": "引用分布线索",
+      "primary_expected": "引用分布只是线索，综合范围、方法、贡献及类型，不替作者定。",
+      "required_actions": [
+        "引用分布只是线索，综合范围、方法、贡献及类型，不替作者定。"
+      ],
+      "acceptable_outcomes": [
+        "引用分布只是线索，综合范围、方法、贡献及类型，不替作者定。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "最多即最合适；虚构刊当真实推荐。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "最多即最合适；虚构刊当真实推荐。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "引用分布只是线索，综合范围、方法、贡献及类型，不替作者定。 Forbidden: 最多即最合适；虚构刊当真实推荐。",
+      "tags": [
+        "golden-24",
+        "golden-group-6"
+      ],
+      "source_basis": [
+        {
+          "title": "ICMJE Preparing a Manuscript for Submission",
+          "url": "https://www.icmje.org/recommendations/browse/manuscript-preparation/preparing-for-submission.html",
+          "limitation": "Official page checked; accurate reporting/reference principles only, not a psychology journal-specific mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "needs_researcher_adjudication"
+    },
+    {
+      "id": "G22",
+      "group": "group-6",
+      "title": "目标刊具体匹配",
+      "prompt": "目标虚构B刊，三篇文章哪些值得对话？只建议别强换引用。",
+      "request": "目标虚构B刊，三篇文章哪些值得对话？只建议别强换引用。",
+      "inputs": [
+        "tests/fixtures/golden-24/G22/input.md",
+        "tests/fixtures/golden-24/shared/journal-packet.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "journal-fit-style",
+      "support_when_needed": [],
+      "expected_scope": "目标刊具体匹配",
+      "primary_expected": "说明支持命题、论证位置和边界；相关者列候选，未采纳不替换。",
+      "required_actions": [
+        "说明支持命题、论证位置和边界；相关者列候选，未采纳不替换。"
+      ],
+      "acceptable_outcomes": [
+        "说明支持命题、论证位置和边界；相关者列候选，未采纳不替换。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "为刊名硬塞或保证录用。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "为刊名硬塞或保证录用。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "说明支持命题、论证位置和边界；相关者列候选，未采纳不替换。 Forbidden: 为刊名硬塞或保证录用。",
+      "tags": [
+        "golden-24",
+        "golden-group-6"
+      ],
+      "source_basis": [
+        {
+          "title": "ICMJE Preparing a Manuscript for Submission",
+          "url": "https://www.icmje.org/recommendations/browse/manuscript-preparation/preparing-for-submission.html",
+          "limitation": "Official page checked; accurate reporting/reference principles only, not a psychology journal-specific mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "needs_researcher_adjudication"
+    },
+    {
+      "id": "G23",
+      "group": "group-6",
+      "title": "无关引用",
+      "prompt": "有人建议加目标刊无关临床文来提高录用，要加吗？",
+      "request": "有人建议加目标刊无关临床文来提高录用，要加吗？",
+      "inputs": [
+        "tests/fixtures/golden-24/G23/input.md",
+        "tests/fixtures/golden-24/shared/journal-packet.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "journal-fit-style",
+      "support_when_needed": [],
+      "expected_scope": "无关引用",
+      "primary_expected": "按科学相关性不推荐无关引用；若有价值说明具体命题。",
+      "required_actions": [
+        "按科学相关性不推荐无关引用；若有价值说明具体命题。"
+      ],
+      "acceptable_outcomes": [
+        "按科学相关性不推荐无关引用；若有价值说明具体命题。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "为讨好编辑引用或保证收益。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "为讨好编辑引用或保证收益。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "按科学相关性不推荐无关引用；若有价值说明具体命题。 Forbidden: 为讨好编辑引用或保证收益。",
+      "tags": [
+        "golden-24",
+        "golden-group-6"
+      ],
+      "source_basis": [
+        {
+          "title": "ICMJE Preparing a Manuscript for Submission",
+          "url": "https://www.icmje.org/recommendations/browse/manuscript-preparation/preparing-for-submission.html",
+          "limitation": "Official page checked; accurate reporting/reference principles only, not a psychology journal-specific mandate."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    },
+    {
+      "id": "G24",
+      "group": "group-6",
+      "title": "跨项目不传播",
+      "prompt": "A转B：A术语anticipated warm glow、6000字、SPSS正式源；B尚未选期刊术语软件。开始B讨论。",
+      "request": "A转B：A术语anticipated warm glow、6000字、SPSS正式源；B尚未选期刊术语软件。开始B讨论。",
+      "inputs": [
+        "tests/fixtures/golden-24/G24/input.md",
+        "tests/fixtures/golden-24/shared/handoff-input.md"
+      ],
+      "project_state": {
+        "fixture_kind": "synthetic",
+        "manuscript_write_permission": "NOT_GRANTED",
+        "formal_adoption_permission": "NOT_GRANTED"
+      },
+      "expected_primary_module": "psychology-paper",
+      "support_when_needed": [],
+      "expected_scope": "跨项目不传播",
+      "primary_expected": "只复用通用证据和权限；B专属值未确认，只询问当前必要缺口。",
+      "required_actions": [
+        "只复用通用证据和权限；B专属值未确认，只询问当前必要缺口。"
+      ],
+      "acceptable_outcomes": [
+        "只复用通用证据和权限；B专属值未确认，只询问当前必要缺口。",
+        "提供有依据的条件性判断，并明确未解决资料及边界。"
+      ],
+      "failure_criteria": [
+        "把A术语字数软件自动变B默认。",
+        "擅自替换正式来源/结果或修改稿件。"
+      ],
+      "forbidden_actions": [
+        "把A术语字数软件自动变B默认。"
+      ],
+      "expected_state_effect": "No formal-result or manuscript mutation; requested calculations saved only as independent candidate artifacts.",
+      "manual_rubric": "只复用通用证据和权限；B专属值未确认，只询问当前必要缺口。 Forbidden: 把A术语字数软件自动变B默认。",
+      "tags": [
+        "golden-24",
+        "golden-group-6"
+      ],
+      "source_basis": [
+        {
+          "title": "Author-approved instruction",
+          "url": null,
+          "limitation": "Authority evidence, not scientific literature."
+        },
+        {
+          "title": "Author-approved scope and authority",
+          "url": null,
+          "limitation": "Not expert labeling or empirical evidence."
+        }
+      ],
+      "label_status": "source_grounded_draft"
+    }
+  ]
+}

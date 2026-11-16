@@ -27,6 +27,28 @@ def referenced_paths(value: object) -> list[str]:
 
 
 class PluginStructureTests(unittest.TestCase):
+    def test_claude_wrapper_reuses_the_same_skill_tree_with_minimal_metadata(self) -> None:
+        manifest = json.loads(
+            (PLUGIN_ROOT / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8")
+        )
+        codex = json.loads(
+            (PLUGIN_ROOT / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8")
+        )
+        fields = {"name", "version", "description", "author", "repository", "license"}
+        self.assertEqual(set(manifest), fields)
+        for field in fields:
+            self.assertEqual(manifest[field], codex[field], field)
+        # Claude Code discovers the existing root skills/ by default.
+        self.assertFalse((PLUGIN_ROOT / ".claude-plugin" / "skills").exists())
+        for name in IMPLEMENTED_SKILLS:
+            self.assertTrue((PLUGIN_ROOT / "skills" / name / "SKILL.md").is_file())
+
+    def test_readme_distinguishes_claude_loadability_from_business_evaluation(self) -> None:
+        readme = (PLUGIN_ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("claude plugin validate . --strict", readme)
+        self.assertIn('claude --plugin-dir "."', readme)
+        self.assertIn("Claude Code business-effect evaluation is deferred", readme)
+
     def test_plugin_icons_resolve_to_bundled_images(self) -> None:
         manifest = json.loads(
             (PLUGIN_ROOT / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8")
@@ -48,7 +70,7 @@ class PluginStructureTests(unittest.TestCase):
         manifest_path = PLUGIN_ROOT / ".codex-plugin" / "plugin.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         self.assertEqual(manifest["name"], "psychology-paper")
-        self.assertEqual(manifest["version"], "0.5.2")
+        self.assertEqual(manifest["version"], "0.6.0")
         self.assertEqual(manifest["skills"], "./skills/")
         self.assertNotIn("apps", manifest)
         self.assertNotIn("mcpServers", manifest)

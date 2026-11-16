@@ -125,3 +125,11 @@ class WorkflowGuardTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class StandaloneAnalysisTests(unittest.TestCase):
+    def test_standalone_analysis_never_grants_writing(self):
+        for task in ("method_review", "candidate_analysis", "verification"):
+            for active in (False, True):
+                result=load_guards().decide_project_mode(task=task,scope="cross_session",journal_status="unknown",project_mode_active=active)
+                self.assertEqual(result.status,"STANDALONE_ANALYSIS")
+                self.assertFalse(result.writing_allowed)

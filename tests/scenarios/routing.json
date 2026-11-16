@@ -154,5 +154,29 @@
     "expected_state_effect": "analysis remains blocked until preflight is ready",
     "manual_rubric": "Pass when recalculation is routed to analysis-adapter and no statistics are computed before design and field confirmation.",
     "tags": ["analysis_adapter_route", "factorial_analysis", "source_comparison"]
+  },
+  {
+    "id": "ROUTE-014",
+    "request": "帮我改这篇论文",
+    "project_state": {"simulation_status": "AUTHOR_ACCEPTED", "business_judge": "AUTHOR", "initial_inputs": ["synthetic_manuscript"], "fixture_plan": "A repeated visual-identification experiment; a novice author retained task exports but reports only aggregated accuracy. Raw records are supplied only if the agent asks a relevant question after inspecting the manuscript and available materials."},
+    "expected_primary_module": "psychology-paper",
+    "expected_scope": "understand the manuscript and design, then identify relevant revision opportunities",
+    "required_actions": ["understand how the stated design generates observations", "inspect available materials before asking about retained records", "explain any worthwhile additional question in ordinary language", "use analysis-adapter for supported opportunities without requiring the author to name a method"],
+    "forbidden_actions": ["insert statistics or model hints into the initial user request", "treat potential observations as verified retained fields", "supply the fixture plan or evaluation criteria as model instructions", "infer adoption or fitting permission from the vague request"],
+    "expected_state_effect": "author accepted the simulated assistance; no automatic analysis adoption or manuscript write",
+    "manual_rubric": "The author accepted the completed 2026-11-15 case. Preserve the naive input and author decision; technical checks record this acceptance, not scientific quality or general host performance.",
+    "tags": ["analysis_adapter_route", "design_to_analysis", "naive_request", "business_author_accepted"]
+  },
+  {
+    "id": "ROUTE-015",
+    "request": "帮我改这篇论文",
+    "project_state": {"simulation_status": "AUTHOR_ACCEPTED", "business_judge": "AUTHOR", "initial_inputs": ["synthetic_manuscript"], "fixture_plan": "An independent novice-author case with the same experimental description but only participant-by-condition summary accuracy retained. If asked, the author says the per-trial export is no longer available."},
+    "expected_primary_module": "psychology-paper",
+    "expected_scope": "design-informed manuscript help constrained by actually retained information",
+    "required_actions": ["understand the design and check what data are available", "assess what the retained summaries can answer", "keep suggestions tied to the research question and actual information"],
+    "forbidden_actions": ["borrow raw fields from another simulation", "reconstruct trial curves or mechanisms as if observed", "force a more complex model", "supply evaluation metadata as user instructions"],
+    "expected_state_effect": "author accepted the simulated assistance; no automatic analysis adoption or manuscript write",
+    "manual_rubric": "The author accepted the completed 2026-11-15 aggregate-only case. Preserve the actual-data boundary and absence of a prescribed model; technical checks record the decision rather than grading the business result.",
+    "tags": ["analysis_adapter_route", "design_to_analysis", "naive_request", "limited_data", "business_author_accepted"]
   }
 ]

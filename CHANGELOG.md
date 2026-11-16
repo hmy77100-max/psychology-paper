@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0 — 2026-11-16
+
+- Connect study-design understanding to checks of retained observations and information used by the analysis, even for a general manuscript-revision request. Merge the cue into existing routing and analysis resources; remove conflicting explicit-request-only gates while preserving computation authorization. Keep method research conditional and adoption author-led, without a new backend or workflow. The author accepted two ordinary-request simulations on 2026-11-15 and seven additional boundary scenarios on 2026-11-16; these do not establish accuracy for every method or model.
+- Share four analysis intents and one specification/result contract across the existing five Skills. Separate open method learning, authorized candidate calculation, formal specification and verification; calculation does not adopt results or authorize manuscript writes.
+- Add a controlled Python runner for descriptive statistics, scale scoring, Welch/Student/paired t tests and Pearson correlation, with optional runtime dependencies, actual-input preflight, provenance and candidate artifacts.
+- Expose compact per-method field contracts from the same field definitions used by validation; keep queries read-only and independent of optional statistics packages. Running an analysis already performs runtime checks, so a separate preflight is for diagnosis rather than a mandatory duplicate step.
+- Bind registry adoption to explicit confirmation and actual run hashes; distinguish scientific-specification changes, numerical differences and same-engine reproduction in comparisons, with special relative tolerance for p values.
+- Add a minimal Claude Code wrapper over the same Skill/resource/script tree. Both host manifests now declare 0.6.0. Release scope is basic loadability and shared helper interfaces; CC business-effect evaluation is deferred by the author, with no paid CC model call required.
+- Record local regression, independent numerical references and 48 real-host first attempts in `docs/validation/global-statistics-cc.md`, including failures and separate targeted retests. Cross-host behavioral acceptance has not passed; static validation and successful calculations do not establish it.
+
 ## 0.5.2 — 2026-11-14
 
 - Add a blue-teal and gold quill icon for the plugin listing and composer, bundled locally with no external image dependency.

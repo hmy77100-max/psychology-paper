@@ -1,7 +1,14 @@
-# Analysis principles
+# Analysis intents and authority
 
-Treat the research design, not the spreadsheet labels, as the source of the expected data structure and model. Preserve source data unchanged. A computed result is provisional until the user confirms the design, field mapping, scoring, sample, exclusions, model, and formal analysis source.
+Select intent from the author's request; computation, adoption and manuscript editing are separate permissions.
 
-One formal analysis has one authoritative source. A verification implementation checks consistency and cannot donate selected statistics to the authoritative output. Record disagreements instead of choosing the more favorable value.
+Understand how the study generated observations: who/what was measured, under which conditions and how often. Reuse the manuscript/design understanding, then verify which records were retained and used or aggregated by the reported analysis. Inspect supplied files before asking focused questions about missing records; possible measurements are not available fields. Follow useful, question-relevant gaps into method_learning without waiting for a model name or a nonsignificant result. Respect narrow tasks and author decisions; keep a suitable analysis when no meaningful gain is evident.
 
-Use the original statistical software and syntax when available. If transparent tabular data are the only source, recommend Python or R based on the required method and reproducibility, then obtain the user's choice. Use a specialized software interface for software-specific estimators when available; otherwise inspect exported syntax and output without pretending to have reproduced the model.
+Retain supplied versions, scales, units, variable roles and estimands in reasoning and examples. Resolve genuine ambiguity; distinguish evidence from assumptions. Complexity, sample count or missingness alone cannot establish identification, power or a missingness mechanism. Numerical rules and equivalence claims need applicable sources and conditions.
+
+- `METHOD_REVIEW`: assess methods and added information without requiring data, project setup or a formal source.
+- `CANDIDATE_ANALYSIS`: compute within existing computation, data and output authorization; document uncertain mappings and assumptions without requiring field-by-field adoption or formal software selection. Resolve ambiguity blocking computation. Preserve source data; outputs are DERIVED candidates, not automatically formal entries.
+- `FORMAL_ANALYSIS`: confirm design, mappings, scoring, sample, exclusions, model, estimator, software and reproducibility settings. Keep one AUTHORITATIVE and at most one VERIFICATION source. Specification approval does not adopt new results.
+- `VERIFICATION`: check the same specification with a documented implementation; report discrepancies without replacing the formal source or combining favorable statistics.
+
+Use analysis_preflight.py for intent readiness and analysis_runner.py for supported computation; new runs are CANDIDATE. Distinguish implemented from externally reviewed methods. Check business status and actual saved paths. Statistical markers must refer to the same named analysis.

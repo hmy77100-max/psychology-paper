@@ -13,10 +13,14 @@
     }
   },
   "conditional_loads": {
+    "method_learning": ["./references/method-learning.md"],
     "source_comparison": ["./references/source-comparison.md"],
     "registry": ["./references/analysis-registry-schema.md"]
   },
   "shared_loads": {
+    "authorization": ["../.shared/core/authorization-and-state.md"],
+    "state_rules": ["../.shared/core/state-consistency.md"],
+    "handoff": ["../.shared/schemas/minimal-handoff.md"],
     "design_taxonomy": ["../.shared/core/research-design-taxonomy.md"],
     "source_authority": ["../.shared/core/source-authority.md"],
     "terminology": ["../.shared/core/terminology-ledger.md"],

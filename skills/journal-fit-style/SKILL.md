@@ -31,3 +31,6 @@ Current journal scope, article types, review model, limits, fees, data/ethics po
 ## Output and approval
 
 Return a manuscript profile, candidate comparison, or journal profile candidate. State the fit, strongest match, largest risk, and revision implications. Do not switch a user-confirmed journal. Write `.psychology-paper/JOURNAL_PROFILE.md` only after approval and record its path in project state.
+
+
+Published methodological practice is descriptive evidence about a journal, not a mandatory method rule. Distinguish observed practice from explicit submission requirements.

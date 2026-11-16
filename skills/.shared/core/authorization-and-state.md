@@ -43,3 +43,6 @@ FULL_RENDER_ONLY_AT_MILESTONE = true
 ```
 
 These invariants describe future document writes. Stage 1A may create approved project state but remains read-only for manuscripts.
+
+
+Authorized CANDIDATE_ANALYSIS may write separate DERIVED outputs within the granted data/computation/output scope while decision_status remains CANDIDATE. Use CANDIDATE_OUTPUT_ALLOWED for this permission; WRITE_ALLOWED remains the approved manuscript/formal mutation gate. Never relabel a candidate APPROVED merely to save output.

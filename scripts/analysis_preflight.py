@@ -6,6 +6,8 @@ from pathlib import Path
 import sys
 from typing import Any
 
+from analysis_contracts import validate_spec, normalize_design_tags
+
 
 def _result(
     status: str,
@@ -44,8 +46,10 @@ def _design_is_complete(design: object) -> bool:
 
 
 def _method_candidates(design: dict[str, Any]) -> list[str]:
-    tags = set(design.get("design_tags", []))
+    tags = set(normalize_design_tags(design.get("design_tags", [])))
     question = design.get("research_question_type")
+    if tags.intersection({'within-subjects','within-subject','repeated-measures','mixed-design','repeated-or-mixed'}):
+        return ['repeated_measures_or_mixed_effects'] + (['interaction_decomposition'] if question=='factorial_effects' or 'factorial' in tags else [])
     if question == "factorial_effects" or "factorial-between-subjects" in tags:
         return ["factorial_anova_or_linear_model", "interaction_decomposition"]
     if "repeated-measures" in tags or "mixed-design" in tags:
@@ -62,6 +66,19 @@ def _method_candidates(design: dict[str, Any]) -> list[str]:
 
 
 def evaluate_preflight(specification: dict[str, Any]) -> dict[str, Any]:
+    if specification.get("schema_version") == 2:
+        errors = validate_spec(specification)
+        if errors:
+            return {**_result("INVALID_SPEC", analysis_allowed=False), "errors": errors, "success": False}
+        if specification.get("intent") == "METHOD_REVIEW":
+            return {**_result("METHOD_REVIEW_READY", analysis_allowed=False), "success": True}
+        try:
+            from analysis_runner import evaluate_runtime_preflight
+        except ImportError:
+            return {**_result("SPEC_VALIDATED", analysis_allowed=False,
+                             method_candidates=_method_candidates(specification["design"])),
+                    "success": True, "runtime_validation_required": True}
+        return evaluate_runtime_preflight(specification)
     design = specification.get("design")
     if not _design_is_complete(design):
         return _result(
@@ -131,8 +148,8 @@ def evaluate_preflight(specification: dict[str, Any]) -> dict[str, Any]:
         )
 
     return _result(
-        "READY_FOR_ANALYSIS",
-        analysis_allowed=True,
+        "LEGACY_SPEC_INCOMPLETE",
+        analysis_allowed=False,
         method_candidates=_method_candidates(design),
         formal_software=authoritative[0].get("software"),
         verification_software=(verification[0].get("software") if verification else None),

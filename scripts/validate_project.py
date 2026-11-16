@@ -105,7 +105,7 @@ def validate_state(state: dict[str, Any], project_root: Path) -> list[str]:
                     for entry in analyses
                     if isinstance(entry, dict)
                 ]
-                if len(ids) != len(analyses) or any(not value for value in ids):
+                if len(ids) != len(analyses) or any(not isinstance(value, str) or not value.strip() for value in ids):
                     errors.append("analysis registry entries require analysis_id")
                 elif len(ids) != len(set(ids)):
                     errors.append("analysis registry analysis_id values must be unique")
@@ -114,6 +114,14 @@ def validate_state(state: dict[str, Any], project_root: Path) -> list[str]:
                         continue
                     if entry.get("adoption_status") != "USER_ADOPTED":
                         errors.append("analysis registry contains an unadopted entry")
+                    if entry.get("integrity_version") == 1:
+                        from analysis_registry import validate_formal_reference
+                        try:
+                            if not isinstance(entry.get("formal_output_ref"), dict):
+                                raise ValueError("formal_output_ref required")
+                            validate_formal_reference(entry, project_root)
+                        except (OSError, ValueError, TypeError) as exc:
+                            errors.append(f"analysis registry adopted result integrity failure: {exc}")
                     sources = entry.get("sources")
                     if not isinstance(sources, list):
                         errors.append("analysis registry entry sources must be a list")
@@ -209,6 +217,11 @@ def main(argv: list[str] | None = None) -> int:
         for error in errors:
             print(error)
         return 1
+    optional = state.get("optional_state_files", {})
+    if isinstance(optional, dict) and optional.get("analysis_registry"):
+        registry, _ = extract_json_frontmatter(_absolute_or_project_path(optional["analysis_registry"], project_root))
+        if any(isinstance(e, dict) and e.get("integrity_version") != 1 for e in registry.get("analyses", [])):
+            print("Historical registry entries: LEGACY_UNVERIFIED (read-only; integrity not established)")
     print("Project state valid")
     return 0
 

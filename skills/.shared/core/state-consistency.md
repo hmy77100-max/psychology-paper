@@ -93,6 +93,63 @@
       "any": [],
       "message": "Submission cannot be marked passed with unresolved R0/R1 risk.",
       "components": ["router", "project-validator"]
+    },
+    {
+      "id": "SC-011",
+      "scope": "current_action",
+      "all": [
+        {
+          "path": "write_permission",
+          "op": "eq",
+          "value": "CANDIDATE_OUTPUT_ALLOWED"
+        }
+      ],
+      "any": [
+        {
+          "path": "source_role",
+          "op": "ne",
+          "value": "DERIVED"
+        },
+        {
+          "path": "explicit_output_target",
+          "op": "ne",
+          "value": true
+        },
+        {
+          "path": "compute_authorized",
+          "op": "ne",
+          "value": true
+        },
+        {
+          "path": "data_scope_confirmed",
+          "op": "ne",
+          "value": true
+        },
+        {
+          "path": "output_scope_confirmed",
+          "op": "ne",
+          "value": true
+        },
+        {
+          "path": "action_kind",
+          "op": "not_in",
+          "value": [
+            "CANDIDATE_ANALYSIS",
+            "VERIFICATION"
+          ]
+        },
+        {
+          "path": "output_kind",
+          "op": "ne",
+          "value": "CANDIDATE_ARTIFACT"
+        }
+      ],
+      "message": "Candidate output requires bounded computation, data and output authorization and an explicit DERIVED candidate target; manuscript and formal registry mutation are forbidden.",
+      "components": [
+        "router",
+        "project-validator",
+        "document-patcher"
+      ]
     }
   ]
 }

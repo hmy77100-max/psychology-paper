@@ -48,14 +48,17 @@ Identify the paper type, every relevant design tag, observation unit, evidence s
 ## Audit sequence
 
 1. Take the short route directly into review, including full-manuscript review. Identify the current manuscript and version using the workflow authority rules. Reuse compatible background and journal requirements without restarting positioning or creating state.
-2. Understand the author's question, argument and design from that manuscript. Do not substitute an old profile or approved intentions for what readers can actually see. Clarify only uncertainties that materially affect this review.
+2. Understand the author's question, argument and design from that manuscript; consider what observations it generated and whether the analysis uses them. Reuse this understanding for focused analysis-adapter method-review support when useful. Do not substitute old profiles or intentions for the current paper; clarify material uncertainties.
 3. Check applicable constructs, operations, measures, samples, visible analyses and claims. Check other sections, tables, figures and appendices before alleging a conflict; state anything not inspected.
 4. For externally verifiable uncertainties that could change a material recommendation, perform targeted source lookup using available browsing/retrieval tools. Honor offline requests and tool/access limits; report unresolved questions and continue independent checks.
 5. Separate observed facts, interpretations and recommendations. Assign issue kind separately from evidence status/risk; preserve supported contributions. Where in scope, compare contribution with existing target requirements and organize feasible advice by evidence needs, tradeoffs and dependencies. Apply quality review to sources, coverage, duplicates, conflicts and any prior issue dispositions before delivery.
-6. For proposed evidence-bearing changes, load `axes.scope.change-impact` and return affected locations. Deliver the review and stop; no automatic editing or analysis handoff.
+6. For proposed evidence-bearing changes, load `axes.scope.change-impact` and return affected locations. Deliver the review and stop; no automatic editing or calculation.
 
-Without recalculation authorization, inspect only visible consistency and mark anomalies for verification. Do not try alternate scoring, exclusions, or models. Statistical inconsistency is not evidence of misconduct.
+Without recalculation authorization, assess supplied evidence and method options without running alternative scoring, exclusions or models. Statistical inconsistency is not evidence of misconduct.
 
 When a significance marker or verbal significance claim is added, removed, or questioned, identify the exact named analysis for both the target value and its supporting report, then run `workflow_guards.py statistical-marker`. A marker from a correlation, regression, simple effect, interaction, alternative score, or other analysis cannot support a different named result. If the guard returns `UNRESOLVED`, preserve the authoritative text and report the mismatch for user action.
 
 For a later editing request with unspecified scope, ask full-manuscript versus targeted revision. Reuse scope already specified by the user. Only then follow the existing revision route with the selected issue, evidence ceiling and affected locations. Assent to advice alone does not start that route.
+
+
+Read and assess statistical sources without automatically recalculating. When computation is requested and already authorized, hand off to analysis-adapter with the existing scope and relevant evidence; do not demand repeated approval.

@@ -1,8 +1,10 @@
 # Psychology Paper
 
-Psychology Paper is a Codex plugin project for evidence-calibrated psychology manuscript work. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. It does not modify source data or manuscript files, maintain a literature database, or prepare submission files yet. Version 0.5.0 adds on-demand prose diagnostics, author-led collaboration guidance and bounded staged resource loading within the existing modules.
+Psychology Paper supports evidence-calibrated psychology manuscript work in Codex and Claude Code. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. It does not modify source data or manuscript files, maintain a literature database, or prepare submission files yet.
 
-Version 0.5.2 adds optional theory-reasoning support, more precise source attribution and a quill icon to the author-led guidance and resource reuse introduced in 0.5.1. An existing installation must be explicitly updated to use it.
+Version 0.6.0 connects understanding the research design to noticing useful information in retained data, shares analysis contracts and controlled statistical helpers across the existing modules, and packages the same five Skills for Claude Code. Existing installations need an explicit update. Author decisions govern analysis adoption and manuscript changes; no fixed argument or preferred model is imposed.
+
+The author accepted two ordinary-request simulations on 2026-11-15 and seven additional boundary scenarios on 2026-11-16, covering five experimental designs, an empirical literature review and a theoretical review. These observed Codex sessions support the accepted assistance behavior, not every method's numerical accuracy or other models' performance. Claude Code business-effect evaluation is deferred by the author; release checks cover basic plugin discovery and loadability without paid model calls. Historical failures and the scope of these checks remain documented in [the validation record](docs/validation/global-statistics-cc.md).
 
 ## Implemented modules
 
@@ -10,7 +12,7 @@ Version 0.5.2 adds optional theory-reasoning support, more precise source attrib
 - `journal-fit-style`: profiles the manuscript, evaluates journal fit, and learns journal writing patterns at light or deep depth.
 - `evidence-audit`: reviews the paper with design-appropriate checks, targeted external-source verification, and evidence-grounded advice within the requested scope/risk threshold.
 - `manuscript-writing`: prepares section-specific Chinese, English, or bilingual candidates within the author's scope and the available evidence.
-- `analysis-adapter`: confirms design and data fields, locks one formal analysis source, routes design-appropriate methods, records adopted specifications, and supports independent verification.
+- `analysis-adapter`: supports method review, authorized candidate computation, formal analysis and verification through a shared analysis contract; preserves separate computation, result-adoption and manuscript-editing decisions.
 
 One module is primary for each task. Other modules receive only the smallest necessary handoff, preferably a file path and exact location rather than duplicated manuscript text.
 
@@ -43,6 +45,33 @@ codex plugin add psychology-paper@<marketplace-name>
 ```
 
 The marketplace manifest is `<marketplace-root>\.agents\plugins\marketplace.json`. Its marketplace name supplies `<marketplace-name>`. A private GitHub repository requires Git authentication before cloning; a public repository does not. Start a new Codex task after installation so the newly installed Skills are discovered.
+
+## Claude Code
+
+The repository contains a minimal Claude Code manifest at `.claude-plugin/plugin.json`. Claude Code uses the existing root `skills/` directory by default, sharing the five Skills, resource manifests and Python helpers with Codex. The wrapper adds no agents, hooks, permission presets or duplicated Skill tree. Codex-specific interface metadata stays in `.codex-plugin/plugin.json`. Both manifests declare version `0.6.0`.
+
+From the cloned repository root, use an installed Claude Code CLI for local manifest validation:
+
+```powershell
+claude --version
+claude plugin validate . --strict
+```
+
+Load the cloned or extracted plugin in a fresh Claude Code session:
+
+```powershell
+claude --plugin-dir "."
+```
+
+To inspect the loaded component inventory without a model call:
+
+```powershell
+claude --plugin-dir "." plugin details psychology-paper
+```
+
+Claude Code 2.1.312 has discovered all five Skills from this shared tree using that command. The shared Python loader and method-contract query are also checked locally; earlier CC host attempts exercised resource loading and calculations, with successes and failures recorded separately. These facts establish the bounded loading/entry support, not consistent scientific reasoning or equivalent business performance across hosts. No paid CC model evaluation is required for this release. Python and any optional statistics dependencies must be available in the user's environment; the plugin does not install them automatically.
+
+The wrapper follows the official [plugin manifest reference](https://code.claude.com/docs/en/plugins-reference), including the default `skills/` location and strict validation command. This section documents local development loading; it does not configure a Claude Code marketplace or install the plugin.
 
 ## Deterministic resource loading
 
@@ -153,7 +182,9 @@ python -X utf8 .\scripts\analysis_registry.py init --project-root "C:\path\to\ma
 python -X utf8 .\scripts\analysis_preflight.py --spec "C:\path\to\analysis-spec.json"
 ```
 
-Preflight stops before calculation when the research design is missing, field mappings are not user-confirmed, or the formal analysis source is unresolved. The registry accepts a formal result only after explicit user adoption.
+Choose the intent first: `METHOD_REVIEW` needs no dataset or formal source; `CANDIDATE_ANALYSIS` may compute within authorized data/output scope while documenting scientific assumptions; `FORMAL_ANALYSIS` requires the adopted specification and one authoritative source; `VERIFICATION` checks that specification without replacing its authority. Candidate computation does not require prior adoption of every field interpretation or a formal software choice. Ambiguity that prevents meaningful computation still needs resolution.
+
+The controlled runner supports descriptive statistics, scale scoring, Welch and Student independent-samples t tests, paired t tests, and Pearson correlation. `analysis_runner.py methods --method paired_t` exposes the small field contract without reading backend source or optional statistical packages. Method learning remains open beyond these six executable methods. Runtime preflight checks actual inputs, dependencies and output scope; legacy structural completeness alone never establishes execution readiness. Results remain candidates until explicit adoption, and registry adoption checks the actual run artifact and hashes. See [global statistics and Claude Code validation](docs/validation/global-statistics-cc.md) for interfaces, numerical evidence and remaining host evaluation.
 
 ## Validation
 
@@ -184,7 +215,7 @@ Every later behavior or rule change begins with a failing automated test or scen
 
 ## Stage boundary
 
-Statistical support is active through `analysis-adapter`, but actual analyses remain gated by confirmed design, field mapping, scoring, sample, model, and source. Targeted literature verification is available inside read-only evidence review. Standalone literature management, formal reviewer-response workflows, submission checks, and document patching remain absent until their separate stages are approved.
+Statistical support is active through `analysis-adapter` under intent-specific authorization and evidence requirements. Candidate calculation, formal-source adoption and manuscript editing remain separate decisions; neither a successful calculation nor adoption authorizes a manuscript write. Targeted literature verification is available inside read-only evidence review. Standalone literature management, formal reviewer-response workflows, submission checks, and document patching remain absent until their separate stages are approved.
 
 ## License
 

@@ -35,6 +35,11 @@ def run_preflight(specification: dict[str, object]) -> dict[str, object]:
 
 
 class AnalysisPreflightTests(unittest.TestCase):
+    def test_mixed_factorial_recommendation_preserves_repeated_structure(self):
+        sys.path.insert(0,str(PLUGIN_ROOT/'scripts'))
+        from analysis_preflight import _method_candidates
+        methods=_method_candidates({'design_tags':['within-subject','between-subject','factorial'],'research_question_type':'factorial_effects'})
+        self.assertIn('repeated_measures_or_mixed_effects',methods)
     def test_router_exposes_analysis_adapter_for_recalculation(self) -> None:
         self.assertIn("analysis-adapter", ROUTER_SKILL.read_text(encoding="utf-8"))
         self.assertIn("analysis-adapter", ROUTING_REFERENCE.read_text(encoding="utf-8"))
@@ -121,8 +126,8 @@ class AnalysisPreflightTests(unittest.TestCase):
                 ],
             }
         )
-        self.assertEqual(result["status"], "READY_FOR_ANALYSIS")
-        self.assertTrue(result["analysis_allowed"])
+        self.assertEqual(result["status"], "LEGACY_SPEC_INCOMPLETE")
+        self.assertFalse(result["analysis_allowed"])
         self.assertIn("factorial_anova_or_linear_model", result["method_candidates"])
         self.assertIn("interaction_decomposition", result["method_candidates"])
         self.assertEqual(result["formal_software"], "SPSS")
@@ -176,6 +181,15 @@ class AnalysisPreflightTests(unittest.TestCase):
         self.assertFalse(result["analysis_allowed"])
         self.assertEqual(result["software_candidates"], ["Python", "R"])
         self.assertTrue(any("正式分析软件" in q for q in result["user_questions"]))
+
+
+
+
+class V2PreflightTests(unittest.TestCase):
+    def test_method_review_and_legacy_never_claim_execution(self):
+        result=run_preflight({'schema_version':2,'analysis_id':'review','revision':1,'intent':'METHOD_REVIEW'})
+        self.assertEqual(result['status'],'METHOD_REVIEW_READY')
+        self.assertFalse(result['analysis_allowed'])
 
 
 if __name__ == "__main__":

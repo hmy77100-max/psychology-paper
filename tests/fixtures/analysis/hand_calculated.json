@@ -1,0 +1,7 @@
+{
+  "provenance": "Independent algebraic references; no scipy-generated expected values.",
+  "welch": {"a": [1,2,3,4], "b": [2,4,6,8], "estimate": -2.5, "se_squared": 2.0833333333333335, "df": 4.411764705882353, "t_squared": 3},
+  "paired": {"x": [1,3,6,10], "y": [0,1,3,6], "estimate": 2.5, "sd_squared": 1.6666666666666667, "t_squared": 15, "df": 3},
+  "pearson": {"x": [1,2,3,4], "y": [1,3,2,4], "r": 0.8},
+  "derivation": "Welch: sample variances 5/3 and 20/3, SE^2=(5/3+20/3)/4=25/12, df=(25/12)^2/((5/12)^2/3+(20/12)^2/3)=75/17, t=-sqrt(3). Paired: differences [1,2,3,4], variance=5/3, SE^2=5/12, t=sqrt(15). Pearson: centered crossproduct=4, each centered sum of squares=5, r=4/5."
+}

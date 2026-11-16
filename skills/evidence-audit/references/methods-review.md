@@ -1,13 +1,13 @@
 # Research and methods review
 
-Trace the author's question through construct, operationalization, design, sample, outcome, analysis and conclusion. Use the applicable design fragments, not a universal checklist. Keep a compact map in context; do not require a separate document or confirmed journal. The model chooses meaningful checks and evaluates alternatives; no fixed model, test or effect-size threshold is imposed here.
+Trace the author's question through construct, operationalization, design, sample, outcome, analysis and conclusion. Retain supplied versions, scales, units and variable roles; examples must use those facts. Clarify genuine ambiguities without substituting a different problem. Answer what is already decidable, keeping assumptions and optional methods conditional. Complexity, sample count or missingness alone does not justify causal claims, power guarantees, a missingness mechanism or universal thresholds. Use applicable fragments and meaningful checks, not a mandatory checklist or separate document.
 
 ## Inspect before criticizing
 
 - Identify assignment unit, observation unit and analysis unit. Check clustering, repeated trials/occasions, shared controls and reuse of participants/effects. Sample counts at different levels are not interchangeable. Ask how dependence was handled before judging an undocumented procedure invalid.
 - Match measures to the actual construct, version, instructions, scoring and intended use. Total-score reliability does not establish every subscale's reliability or validity. Require comparison/invariance evidence only when the intended claim needs it; use external verification for material uncertainties.
 - For each disputed statistic, match study/sample, outcome, time, model/covariates, contrast and coefficient scale. Different analyses or standardized versus unstandardized coefficients need not match numerically. Significance in one group but not another does not establish a difference. Retain the existing named-analysis marker guard.
-- Inspect missingness/exclusions, analysis assumptions, uncertainty, multiplicity and sensitivity where they affect the stated claim. Distinguish reported, prespecified and exploratory analyses. Missing information is not proof that the analysis failed. No recalculation or alternative scoring/model search without a separate request and existing analysis workflow.
+- Inspect missingness/exclusions, analysis assumptions, uncertainty, multiplicity and sensitivity where they affect the stated claim. Distinguish reported, prespecified and exploratory analyses. Missing information is not proof that the analysis failed. Running alternative scoring, exclusions or models requires computation authorization; method assessment can use analysis-adapter without recalculation. Reuse the existing scope and intent.
 - Check causal, mechanism and generalization claims against what was assigned/measured and which comparisons were actually made. Recommendations can include new analyses or experiments; explain the evidence gap rather than automatically demanding them.
 
 ## Classify the finding, not the author
