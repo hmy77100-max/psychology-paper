@@ -34,3 +34,6 @@ STOP_CONDITION
 - `STOP_CONDITION`: the event at which work must stop for approval, missing authority, or unavailable capability.
 
 Exclude full chat history, rejected candidates, unrelated sections, repeated journal guidance, and duplicated file contents. If the receiver can read a file, pass its path and location.
+
+
+For METHOD_REVIEW or standalone candidate work, an authoritative file and manuscript project may be absent. Hand off intent, authorized scope, available sources, assumptions, candidate output target, and unresolved questions. Reuse existing authorization; handoff does not require duplicate approval.

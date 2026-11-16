@@ -9,7 +9,7 @@
 | Record approval or choose route | `psychology-paper` | Compact approved state or routing decision |
 | Verify a material source question during review | `evidence-audit` | Targeted lookup with provenance and access limits; reuse journal/profile context |
 | Standalone literature management or systematic mapping | unavailable until Stage 2 | Explain boundary and stop |
-| Recalculate data or verify fields | `analysis-adapter` | Confirm design and fields, lock one formal source, then produce reproducible analysis outputs |
+| Design-informed analysis opportunities, recalculation or field checks | `analysis-adapter` | Select method-review, candidate, formal or verification intent; reuse authorized scope and apply the intent-specific requirements |
 | Patch DOCX/TXT/Markdown | unavailable until Stage 1B | Prepare minimal handoff; do not edit |
 | Formal response letter or submission audit | unavailable until Stage 3 | Explain boundary and stop |
 

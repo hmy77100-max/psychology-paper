@@ -1,0 +1,111 @@
+{
+  "provenance": {
+    "kind": "actual independent tool output transcribed into fixture",
+    "tool": "Wolfram kernel",
+    "version": "15.0.1",
+    "platform": "Linux x86 (2026-07-02)",
+    "returned_on": "2026-11-14",
+    "supplied_by": "Parent agent relaying actual Wolfram call in this session",
+    "calculation": "Independent CDF/quantile calculations and PearsonCorrelationTest; not local SciPy; not expert annotation.",
+    "alternative": "two-sided",
+    "confidence_level": 0.95,
+    "sources": [
+      "https://reference.wolfram.com/language/ref/StudentTDistribution.html",
+      "https://reference.wolfram.com/language/ref/PearsonCorrelationTest.html"
+    ],
+    "limits": "Representative small fixtures only; does not prove all statistical correctness."
+  },
+  "cases": {
+    "welch_t": {
+      "x": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "y": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "estimate": -2.5,
+      "se": 1.4433756729740643,
+      "df": 4.411764705882353,
+      "statistic": -1.7320508075688772,
+      "p": 0.15158050484530394,
+      "ci": [
+        -6.364167215486199,
+        1.3641672154861986
+      ]
+    },
+    "student_t": {
+      "x": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "y": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "estimate": -2.5,
+      "se": 1.4433756729740643,
+      "df": 6,
+      "statistic": -1.7320508075688772,
+      "p": 0.13397459621556135,
+      "ci": [
+        -6.031813039854585,
+        1.0318130398545848
+      ]
+    },
+    "paired_t": {
+      "x": [
+        1,
+        3,
+        6,
+        10
+      ],
+      "y": [
+        0,
+        1,
+        3,
+        6
+      ],
+      "estimate": 2.5,
+      "se": 0.6454972243679028,
+      "df": 3,
+      "statistic": 3.872983346207417,
+      "p": 0.03046629166217099,
+      "ci": [
+        0.44573974323947796,
+        4.554260256760522
+      ]
+    },
+    "pearson": {
+      "x": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "y": [
+        1,
+        3,
+        2,
+        4
+      ],
+      "estimate": 0.8,
+      "statistic": 0.8,
+      "p": 0.19999999999999993,
+      "ci": [
+        -0.6969534452993226,
+        0.9956002504665856
+      ],
+      "ci_method": "fisher_z"
+    }
+  }
+}

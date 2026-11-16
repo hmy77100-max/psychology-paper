@@ -94,3 +94,24 @@ class SharedContractTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class AnalysisIntentContractTests(unittest.TestCase):
+    def test_four_intents(self):
+        core = (PLUGIN_ROOT / "skills/analysis-adapter/static/core/analysis-principles.md").read_text(encoding="utf-8")
+        for intent in ("METHOD_REVIEW", "CANDIDATE_ANALYSIS", "FORMAL_ANALYSIS", "VERIFICATION"):
+            self.assertIn(intent, core)
+
+class CandidateGuardTests(unittest.TestCase):
+    def test_candidate_requires_bounded_derived_authorization(self):
+        import sys
+        sys.path.insert(0,str(PLUGIN_ROOT / "scripts"))
+        from project_state import load_state_rules,evaluate_rules
+        path=SHARED / "core/state-consistency.md"
+        rules=load_state_rules(path)
+        valid=dict(write_permission="CANDIDATE_OUTPUT_ALLOWED",source_role="DERIVED",explicit_output_target=True,compute_authorized=True,data_scope_confirmed=True,output_scope_confirmed=True,action_kind="CANDIDATE_ANALYSIS",output_kind="CANDIDATE_ARTIFACT")
+        def errors(action): return evaluate_rules({"current_action":action},rules,"router",path)
+        self.assertEqual(errors(valid),[])
+        for key in ("source_role","explicit_output_target","compute_authorized","data_scope_confirmed","output_scope_confirmed","action_kind","output_kind"):
+            bad=valid.copy();bad.pop(key);self.assertTrue(errors(bad),key)
+        for kind in ("MANUSCRIPT","FORMAL_REGISTRY"):
+            self.assertTrue(errors(dict(valid,output_kind=kind)))

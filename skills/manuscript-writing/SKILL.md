@@ -40,3 +40,6 @@ Use `conditional_loads.literature_support` for citation-dependent argument work,
 8. Interpret the author's unrestricted language in context. Do not prescribe fixed reply commands or require candidate IDs when the referent is clear. In full mode, run `revision_check.py decision` before recording acceptance. Partial adoption creates a mixed candidate; “next” alone does not approve. Preserve local preferences and route explicitly approved reusable preferences to style-delta. Do not write the source file.
 
 Do not invent facts, data, statistical results, citations, methods, or author decisions. Verified additions follow the existing task authorization. A user-approved candidate may be recorded in project state, but manuscript mutation is deferred to Stage 1B.
+
+
+After understanding the design, use analysis-adapter to assess worthwhile questions about unused observations, including in general revision requests. Keep isolated language edits local. Computation follows existing authorization; proposed statistical changes do not authorize manuscript edits.

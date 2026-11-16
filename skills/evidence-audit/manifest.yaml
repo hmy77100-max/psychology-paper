@@ -38,6 +38,9 @@
     }
   },
   "shared_loads": {
+    "authorization": ["../.shared/core/authorization-and-state.md"],
+    "state_rules": ["../.shared/core/state-consistency.md"],
+    "handoff": ["../.shared/schemas/minimal-handoff.md"],
     "evidence": ["../.shared/core/evidence-boundaries.md"],
     "design_taxonomy": ["../.shared/core/research-design-taxonomy.md"],
     "terminology": ["../.shared/core/terminology-ledger.md"],

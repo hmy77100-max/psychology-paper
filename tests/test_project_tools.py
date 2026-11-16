@@ -204,7 +204,7 @@ class ProjectToolTests(unittest.TestCase):
         rules, _ = read_frontmatter(RULES)
         rule_list = rules["rules"]
         ids = [rule["id"] for rule in rule_list]
-        self.assertEqual(ids, [f"SC-{index:03d}" for index in range(1, 9)])
+        self.assertEqual(ids, [f"SC-{index:03d}" for index in range(1, 9)] + ['SC-011'])
         self.assertEqual(len(ids), len(set(ids)))
         supported = {"eq", "ne", "in", "not_in", "exists"}
         for rule in rule_list:

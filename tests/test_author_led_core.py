@@ -9,6 +9,39 @@ import load_skill_resources as loader
 
 
 class AuthorLedCoreTests(unittest.TestCase):
+    def test_analysis_learning_is_optional_once_and_within_existing_load_budget(self):
+        # Resource integration/cost only; scientific usefulness is judged by the author.
+        default = loader.load_skill_resources(skill="analysis-adapter", selectors=[])
+        selector = "conditional_loads.method_learning"
+        selected = loader.load_skill_resources(skill="analysis-adapter", selectors=[selector])
+        repeated = loader.load_skill_resources(skill="analysis-adapter", selectors=[selector, selector])
+        self.assertEqual(len(default.resources), 1)
+        self.assertEqual(len(selected.resources), len(default.resources) + 1)
+        self.assertEqual(selected.resources, repeated.resources)
+        self.assertEqual(selected.total_chars, repeated.total_chars)
+        self.assertLessEqual(default.total_chars, 2300,
+                             "merge existing core wording to make room for the discovery cue")
+        self.assertLessEqual(selected.total_chars, 6400,
+                             "keep method details conditional without a new loading layer")
+
+    def test_conditional_resources_do_not_restore_formal_only_gate(self):
+        routing=(ROOT/'skills/psychology-paper/references/task-routing.md').read_text(encoding='utf-8')
+        methods=(ROOT/'skills/evidence-audit/references/methods-review.md').read_text(encoding='utf-8')
+        compare=(ROOT/'skills/analysis-adapter/references/source-comparison.md').read_text(encoding='utf-8')
+        self.assertNotIn('lock one formal source, then produce',routing)
+        self.assertNotIn('without a separate request',methods)
+        self.assertNotIn('estimator, software, settings, seed, and output location',compare)
+
+    def test_writing_and_review_do_not_block_read_only_method_support(self):
+        writing = (ROOT/'skills/manuscript-writing/SKILL.md').read_text(encoding='utf-8')
+        review = (ROOT/'skills/evidence-audit/SKILL.md').read_text(encoding='utf-8')
+        self.assertNotIn('Suggest a method or candidate analysis only in response to the author request.', writing)
+        self.assertNotIn('no automatic editing or analysis handoff', review)
+
+    def test_analysis_entry_does_not_duplicate_loaded_intent_definitions(self):
+        text=(ROOT/'skills/analysis-adapter/SKILL.md').read_text(encoding='utf-8')
+        self.assertNotIn('`METHOD_REVIEW`: discuss and learn methods',text)
+
     def test_direct_and_routed_writing_share_one_bounded_core(self):
         expected = (ROOT / "skills/.shared/core/author-led-writing.md").resolve()
         for skill in ("psychology-paper", "manuscript-writing"):

@@ -1,14 +1,13 @@
 # Routing principles
 
-Interpret the user's ordinary language and requested outcome; no workflow commands are required.
+Interpret ordinary requests; choose one primary module:
 
-Use one primary module per request:
+- journal fit/style → `journal-fit-style`
+- review or evidence conflict → `evidence-audit`
+- writing/translation candidates → `manuscript-writing`
+- method review, candidate calculation, formal analysis or verification → `analysis-adapter`
+- orchestration/decisions → `psychology-paper`
 
-- journal direction, fit, or target-journal style → `journal-fit-style`
-- requested review or unresolved evidence conflict → `evidence-audit`
-- writing or translation candidate within the authorized scope → `manuscript-writing`
-- orchestration, approval recording, or unavailable-stage explanation → `psychology-paper`
+After understanding the design during manuscript work, use `analysis-adapter` to assess potentially unused observations; a general revision request is enough. Keep isolated language edits local.
 
-Support modules receive a minimal handoff without widening scope.
-
-Check dependent locations when an edit changes scientific meaning or identifiers. A focused change-impact audit resolves material uncertainty; verified, authorized revisions need no automatic module handoff. Read only the context needed; broader reading does not authorize broader writing.
+Standalone `method_review`, `candidate_analysis` and `verification` need no project setup and grant no manuscript writes; `reanalysis` is formal project work. Pass bounded context/authorization to support modules. Scientific meaning or identifier changes need impact checks, not automatic escalation; reading does not widen edit scope.

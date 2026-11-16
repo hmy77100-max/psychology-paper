@@ -1,0 +1,3 @@
+# Synthetic project state
+A: cross-sectional association ceiling; F1 formal retained; C1 alternative NOT ADOPTED; manuscript edits NOT AUTHORIZED. A-only terminology anticipated warm glow; fictional Journal A 6000 words; SPSS F1 official source.
+B: new observational study; terminology/journal/formal software UNCONFIRMED; only design/method discussion authorized. Preserve general evidence provenance and author control; do not import A-only values.

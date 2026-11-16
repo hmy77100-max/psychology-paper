@@ -68,6 +68,9 @@ def decide_project_mode(
     if task == "evidence_audit":
         return ProjectModeDecision("READ_ONLY_AUDIT", False)
 
+    if task in {"method_review", "candidate_analysis", "verification"}:
+        return ProjectModeDecision("STANDALONE_ANALYSIS", False)
+
     if project_mode_active:
         return ProjectModeDecision("PROJECT_MODE_ACTIVE", True)
 

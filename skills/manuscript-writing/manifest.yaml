@@ -43,6 +43,9 @@
     "confirmed_style_delta": ["./references/style-delta-schema.md"]
   },
   "shared_loads": {
+    "authorization": ["../.shared/core/authorization-and-state.md"],
+    "state_rules": ["../.shared/core/state-consistency.md"],
+    "handoff": ["../.shared/schemas/minimal-handoff.md"],
     "candidate_format": ["../.shared/output/candidate-format.md"],
     "evidence": ["../.shared/core/evidence-boundaries.md"],
     "terminology": ["../.shared/core/terminology-ledger.md"],
