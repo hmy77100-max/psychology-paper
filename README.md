@@ -48,6 +48,29 @@ The marketplace manifest is `<marketplace-root>\.agents\plugins\marketplace.json
 
 ## Claude Code
 
+### Install from GitHub
+
+In Claude Code (including the VS Code extension), run these commands one at a time:
+
+```text
+/plugin marketplace add hmy77100-max/psychology-paper
+/plugin install psychology-paper@psychology-paper-github
+```
+
+Choose the user scope for access across projects. Open a new Claude Code session in your paper project. Type `/psychology-paper:psychology-paper` and add your request to start. Sending that request uses your model account.
+
+To install and inspect the plugin from a terminal, run:
+
+```sh
+claude plugin marketplace add hmy77100-max/psychology-paper
+claude plugin install psychology-paper@psychology-paper-github
+claude plugin details psychology-paper
+```
+
+The details command lists the installed skills without sending a prompt. Launch `claude` from the project directory when you are ready to work.
+
+### Load a local copy for one session
+
 The repository contains a minimal Claude Code manifest at `.claude-plugin/plugin.json`. Claude Code uses the existing root `skills/` directory by default, sharing the five Skills, resource manifests and Python helpers with Codex. The wrapper adds no agents, hooks, permission presets or duplicated Skill tree. Codex-specific interface metadata stays in `.codex-plugin/plugin.json`. Both manifests declare version `0.6.0`.
 
 From the cloned repository root, use an installed Claude Code CLI for local manifest validation:
@@ -71,7 +94,7 @@ claude --plugin-dir "." plugin details psychology-paper
 
 Claude Code 2.1.312 has discovered all five Skills from this shared tree using that command. The shared Python loader and method-contract query are also checked locally; earlier CC host attempts exercised resource loading and calculations, with successes and failures recorded separately. These facts establish the bounded loading/entry support, not consistent scientific reasoning or equivalent business performance across hosts. No paid CC model evaluation is required for this release. Python and any optional statistics dependencies must be available in the user's environment; the plugin does not install them automatically.
 
-The wrapper follows the official [plugin manifest reference](https://code.claude.com/docs/en/plugins-reference), including the default `skills/` location and strict validation command. This section documents local development loading; it does not configure a Claude Code marketplace or install the plugin.
+The wrapper follows the official [plugin manifest reference](https://code.claude.com/docs/en/plugins-reference). The [GitHub marketplace](.claude-plugin/marketplace.json) points to this same plugin at the repository root.
 
 ## Deterministic resource loading
 
