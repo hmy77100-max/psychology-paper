@@ -8,6 +8,7 @@
     "./static/core/authorization.md"
   ],
   "conditional_loads": {
+    "literature_library": ["./references/literature-library.md"],
     "collaboration": ["./references/collaboration.md"],
     "efficient_execution": ["./references/efficient-execution.md"],
     "project_mode": ["./static/core/project-mode.md"],

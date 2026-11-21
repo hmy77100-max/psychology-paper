@@ -2,28 +2,75 @@
   "schema": "psychology-paper-skill-manifest",
   "version": 1,
   "skill": "analysis-adapter",
-  "always_load": ["./static/core/analysis-principles.md"],
+  "always_load": [
+    "./static/core/analysis-principles.md"
+  ],
   "axes": {
     "design_tags": {
-      "survey": ["./static/fragments/designs/survey.md"],
-      "factorial-experiment": ["./static/fragments/designs/factorial-experiment.md"],
-      "repeated-or-mixed": ["./static/fragments/designs/repeated-or-mixed.md"],
-      "longitudinal": ["./static/fragments/designs/longitudinal.md"],
-      "instrument-based": ["./static/fragments/designs/instrument-based.md"]
+      "survey": [
+        "./static/fragments/designs/survey.md"
+      ],
+      "factorial-experiment": [
+        "./static/fragments/designs/factorial-experiment.md"
+      ],
+      "repeated-or-mixed": [
+        "./static/fragments/designs/repeated-or-mixed.md"
+      ],
+      "longitudinal": [
+        "./static/fragments/designs/longitudinal.md"
+      ],
+      "instrument-based": [
+        "./static/fragments/designs/instrument-based.md"
+      ]
     }
   },
   "conditional_loads": {
-    "method_learning": ["./references/method-learning.md"],
-    "source_comparison": ["./references/source-comparison.md"],
-    "registry": ["./references/analysis-registry-schema.md"]
+    "method_learning": [
+      "./references/method-learning.md"
+    ],
+    "source_comparison": [
+      "./references/source-comparison.md"
+    ],
+    "registry": [
+      "./references/analysis-registry-schema.md"
+    ],
+    "method_anova": [
+      "./references/methods/anova.md"
+    ],
+    "method_regression": [
+      "./references/methods/regression.md"
+    ],
+    "method_mixed": [
+      "./references/methods/mixed.md"
+    ],
+    "method_mediation_moderation": [
+      "./references/methods/mediation-moderation.md"
+    ],
+    "method_sem": [
+      "./references/methods/sem.md"
+    ]
   },
   "shared_loads": {
-    "authorization": ["../.shared/core/authorization-and-state.md"],
-    "state_rules": ["../.shared/core/state-consistency.md"],
-    "handoff": ["../.shared/schemas/minimal-handoff.md"],
-    "design_taxonomy": ["../.shared/core/research-design-taxonomy.md"],
-    "source_authority": ["../.shared/core/source-authority.md"],
-    "terminology": ["../.shared/core/terminology-ledger.md"],
-    "impact": ["../.shared/core/change-propagation.md"]
+    "authorization": [
+      "../.shared/core/authorization-and-state.md"
+    ],
+    "state_rules": [
+      "../.shared/core/state-consistency.md"
+    ],
+    "handoff": [
+      "../.shared/schemas/minimal-handoff.md"
+    ],
+    "design_taxonomy": [
+      "../.shared/core/research-design-taxonomy.md"
+    ],
+    "source_authority": [
+      "../.shared/core/source-authority.md"
+    ],
+    "terminology": [
+      "../.shared/core/terminology-ledger.md"
+    ],
+    "impact": [
+      "../.shared/core/change-propagation.md"
+    ]
   }
 }

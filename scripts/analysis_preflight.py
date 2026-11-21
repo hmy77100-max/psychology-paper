@@ -66,7 +66,7 @@ def _method_candidates(design: dict[str, Any]) -> list[str]:
 
 
 def evaluate_preflight(specification: dict[str, Any]) -> dict[str, Any]:
-    if specification.get("schema_version") == 2:
+    if specification.get("schema_version") in (2,3):
         errors = validate_spec(specification)
         if errors:
             return {**_result("INVALID_SPEC", analysis_allowed=False), "errors": errors, "success": False}

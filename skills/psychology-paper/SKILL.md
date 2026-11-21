@@ -1,6 +1,6 @@
 ---
 name: psychology-paper
-description: Route multi-step psychology manuscript work across journal fit, evidence auditing, bilingual writing, and reproducible statistical-analysis support while preserving user approval and source authority.
+description: Route psychology manuscript work across journal fit, evidence auditing, bilingual writing and quantitative analysis. Save selected papers across projects and retrieve readings or local Zotero highlights.
 ---
 
 # Psychology Paper Router
@@ -13,6 +13,7 @@ Resolve the [resource loader](../../scripts/load_skill_resources.py) relative to
 
 - `--select conditional_loads.project_mode` for full-manuscript, reanalysis, review-response, or submission work.
 - `--select conditional_loads.ambiguous_route` when the primary module is unclear.
+- For an agreed save, recall or highlight, load `conditional_loads.literature_library`. Use guard task `literature_library` or `zotero_read`.
 - `--select conditional_loads.module_handoff` when another module is required.
 - `--select conditional_loads.recovery` when source, scope, or permission is unresolved.
 - Add a named `shared_loads.*` selector only when that shared rule is required.
@@ -29,7 +30,7 @@ Stop a failed invocation. Correct exact ARGUMENT_ERROR/RESOLUTION_ERROR defects;
 
 ## Route
 
-Read-only manuscript review takes the short route directly to `evidence-audit`, including full-manuscript scope. It does not require journal positioning or project initialization. When using the guard for this intent, pass `--task evidence_audit`. Targeted source lookup inside that review is not the deferred literature-management workflow.
+Read-only manuscript review takes the short route directly to `evidence-audit`, including full-manuscript scope. It does not require journal positioning or project initialization. When using the guard for this intent, pass `--task evidence_audit`. Targeted source lookup stays within that review.
 
 1. Identify task, scope, language, permission, authoritative source, and whether project mode is needed. Map the user's natural language to controlled task and scope labels, then run `workflow_guards.py project-mode`. If it returns `PROJECT_MODE_CONFIRMATION_REQUIRED`, ask whether to enter project mode before any full-manuscript candidate is drafted.
 2. Check whether the apparent local change carries cross-section evidence impact.
@@ -47,6 +48,6 @@ Default to constructive work with routine evidence checking and feedback recordi
 
 ## Current stage boundary
 
-Route statistical reconstruction, recalculation, field verification, and source comparison to `analysis-adapter`. The adapter may create approved analysis-state files and reproducible analysis outputs, but it cannot modify source data or manuscript files. Literature management, manuscript patching, reviewer-response workflows, and submission audits remain unavailable until their later modules are implemented.
+Route statistical reconstruction, recalculation, field verification, and source comparison to `analysis-adapter`. The adapter may create approved analysis-state files and reproducible analysis outputs, but it cannot modify source data or manuscript files. Systematic literature mapping, manuscript patching, reviewer-response workflows, and submission audits remain deferred.
 
-Targeted literature support, contribution planning and task-scoped bilingual candidates are available inside existing modules; they are not a new literature database, file watcher or manuscript patcher.
+The personal library is independent of manuscript project state. The author chooses separately which readings to cite in a particular manuscript.

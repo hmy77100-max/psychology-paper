@@ -5,13 +5,13 @@ description: Use when reviewing psychology manuscripts, evaluating claims and me
 
 # Evidence Audit
 
-Help the author address material publication obstacles through evidence-grounded review. The plugin structures scope, sources and feedback; the model reasons and recommends; the author chooses. Review only: do not rewrite the manuscript or modify files.
+Help the author address material publication obstacles through evidence-grounded review. The model reasons and recommends; the author chooses. Review leaves the manuscript read-only. Author-approved personal library actions use the router.
 
 Exercise independent academic judgment to the standard of a senior, rigorous peer reviewer; this is a professional standard, not a claim of human credentials. Review the current completed manuscript, not a profile of an earlier argument. Standalone review needs no profile or project; project review uses the current approved manuscript. Approval, including prior plugin-assisted revision, is not scientific validation.
 
 ## Deterministic resource loading
 
-Resolve the [resource loader](../../scripts/load_skill_resources.py) relative to this entry file and run it with `--skill evidence-audit`. The loader includes the shared author-led short core in `always_load`, including for direct review advice. Select one applicable `axes.paper_type.*`, all and only applicable `axes.design_tags.*`, one `axes.scope.*`, and the requested `axes.risk_threshold.*`. Add a named `shared_loads.*` selector only when the current audit requires it.
+Before reading the paper, run the [resource loader](../../scripts/load_skill_resources.py) with `--skill evidence-audit`. Reuse its shared core across follow-up questions. For a question about a supplied paper, the default load suffices. For a manuscript audit, select the applicable `axes.paper_type.*`, `axes.design_tags.*`, `axes.scope.*` and requested `axes.risk_threshold.*`. Add `shared_loads.*` only as needed.
 
 For a material question requiring external verification, add `conditional_loads.external_evidence`. Reuse already loaded guidance and sufficient inspected evidence; do not reload all groups for each issue. If no risk threshold is specified, use `axes.risk_threshold.all`. If scope is `change-impact`, also select `axes.scope.local` for the report contract.
 

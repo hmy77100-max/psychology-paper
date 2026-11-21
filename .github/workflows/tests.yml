@@ -20,3 +20,36 @@ jobs:
         with:
           python-version: '3.13'
       - run: python -X utf8 -m unittest discover -s tests -v
+
+  r-numerical:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.6.2'
+          use-public-rspm: true
+      - run: python -m pip install -r requirements-statistics.txt
+      - name: Install optional R profile in the disposable CI library
+        shell: Rscript {0}
+        run: |
+          install.packages(c('jsonlite', 'remotes'), repos='https://cloud.r-project.org')
+          profile <- jsonlite::fromJSON('requirements-statistics-r.json')$validated_versions$packages
+          for (pkg in names(profile)) remotes::install_version(pkg, version=profile[[pkg]], repos='https://cloud.r-project.org', upgrade='never')
+          sessionInfo()
+      - name: Check configured R methods
+        shell: pwsh
+        run: |
+          $env:PSYCHOLOGY_PAPER_RSCRIPT = (Get-Command Rscript).Source
+          if ('${{ runner.os }}' -eq 'macOS') {
+            python -X utf8 -m unittest discover -s tests -p test_analysis_methods.py -k test_ols_and_hc3 -v
+          } else {
+            python -X utf8 -m unittest discover -s tests -p test_analysis_methods.py -v
+          }

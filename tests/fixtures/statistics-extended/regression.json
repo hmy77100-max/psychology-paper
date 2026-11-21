@@ -1,0 +1,1 @@
+{"provenance":"Hand-calculated OLS fixture: y = 1 + 2x + residuals [1,-1,-1,1], residuals orthogonal to intercept and x.","x":[0,1,2,3],"y":[2,2,4,8],"intercept":1,"slope":2}

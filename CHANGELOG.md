@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.0 — 2026-11-21
+
+- Search five public literature sources through one on-demand entry. Compare duplicate and related records while preserving their sources and versions.
+- Save selected citations and PDFs across manuscript projects in a local personal library. Retrieve original highlights through read-only local Zotero access. The author chooses which material to keep or cite.
+- Extend the existing analysis interface with optional R implementations for bounded ANOVA, regression, mixed models, mediation/moderation and CFA/SEM. Record the origin of an analysis, including exploratory choices and attempted specifications.
+- Document the GPT-5.6-Sol (medium) author-facing performance benchmark and prepare five handoff scenarios for future author-led assessment.
+
 ## 0.6.0 — 2026-11-16
 
 - Connect study-design understanding to checks of retained observations and information used by the analysis, even for a general manuscript-revision request. Merge the cue into existing routing and analysis resources; remove conflicting explicit-request-only gates while preserving computation authorization. Keep method research conditional and adoption author-led, without a new backend or workflow. The author accepted two ordinary-request simulations on 2026-11-15 and seven additional boundary scenarios on 2026-11-16; these do not establish accuracy for every method or model.
