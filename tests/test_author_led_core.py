@@ -9,6 +9,35 @@ import load_skill_resources as loader
 
 
 class AuthorLedCoreTests(unittest.TestCase):
+    def test_method_families_are_conditional_bounded_and_deduplicated(self):
+        default = loader.load_skill_resources(skill="analysis-adapter", selectors=[])
+        self.assertLessEqual(default.total_chars, 2498)
+        self.assertEqual(len(default.resources), 1)
+        families = {
+            "anova": ("factorial_anova", "repeated_anova", "mixed_anova"),
+            "regression": ("linear_regression", "binomial_regression", "poisson_regression"),
+            "mixed": ("linear_mixed", "binomial_mixed", "poisson_mixed"),
+            "mediation_moderation": ("mediation", "moderation"),
+            "sem": ("cfa", "sem"),
+        }
+        for family, names in families.items():
+            with self.subTest(family=family):
+                selector = "conditional_loads.method_" + family
+                loaded = loader.load_skill_resources(skill="analysis-adapter", selectors=[selector, selector])
+                self.assertEqual(len(loaded.resources), 2)
+                resource = loaded.resources[-1]
+                self.assertLessEqual(len(resource.content), 3000)
+                for name in names:
+                    self.assertIn("`" + name + "`", resource.content)
+
+    def test_analysis_context_preserves_timing_and_search_history(self):
+        loaded = loader.load_skill_resources(skill="analysis-adapter", selectors=["conditional_loads.registry"])
+        text = "\n".join(r.content for r in loaded.resources)
+        for field in ("inferential_status", "analysis_role", "basis_ref", "search_set_id", "parent_analysis_id"):
+            self.assertIn(field, text)
+        for status in ("EXPLORATORY", "UNDETERMINED", "attempted", "completed", "failed", "adopted"):
+            self.assertIn(status, text)
+
     def test_analysis_learning_is_optional_once_and_within_existing_load_budget(self):
         # Resource integration/cost only; scientific usefulness is judged by the author.
         default = loader.load_skill_resources(skill="analysis-adapter", selectors=[])
@@ -42,15 +71,17 @@ class AuthorLedCoreTests(unittest.TestCase):
         text=(ROOT/'skills/analysis-adapter/SKILL.md').read_text(encoding='utf-8')
         self.assertNotIn('`METHOD_REVIEW`: discuss and learn methods',text)
 
-    def test_direct_and_routed_writing_share_one_bounded_core(self):
+    def test_router_writing_and_audit_share_one_bounded_library_reminder(self):
         expected = (ROOT / "skills/.shared/core/author-led-writing.md").resolve()
-        for skill in ("psychology-paper", "manuscript-writing"):
+        for skill in ("psychology-paper", "manuscript-writing", "evidence-audit"):
             with self.subTest(skill=skill):
                 loaded = loader.load_skill_resources(skill=skill, selectors=[])
                 matches = [r for r in loaded.resources
                            if (ROOT / "skills" / skill / r.relative_path).resolve() == expected]
                 self.assertEqual(len(matches), 1, "direct and routed entry must include the shared author core once")
                 self.assertLessEqual(len(matches[0].content), 350)
+                self.assertRegex(matches[0].content, r"同一篇[^。\n]*主动问[^。\n]*个人文献库")
+                self.assertRegex(matches[0].content, r"(?:同意|确认|授权)后才保存")
 
     def test_default_core_cost_does_not_grow_by_stacking(self):
         for skill, baseline in (("psychology-paper", 1709), ("manuscript-writing", 4856)):

@@ -11,4 +11,6 @@ For an introduction, prioritize supporting evidence that builds the argument fro
 
 Deliver a compact recommendation with source links and explain where a source helps the current argument; propose reorganization only when warranted by the task. State material evidence gaps. If no useful new source is found, say so; do not pad the package. The author may adopt, reject, combine or propose another angle. Do not insert recommendations into the authoritative manuscript or treat search permission as adoption.
 
-External search/browser/reference tools remain subordinate to this workflow. Use only available tools, record their provenance and never invent a connector. Share only the minimum authorized material, not a private manuscript by default. Reuse verified results while source/version and question remain unchanged; re-open originals for disputed claims or changed evidence.
+Infer the search need from the draft, the author's question and earlier decisions. A novelty claim may call for recent follow-ups; a scale attribution may call for the Methods section. Use the source options in the shared external-evidence resource with `scripts/literature_query.py`. Start with a short list, reuse verified results, and open the passages that can change the writing recommendation. Tell the author what the studies actually replicated, used or extended.
+
+Use the router’s `conditional_loads.literature_library` for agreed saves, recall or highlights. The author chooses which papers to cite.

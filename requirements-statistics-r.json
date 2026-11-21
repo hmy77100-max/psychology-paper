@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "policy": "Optional local dependencies. Runtime never installs packages. This is a tested top-level profile, not a transitive lockfile or universal compatibility claim.",
+  "profiles": {
+    "bridge": ["jsonlite"],
+    "anova": ["afex", "car", "emmeans"],
+    "regression": ["stats"],
+    "regression_hc3": ["sandwich"],
+    "binomial_regression": ["detectseparation"],
+    "mixed": ["lme4", "lmerTest", "emmeans"],
+    "mediation": ["lavaan"],
+    "sem": ["lavaan"]
+  },
+  "validated_versions": {
+    "date": "2026-11-16", "platform": "Windows x64 UCRT", "R": "4.6.2",
+    "packages": {"jsonlite":"2.0.0","afex":"1.5.1","car":"3.1.5","emmeans":"2.0.4","sandwich":"3.1.3","lme4":"2.1.0","lmerTest":"3.2.1","lavaan":"0.7.3","detectseparation":"0.4.0"},
+    "evidence": "docs/validation/global-statistics-cc.md; tests/test_analysis_methods.py"
+  }
+}

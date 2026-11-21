@@ -174,7 +174,7 @@ class ResourceLoaderTests(unittest.TestCase):
     def test_theory_resources_are_opt_in_and_shared_across_modules(self) -> None:
         loader = import_loader()
         expected = (PLUGIN_ROOT / 'skills/.shared/references/theory-reasoning.md').resolve()
-        for skill, baseline in [('journal-fit-style', 611), ('evidence-audit', 2326), ('manuscript-writing', 3604)]:
+        for skill, baseline in [('journal-fit-style', 611), ('evidence-audit', 2332), ('manuscript-writing', 3610)]:
             with self.subTest(skill=skill):
                 base = loader.load_skill_resources(skill=skill, selectors=[])
                 self.assertEqual(base.total_chars, baseline)

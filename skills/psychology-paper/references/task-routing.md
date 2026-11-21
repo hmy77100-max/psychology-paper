@@ -8,7 +8,8 @@
 | Revise or translate approved text | `manuscript-writing` | TXT-ready candidate, never a file write |
 | Record approval or choose route | `psychology-paper` | Compact approved state or routing decision |
 | Verify a material source question during review | `evidence-audit` | Targeted lookup with provenance and access limits; reuse journal/profile context |
-| Standalone literature management or systematic mapping | unavailable until Stage 2 | Explain boundary and stop |
+| Compare database results, save a paper, recall a reading or find a Zotero highlight | `psychology-paper` | Use `conditional_loads.literature_library` on demand, including across projects. |
+| Build a systematic literature map | Deferred | Explain current scope. |
 | Design-informed analysis opportunities, recalculation or field checks | `analysis-adapter` | Select method-review, candidate, formal or verification intent; reuse authorized scope and apply the intent-specific requirements |
 | Patch DOCX/TXT/Markdown | unavailable until Stage 1B | Prepare minimal handoff; do not edit |
 | Formal response letter or submission audit | unavailable until Stage 3 | Explain boundary and stop |

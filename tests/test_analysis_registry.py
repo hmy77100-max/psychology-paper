@@ -9,6 +9,7 @@ from pathlib import Path
 
 
 PLUGIN_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PLUGIN_ROOT/'scripts'))
 INIT_PROJECT = PLUGIN_ROOT / "scripts" / "init_project.py"
 REGISTRY = PLUGIN_ROOT / "scripts" / "analysis_registry.py"
 VALIDATE_PROJECT = PLUGIN_ROOT / "scripts" / "validate_project.py"
@@ -32,6 +33,24 @@ def read_frontmatter(path: Path) -> dict[str, object]:
 
 
 class AnalysisRegistryTests(unittest.TestCase):
+    def test_origin_is_preserved_through_adoption_and_cannot_be_relabelled(self):
+        import copy
+        import analysis_contracts as c
+        import analysis_registry as registry
+        with tempfile.TemporaryDirectory() as folder:
+            root=Path(folder); entry=self._valid_entry(root)
+            path=root/'analysis-run.json';run=json.loads(path.read_text(encoding='utf-8'))
+            run['schema_version']=2
+            run['analysis_context']={'inferential_status':'EXPLORATORY','analysis_role':'CANDIDATE',
+                'basis_ref':'post-result proposal','search_set_id':'set-1','parent_analysis_id':None,'discovered_after_results':True}
+            run['context_hash']=c.context_hash(run['analysis_context'])
+            path.write_text(json.dumps(run),encoding='utf-8')
+            reference=registry.validate_formal_reference(entry,root)
+            self.assertEqual(reference.get('analysis_context'),run['analysis_context'])
+            bad=copy.deepcopy(entry);bad['analysis_context']={**run['analysis_context'],'inferential_status':'PRESPECIFIED','discovered_after_results':False}
+            with self.assertRaisesRegex(ValueError,'context|origin'):
+                registry.validate_formal_reference(bad,root)
+
     def _project(self, root: Path) -> tuple[Path, str]:
         manuscript = root / "paper.txt"
         original = "authoritative manuscript"
