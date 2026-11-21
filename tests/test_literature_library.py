@@ -91,7 +91,7 @@ class LiteratureLibraryTests(unittest.TestCase):
     def setUp(self):
         temp = tempfile.TemporaryDirectory()
         self.addCleanup(temp.cleanup)
-        self.home = Path(temp.name)
+        self.home = Path(temp.name).resolve()
         self.first, self.second = self.home / "paper1", self.home / "paper2"
         self.first.mkdir()
         self.second.mkdir()
