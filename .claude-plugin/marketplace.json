@@ -1,0 +1,7 @@
+{
+  "name": "psychology-paper-github",
+  "owner": { "name": "Psychology Paper Contributors" },
+  "plugins": [
+    { "name": "psychology-paper", "source": "./" }
+  ]
+}
