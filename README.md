@@ -1,5 +1,7 @@
 # Psychology Paper
 
+**Codex 最低建议使用配置 / Minimum recommended Codex configuration:** **GPT-5.6-Sol** (`gpt-5.6-sol`), **medium** reasoning effort（中等推理强度）. Claude Code has no evaluated model minimum yet.
+
 Early-stage research assistant. Current release: **0.7.0**. This release extends direct statistical analysis, literature search and the author's personal library. Previous releases remain available from the [release archive](https://github.com/hmy77100-max/psychology-paper/releases).
 
 Psychology Paper supports evidence-calibrated psychology manuscript work in Codex and Claude Code. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. Authors can keep readings across manuscripts and look up highlights in local Zotero. The plugin does not modify source data or manuscript files.

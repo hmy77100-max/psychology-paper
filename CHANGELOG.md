@@ -5,7 +5,7 @@
 - Search five public literature sources through one on-demand entry. Compare duplicate and related records while preserving their sources and versions.
 - Save selected citations and PDFs across manuscript projects in a local personal library. Retrieve original highlights through read-only local Zotero access. The author chooses which material to keep or cite.
 - Extend the existing analysis interface with optional R implementations for bounded ANOVA, regression, mixed models, mediation/moderation and CFA/SEM. Record the origin of an analysis, including exploratory choices and attempted specifications.
-- Document the GPT-5.6-Sol (medium) author-facing performance benchmark and prepare five handoff scenarios for future author-led assessment.
+- Set the minimum recommended Codex configuration to GPT-5.6-Sol with medium reasoning effort. Prepare five handoff scenarios for future author-led assessment.
 
 ## 0.6.0 — 2026-11-16
 

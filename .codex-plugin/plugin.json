@@ -20,7 +20,7 @@
     "logo": "./assets/quill.png",
     "composerIcon": "./assets/quill.png",
     "shortDescription": "Psychology manuscript workflow with evidence boundaries",
-    "longDescription": "Plan, audit, and revise psychology manuscripts through journal-aware, evidence-calibrated, human-approved workflows.",
+    "longDescription": "Plan, audit, and revise psychology manuscripts with author approval. Minimum recommended Codex configuration: GPT-5.6-Sol with medium reasoning effort.",
     "developerName": "Psychology Paper Contributors",
     "category": "Productivity",
     "capabilities": [
