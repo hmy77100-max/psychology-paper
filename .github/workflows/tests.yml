@@ -37,12 +37,22 @@ jobs:
           r-version: '4.6.2'
           use-public-rspm: true
       - run: python -m pip install -r requirements-statistics.txt
+      - name: Install libuv headers for R package fs
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libuv1-dev
       - name: Install optional R profile in the disposable CI library
         shell: Rscript {0}
         run: |
+          options(Ncpus = 2L)
           install.packages(c('jsonlite', 'remotes'), repos='https://cloud.r-project.org')
           profile <- jsonlite::fromJSON('requirements-statistics-r.json')$validated_versions$packages
           for (pkg in names(profile)) remotes::install_version(pkg, version=profile[[pkg]], repos='https://cloud.r-project.org', upgrade='never')
+          for (pkg in names(profile)) {
+            if (!requireNamespace(pkg, quietly=TRUE)) stop("R profile package failed to load: ", pkg)
+            if (packageVersion(pkg) != package_version(profile[[pkg]])) stop("Unexpected version for ", pkg, ": ", as.character(packageVersion(pkg)))
+          }
           sessionInfo()
       - name: Check configured R methods
         shell: pwsh

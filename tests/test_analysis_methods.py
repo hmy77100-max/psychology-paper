@@ -130,7 +130,7 @@ class AttemptRecordTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(prefix='分析扩展-')
         self.addCleanup(self.tmp.cleanup)
-        self.root=Path(self.tmp.name)
+        self.root=Path(self.tmp.name).resolve()
         self.data=self.root/'data.csv'
         self.data.write_text('score\n1\n2\n3\n4\n',encoding='utf-8')
         self.spec=candidate_spec(); self.spec['schema_version']=3
@@ -175,7 +175,7 @@ class RNumericTests(unittest.TestCase):
         self.rng=np.random.default_rng(1042)
         self.tmp=tempfile.TemporaryDirectory(prefix='R数值-')
         self.addCleanup(self.tmp.cleanup)
-        self.root=Path(self.tmp.name)
+        self.root=Path(self.tmp.name).resolve()
         self.counter=0
 
     def run_model(self,data,model,inference=None,missing='error',ok=True,filters=None):

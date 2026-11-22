@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.7.0 — 2026-11-21
+## 0.7.0 — 2026-11-22
 
 - Search five public literature sources through one on-demand entry. Compare duplicate and related records while preserving their sources and versions.
 - Save selected citations and PDFs across manuscript projects in a local personal library. Retrieve original highlights through read-only local Zotero access. The author chooses which material to keep or cite.
