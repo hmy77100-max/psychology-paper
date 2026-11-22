@@ -1,5 +1,20 @@
 # Psychology Paper
 
+Psychology Paper（PP）是给心理学论文作者用的改稿插件，可以在 Codex 和 Claude Code 中使用。手里有一篇初稿，就可以请它一起看这项研究值得讲什么、现有证据能支持什么，以及怎样把论点写清楚。研究方向、分析结果是否采用、哪些改动写进稿子，都由作者决定。
+
+## 它能帮你做什么
+
+- **选刊与定位。** 结合你的研究设计、主要发现和目标期刊近期发表的同类文章，比较投稿方向，说明这篇稿子对该刊读者能多回答什么问题。
+- **审稿与中英文修改。** 对照方法和结果，找出论证跳步或结论写得过满的具体句子。你选定修改范围后，PP 给出完整原文和改写候选，方便你逐处取舍。改英文稿时还可以对照中文译文。
+- **查文献与找回原文。** 为稿里的一句话找依据，回到方法段核对研究实际用了哪一版量表。你可以把选中的文献和 PDF 留到下一篇稿子用，也可以从本机 Zotero 找回当时画的那句话。
+- **看数据还能回答什么。** 比如原稿只报告每个人的平均值，数据却保留了每次选择。PP 可以指出逐次记录还能回答什么、比较合适的方法，在你同意后复算原分析或试算候选模型。
+
+## 第一次怎么用
+
+1. **安装后，在论文项目里开一个新对话。** 按你使用的平台选择安装说明。[Codex 安装](#github-distribution-and-another-codex-computer) · [Claude Code 安装](#install-from-github)
+2. **附上初稿，或指出项目里哪份文件是当前稿。** 在 Codex 里可以直接说「帮我改一下这篇文章」，也可以用 `$psychology-paper` 指名调用。在 Claude Code 里输入 `/psychology-paper:psychology-paper 帮我改一下这篇文章`。
+3. **按你手头的问题接着谈。** 还没定刊时，可以先让 PP 通读，或只看你最拿不准的一段。按目标期刊通改全文时，再一起确认期刊、文章主线和篇幅。拿到建议后，像平时和合作者说话一样划定取舍就可以，例如「第二段按你说的改，第一段保留我的原话」。
+
 **Codex 最低建议使用配置 / Minimum recommended Codex configuration:** **GPT-5.6-Sol** (`gpt-5.6-sol`), **medium** reasoning effort（中等推理强度）. Claude Code has no evaluated model minimum yet.
 
 Early-stage research assistant. Current release: **0.7.0**. This release extends direct statistical analysis, literature search and the author's personal library. Previous releases remain available from the [release archive](https://github.com/hmy77100-max/psychology-paper/releases).
