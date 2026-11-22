@@ -5,8 +5,8 @@ Interpret ordinary requests; choose one primary module:
 - journal fit/style → `journal-fit-style`
 - review or evidence conflict → `evidence-audit`
 - writing/translation candidates → `manuscript-writing`
-- method review, candidate calculation, formal analysis or verification → `analysis-adapter`
-- orchestration/decisions → `psychology-paper`
+- method review, calculation or verification → `analysis-adapter`
+- decisions, personal library or Zotero highlights → `psychology-paper`
 
 After understanding the design during manuscript work, use `analysis-adapter` to assess potentially unused observations; a general revision request is enough. Keep isolated language edits local.
 

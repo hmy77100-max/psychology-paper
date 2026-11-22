@@ -4,7 +4,7 @@ import argparse
 import hashlib
 import os
 import tempfile
-from analysis_contracts import validate_result
+from analysis_contracts import R_METHODS, analysis_context, validate_result
 import json
 from pathlib import Path
 import sys
@@ -172,6 +172,8 @@ def add_entry(project_root: Path, entry_path: Path, confirmed: bool) -> int:
         adopted["evidence_level"] = "EXTERNAL_ARTIFACTS_REGISTERED_NUMERICS_UNVERIFIED"
         adopted["discrepancy_status"] = "NOT_ASSESSED"
     adopted["formal_output_ref"] = reference
+    if 'analysis_context' in reference:
+        adopted['analysis_context']=reference['analysis_context']
     analyses.append(adopted)
     if hashlib.sha256(Path(reference["path"]).read_bytes()).hexdigest() != reference["sha256"]:
         raise Conflict("Formal output changed during adoption")
@@ -327,16 +329,22 @@ def validate_formal_reference(entry, root):
     for key in ("design_tags", "observation_unit"):
         if not isinstance(design, dict) or key not in design or entry.get(key) != design[key]:
             raise ValueError(f"formal_output design mismatch: {key}")
-    # All six controlled methods are deterministic analytical calculations.
-    # No bootstrap or random generator is executed by these methods.
-    for key in ("bootstrap", "random_seed"):
-        value = entry.get(key)
-        if value is not None and value != "NOT_APPLICABLE":
-            raise ValueError(f"formal_output {key} is not applicable to controlled methods")
     method = scientific["model"].get("method")
+    if method in R_METHODS:
+        boot=scientific['inference'].get('bootstrap')
+        if entry.get('bootstrap')!=boot or entry.get('random_seed')!=(boot.get('seed') if boot else None):
+            raise ValueError('formal_output bootstrap/random_seed mismatch')
+        if method=='mediation' or method in ('cfa','sem'):estimation=scientific['model']['estimator']
+        elif method.endswith('_mixed'):estimation=scientific['model']['estimation']
+        elif method.endswith('_anova'):estimation='ANOVA-'+scientific['model']['ss_type']
+        else:estimation='OLS' if method=='linear_regression' or (method=='moderation' and scientific['model']['family']=='linear') else 'ML'
+        allowed_estimations={estimation}
+    else:
+        for key in ('bootstrap','random_seed'):
+            if entry.get(key) not in (None,'NOT_APPLICABLE'):raise ValueError(f'formal_output {key} is not applicable to controlled methods')
     if method in ("descriptive", "scale_score"):
         allowed_estimations = {"NOT_APPLICABLE", "descriptive"}
-    else:
+    elif method not in R_METHODS:
         alternative = scientific.get("inference", {}).get("alternative")
         allowed_estimations = {"two-sided", "two-tailed"} if alternative == "two-sided" else {alternative}
     if not isinstance(entry.get("estimation"), str) or entry["estimation"] not in allowed_estimations:
@@ -362,7 +370,12 @@ def validate_formal_reference(entry, root):
     saved = entry.get("formal_output_ref")
     if saved is not None and (not isinstance(saved, dict) or saved.get("sha256") != digest or saved.get("run_id") != run["run_id"] or saved.get("path") != str(path)):
         raise ValueError("formal_output reference hash or identity mismatch")
-    return {"path": str(path), "sha256": digest, "run_id": run["run_id"],
+    context=analysis_context(run)
+    if 'analysis_context' in entry and entry['analysis_context']!=context:
+        raise ValueError('analysis context must preserve the recorded origin')
+    if saved and 'analysis_context' in saved and saved['analysis_context']!=context:
+        raise ValueError('saved analysis context differs from original run')
+    return {"path": str(path), "sha256": digest, "run_id": run["run_id"], "analysis_context":context,
             "analysis_id": run["analysis_id"], "spec_hash": run["spec_hash"], "input_hash": run["input_hash"]}
 
 

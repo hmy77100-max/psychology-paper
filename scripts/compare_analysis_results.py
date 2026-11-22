@@ -50,7 +50,7 @@ def compare_results(authoritative, verification, *, tolerance, mode="verificatio
         return report("CANDIDATE_SPECIFICATION_CHANGED" if mode=="candidates" else "SPECIFICATION_MISMATCH", "analysis specification differs", mismatch)
     left=authoritative.get("results" if modern else "statistics")
     right=verification.get("results" if modern else "statistics")
-    if not left or not right or not _valid_numbers(left) or not _valid_numbers(right):
+    if not left or not right or (not modern and (not _valid_numbers(left) or not _valid_numbers(right))):
         return report("NOT_COMPARABLE", "statistics are missing or invalid")
     if modern:
         def indexed(rows):
@@ -68,7 +68,7 @@ def compare_results(authoritative, verification, *, tolerance, mode="verificatio
         if type(a) is not type(b) and not (type(a) in (int,float) and type(b) in (int,float)): return False
         if isinstance(a,(int,float)):
             if key in {'n','n_by_group'}: return a==b
-            if key=='p': return math.isclose(a,b,abs_tol=0,rel_tol=1e-6)
+            if key in {'p','p_adjusted'}: return math.isclose(a,b,abs_tol=0,rel_tol=1e-6)
             return math.isclose(a,b,abs_tol=tolerance,rel_tol=0)
         if isinstance(a,dict): return set(a)==set(b) and all(equal(a[k],b[k],k) for k in a)
         if isinstance(a,list): return len(a)==len(b) and all(equal(x,y,key) for x,y in zip(a,b))
@@ -76,6 +76,16 @@ def compare_results(authoritative, verification, *, tolerance, mode="verificatio
     for key in sorted(set(left)|set(right)):
         if key not in left or key not in right or not equal(left[key],right[key],key):
             differences[key]={"authoritative":left.get(key),"verification":right.get(key)}
+    if modern and (authoritative.get('schema_version')==2 or verification.get('schema_version')==2):
+        for key in ('model_summary','sample_audit'):
+            a,b=authoritative.get(key),verification.get(key)
+            if key=='model_summary':
+                a={k:v for k,v in a.items() if k!='expected_result_ids'} if isinstance(a,dict) else a
+                b={k:v for k,v in b.items() if k!='expected_result_ids'} if isinstance(b,dict) else b
+            if not equal(a,b,key):differences[key]={'authoritative':a,'verification':b}
+        for key in ('converged','singular','admissible','bootstrap_failed','bootstrap_nonadmissible','bootstrap_valid'):
+            a=authoritative.get('diagnostics',{}).get(key);b=verification.get('diagnostics',{}).get(key)
+            if not equal(a,b,key):differences['diagnostics.'+key]={'authoritative':a,'verification':b}
     return report("NUMERIC_DISCREPANCY" if differences else "ALIGNED", "numeric results differ" if differences else "results align", differences=differences)
 
 

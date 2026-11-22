@@ -1,10 +1,20 @@
 # Psychology Paper
 
-Psychology Paper supports evidence-calibrated psychology manuscript work in Codex and Claude Code. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. It does not modify source data or manuscript files, maintain a literature database, or prepare submission files yet.
+**Codex 最低建议使用配置 / Minimum recommended Codex configuration:** **GPT-5.6-Sol** (`gpt-5.6-sol`), **medium** reasoning effort（中等推理强度）. Claude Code has no evaluated model minimum yet.
+
+Early-stage research assistant. Current release: **0.7.0**. This release extends direct statistical analysis, literature search and the author's personal library. Previous releases remain available from the [release archive](https://github.com/hmy77100-max/psychology-paper/releases).
+
+Psychology Paper supports evidence-calibrated psychology manuscript work in Codex and Claude Code. It diagnoses the task, learns the target journal's writing style, audits the manuscript against the study design, prepares bilingual revision candidates, and supports reproducible quantitative-analysis reconstruction. Authors can keep readings across manuscripts and look up highlights in local Zotero. The plugin does not modify source data or manuscript files.
 
 Version 0.6.0 connects understanding the research design to noticing useful information in retained data, shares analysis contracts and controlled statistical helpers across the existing modules, and packages the same five Skills for Claude Code. Existing installations need an explicit update. Author decisions govern analysis adoption and manuscript changes; no fixed argument or preferred model is imposed.
 
 The author accepted two ordinary-request simulations on 2026-11-15 and seven additional boundary scenarios on 2026-11-16, covering five experimental designs, an empirical literature review and a theoretical review. These observed Codex sessions support the accepted assistance behavior, not every method's numerical accuracy or other models' performance. Claude Code business-effect evaluation is deferred by the author; release checks cover basic plugin discovery and loadability without paid model calls. Historical failures and the scope of these checks remain documented in [the validation record](docs/validation/global-statistics-cc.md).
+
+## Minimum performance for author-facing work
+
+The project owner set **GPT-5.6-Sol at medium reasoning effort** as the minimum performance benchmark for author-facing work. The benchmark concerns what an author experiences on an ordinary request. For example, when an author keeps consulting one paper, the assistant should answer the research question first, notice when keeping the paper would help, and offer to save the available version. The author chooses what to keep. A successful save leaves a record the author can retrieve in another project.
+
+In the observed Sol session, the assistant offered after its first substantive answer, waited for consent, and saved the selected PDF. The recovered copy matched the original. GPT-5.6-Terra (medium) answered all three research questions in its own case and loaded the reminder, but never offered to save the paper. The owner marked that initiative behavior below the benchmark. GPT-6-Luna (medium) also missed the offer in its tested case. These observations cover the personal-library task. Other modules and models need their own evidence for claims about performance.
 
 ## Implemented modules
 
@@ -20,7 +30,7 @@ One module is primary for each task. Other modules receive only the smallest nec
 
 Review-only requests go directly to `evidence-audit`, including whole-paper review. Existing article/journal profiles and project memory are reused selectively; no second journal-positioning workflow or mandatory project setup is introduced. Six internal responsibilities organize review, not six new agents or Skills. The model remains responsible for scientific judgment and may recommend a different journal, argument, analysis or experiment; the author chooses adoption.
 
-For material external questions the model uses available browsing/retrieval tools to check original sources, versions and applicability. It records inspected support, competing evidence and access limits. Offline requests and unavailable full texts produce bounded findings. This is targeted review support, not a new search service or literature-management module.
+For material external questions the model uses available browsing/retrieval tools to check original sources, versions and applicability. It records inspected support, competing evidence and access limits. Offline requests and unavailable full texts produce bounded findings. The author can save a selected candidate for use in another project.
 
 The optional `python -X utf8 scripts/review_evidence.py --record -` command reads a JSON evidence note from stdin and checks provenance-field completeness without writing files. `record_complete` never means scientific verification. Review ends at feedback; a later editing request asks full versus targeted revision only when scope is unspecified, then follows the existing revision workflow. Agreement with advice alone does not start editing.
 
@@ -71,7 +81,7 @@ The details command lists the installed skills without sending a prompt. Launch 
 
 ### Load a local copy for one session
 
-The repository contains a minimal Claude Code manifest at `.claude-plugin/plugin.json`. Claude Code uses the existing root `skills/` directory by default, sharing the five Skills, resource manifests and Python helpers with Codex. The wrapper adds no agents, hooks, permission presets or duplicated Skill tree. Codex-specific interface metadata stays in `.codex-plugin/plugin.json`. Both manifests declare version `0.6.0`.
+The repository contains a minimal Claude Code manifest at `.claude-plugin/plugin.json`. Claude Code uses the existing root `skills/` directory by default, sharing the five Skills, resource manifests and Python helpers with Codex. The wrapper adds no agents, hooks, permission presets or duplicated Skill tree. Codex-specific interface metadata stays in `.codex-plugin/plugin.json`. Both manifests declare version `0.7.0`.
 
 From the cloned repository root, use an installed Claude Code CLI for local manifest validation:
 
@@ -119,6 +129,12 @@ For English manuscript revision, the default TXT order is:
 For Chinese manuscript revision, the required order is complete original Chinese, revised Chinese, and necessary notes. Chinese-to-English work includes the Chinese source, revised English, and a Chinese back-translation. Full manuscripts are processed in argument-complete logical units (which may cross layout paragraphs). The author may reply in their own words; no approval command or candidate-ID syntax is required.
 
 ## Author-led revision and literature support
+
+Choose a literature source for the author's question. Crossref resolves DOI metadata, OpenAlex traces citations, and Europe PMC locates passages in covered open articles. PubMed filters health research by MeSH topic and publication type. arXiv retrieves computational-methods preprints, including a specified version. Start with a compact shortlist and retrieve details for selected papers. For Chinese scale adaptations and theses, the host browser can search CNKI when the site is accessible. The personal library can identify the copy the author recorded as read.
+
+Results from different indexes can be compared locally. Matching records share one entry in the shortlist, with each source identified. Related preprints and conflicting citations stay visible for the author's decision. Ask “Save the second paper under sample-size justification” or, in a later chat, “Find the paper I kept on sensitivity analysis.” The personal library is created on first save at `~/PsychologyPaper/literature.sqlite3` and retains the edition, attachment and reading location. With Zotero desktop open and local communication enabled, the plugin can also return highlighted text, a separate comment and a link to that PDF annotation. [Library commands](skills/psychology-paper/references/literature-library.md)
+
+When an author keeps coming back to a paper, Psychology Paper can offer to keep it for another project. The author chooses whether to save the citation or include an available PDF. The save receipt identifies the local library and what it kept. The library uses the author's disk space and requires no database server.
 
 The author chooses the argument, theoretical role and revision order in the target journal's context. The plugin supplies sources, recommendations and consistency checks, not a compulsory paper outline. Body-first revision can reduce summary rework when it fits the author's plan; it is not a prerequisite for drafting or adopting an abstract. Stage checks report pending synchronization as `stage_notes`, while actual source, candidate and authorization errors remain blocking. Adopting one unit never approves the others; later content changes still invalidate dependent summaries. Recommendations compare relevant journal research and direct field predecessors; fit is not a novelty claim.
 
@@ -207,7 +223,40 @@ python -X utf8 .\scripts\analysis_preflight.py --spec "C:\path\to\analysis-spec.
 
 Choose the intent first: `METHOD_REVIEW` needs no dataset or formal source; `CANDIDATE_ANALYSIS` may compute within authorized data/output scope while documenting scientific assumptions; `FORMAL_ANALYSIS` requires the adopted specification and one authoritative source; `VERIFICATION` checks that specification without replacing its authority. Candidate computation does not require prior adoption of every field interpretation or a formal software choice. Ambiguity that prevents meaningful computation still needs resolution.
 
-The controlled runner supports descriptive statistics, scale scoring, Welch and Student independent-samples t tests, paired t tests, and Pearson correlation. `analysis_runner.py methods --method paired_t` exposes the small field contract without reading backend source or optional statistical packages. Method learning remains open beyond these six executable methods. Runtime preflight checks actual inputs, dependencies and output scope; legacy structural completeness alone never establishes execution readiness. Results remain candidates until explicit adoption, and registry adoption checks the actual run artifact and hashes. See [global statistics and Claude Code validation](docs/validation/global-statistics-cc.md) for interfaces, numerical evidence and remaining host evaluation.
+The original six Python helpers remain descriptive statistics, scale scoring, Welch and Student independent-samples t tests, paired t tests, and Pearson correlation. The release also offers an **optional local R adapter**, through the same `methods`, `preflight` and `run` interface:
+
+| Family | Direct scope | Outside this implementation |
+| --- | --- | --- |
+| ANOVA | Between-subject, complete repeated and mixed factorial designs; II/III sums of squares; explicit GG/HF/none; specified conditional comparisons | Automatic trial aggregation or incomplete within-person designs; ANCOVA uses regression |
+| Regression | OLS/conventional or HC3; binomial logit and Poisson ML; explicit factors, interactions, binomial denominators and log offsets | Automatic selection, penalized models, unlisted distributions |
+| Mixed models | Gaussian LMM, binomial/Poisson GLMM; crossed/grouped intercepts and slopes; ML/REML where applicable; constrained ML nested fixed-effect tests | GAMM, Bayesian/nonlinear models, residual AR structures; uncorrelated categorical slopes |
+| Mediation/moderation | Independent-observation simple/parallel continuous mediation with percentile bootstrap; moderation reuses supported regression families and specified slopes/comparisons | General causal mediation, serial/multilevel mediation, all PROCESS templates, moderated mediation |
+| CFA/SEM | Single-group CFA/basic recursive SEM; continuous ML/MLR, explicit FIML; ordered WLSMV with complete observations | Multigroup invariance, growth/mixture/multilevel/Bayesian SEM, automatic path changes |
+
+Query one method, for example `python -X utf8 scripts/analysis_runner.py methods --method linear_mixed`, for its small field contract. Only the selected R module and method resource are loaded. Dependencies are checked, never installed automatically; see `requirements-statistics-r.json` for the tested local profile. A new environment requires its own dependency and numerical checks. The default six-method Python profile is unchanged.
+
+New analysis opportunities arising after inspecting results are exploratory. Existing prior-plan replication, correction and sensitivity work retain their documented origins; adoption does not turn an exploratory result into a prespecified one. Runs, failures and interruptions stay in their existing candidate output directories. The summary counts observed attempts and distinct specifications; unobserved history, options merely considered and author adoption are not inferred. No model is selected because it produces significance.
+
+Windows PowerShell (using an already prepared project environment):
+
+```powershell
+$env:PSYCHOLOGY_PAPER_RSCRIPT = 'C:\path\to\project-R\bin\Rscript.exe'
+$env:R_LIBS_USER = 'C:\path\to\project-R-library'
+python -X utf8 scripts/analysis_runner.py preflight --spec 'C:\project\analysis-spec.json'
+python -X utf8 scripts/analysis_runner.py run --spec 'C:\project\analysis-spec.json'
+```
+
+macOS/Linux bash or zsh:
+
+```bash
+export PSYCHOLOGY_PAPER_RSCRIPT="$(command -v Rscript)"
+export R_LIBS_USER="$HOME/project-r-library"
+python3 -X utf8 scripts/analysis_runner.py methods --method linear_mixed
+python3 -X utf8 scripts/analysis_runner.py preflight --spec "$HOME/project/analysis-spec.json"
+python3 -X utf8 scripts/analysis_runner.py run --spec "$HOME/project/analysis-spec.json"
+```
+
+These commands are usage examples, not evidence of macOS/Linux acceptance. Numerical validation so far is local Windows work; CI configuration is separate from an executed CI result. Method learning and external-analysis registration remain available beyond the direct methods. Runtime preflight checks actual inputs, dependencies and output scope; results remain candidates until author adoption. See [the validation record](docs/validation/global-statistics-cc.md) for reference calculations and limits.
 
 ## Validation
 
@@ -238,7 +287,7 @@ Every later behavior or rule change begins with a failing automated test or scen
 
 ## Stage boundary
 
-Statistical support is active through `analysis-adapter` under intent-specific authorization and evidence requirements. Candidate calculation, formal-source adoption and manuscript editing remain separate decisions; neither a successful calculation nor adoption authorizes a manuscript write. Targeted literature verification is available inside read-only evidence review. Standalone literature management, formal reviewer-response workflows, submission checks, and document patching remain absent until their separate stages are approved.
+Statistical support is active through `analysis-adapter` under intent-specific authorization and evidence requirements. Candidate calculation, formal-source adoption and manuscript editing remain separate decisions; neither a successful calculation nor adoption authorizes a manuscript write. Targeted literature verification is available inside read-only evidence review. Systematic literature mapping, formal reviewer-response workflows, submission checks, and document patching remain deferred.
 
 ## License
 

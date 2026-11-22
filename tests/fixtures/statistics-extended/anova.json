@@ -1,0 +1,1 @@
+{"provenance":"Hand calculation: group means 2 and 5; between SS=9, within SS=4; F=(9/1)/(4/2)=4.5; partial eta squared=9/13.","group":["A","A","B","B"],"outcome":[1,3,4,6],"df_num":1,"df_den":2,"F":4.5,"partial_eta_squared":0.6923076923076923}
